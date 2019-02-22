@@ -1,0 +1,11 @@
+# osx
+.DS_Store
+
+# configuration files
+#server/config/config.js
+
+# node
+node_modules
+
+# package-lock.json
+package-lock.json
