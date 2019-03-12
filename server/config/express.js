@@ -29,10 +29,12 @@ module.exports.init = function() {
   app.use('/api/listings', listingsRouter);
 
 
-  /**TODO 
-  Go to homepage for all routes not specified */ 
+  app.all('/login', function(req, res) {
+    res.redirect('/login.html');
+  });
+
   app.all('/*', function(req, res) {
-    res.sendFile('/index.html');
+    res.sendFile('/login.html');
   });
 
   return app;
