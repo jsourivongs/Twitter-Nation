@@ -4,45 +4,77 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 	<title>Login</title>
-	<link rel="stylesheet" href="styles/login_style.css">
+	<link rel="stylesheet" href="styles/login.css">
 	<link rel="shortcut icon" type="image/png" href="favicon.ico">
 </head>
 
 <body>
-	<div class="lowin">
-		<div class="lowin-brand">
+	<div class="login">
+		<div class="login-brand">
 			<img src="logo.jpg" alt="logo">
 		</div>
-		<div class="lowin-wrapper">
-			<div class="lowin-box lowin-register">
-				<div class="lowin-box-inner">
+		<div class="login-wrapper">
+			<div class="login-box login-login">
+				<div class="login-box-inner">
 					<form>
-						<p>Let's create your account</p>
-						<div class="lowin-group">
-							<label>Name</label>
-							<input type="text" name="name" autocomplete="name" class="lowin-input">
-						</div>
-						<div class="lowin-group">
+						<p>Sign in to Twitter Nation</p>
+						<div class="login-group">
 							<label>Username</label>
-							<input type="username" autocomplete="username" name="username" class="lowin-input">
+							<input type="username" autocomplete="username" name="username" class="login-input">
 						</div>
-						<div class="lowin-group">
-							<label>Password</label>
-							<input type="password" name="password" autocomplete="current-password" class="lowin-input">
+						<div class="login-group password-group">
+							<label>Password </label>
+							<input type="password" name="password" autocomplete="current-password" class="login-input">
 						</div>
-						<button class="lowin-btn">
-							Sign Up
+						<button class="login-btn login-btn">
+							Sign In
 						</button>
-						<label>
-							Already have an account? <a href="login.html">Login</a>
-						</label>
-						<div class="lowin-footer">
-							Design By (CEN3031 Team 2 Twitter Nation) <a href="https://github.com/jsourivongs/Twitter-Nation" target="_blank"><br/>GitHub page</a>
+
+						<div class="text-foot">
+							Don't have an account? <a href="" class="register-link">Register</a>
 						</div>
 					</form>
 				</div>
-			</div>	
+			</div>
+
+			<div class="login-box login-register">
+				<div class="login-box-inner">
+					<form>
+						<p>Let's create your account</p>
+						<div class="login-group">
+							<label>Name</label>
+							<input type="text" name="name" autocomplete="name" class="login-input">
+						</div>
+						<div class="login-group">
+							<label>Username</label>
+							<input type="username" autocomplete="username" name="username" class="login-input">
+						</div>
+						<div class="login-group">
+							<label>Password</label>
+							<input type="password" name="password" autocomplete="current-password" class="login-input">
+						</div>
+						<button class="login-btn">
+							Sign Up
+						</button>
+
+						<div class="text-foot">
+							Already have an account? <a href="" class="login-link">Login</a>
+						</div>
+					</form>
+				</div>
+			</div>
 		</div>
+	
+		<footer class="login-footer">
+			Design By (CEN3031 Team 2 Twitter Nation) <a href="https://github.com/jsourivongs/Twitter-Nation">GitHub page</a>
+		</footer>
 	</div>
+
+	<script src="js/authentication.js"></script>
+	<script>
+		Auth.init({
+			login_url: '#login'
+		});
+	</script>
 </body>
 </html>
