@@ -1,5 +1,5 @@
 /* Dependencies */
-var listings = require('../controllers/listings.server.controller.js'), 
+var listings = require('../controllers/user.server.controller.js/index.js'), 
     express = require('express'), 
     router = express.Router();
 
