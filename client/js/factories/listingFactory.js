@@ -3,10 +3,10 @@ angular.module('listings', []).factory('Listings', function($http) {
     getAll: function() {
       return $http.get('http://localhost:8080/api/listings');
     },
-	
+
 	create: function(listing) {
 	  return $http.post('http://localhost:8080/api/listings', listing);
-    }, 
+    },
 
     delete: function(id) {
 	   /**TODO
@@ -18,3 +18,7 @@ angular.module('listings', []).factory('Listings', function($http) {
 
   return methods;
 });
+
+
+//get twitter data would be here
+//post twitter data would be here 
