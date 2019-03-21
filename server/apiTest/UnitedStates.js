@@ -51,9 +51,7 @@ var WI = ['Milwaukee'] // Wisconsin
 var WV = [] // West Virginia
 var WY = [] // Wyoming
 
-
-
-var UnitedStates = {
+module.exports = {
   name: 'United States',
   woeid: 23424977,
   states: [
