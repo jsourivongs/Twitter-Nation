@@ -70,7 +70,7 @@
   <div id="fullmap">
 <div id="tooltip"></div><!-- div to hold tooltip. -->
 <svg width="960" height="600" id="statesvg"></svg> <!-- svg to hold the map. -->
-<script src="uStates.js"></script> <!-- creates uStates. -->
+<script src="js/uStates.js"></script> <!-- creates uStates. -->
 <script src="http://d3js.org/d3.v4.min.js"></script>
 <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
 
@@ -83,7 +83,7 @@
   
   tweet_data = [];
   
-  d3.csv("twitterVolume.csv", function (data) {
+  d3.csv("etc/twitterVolume.csv", function (data) {
     data.forEach(function (d) {
       //console.log(d);
       tweet_data.push({"state": d.state, "tweetsADay": +d.tweetsADay});  
