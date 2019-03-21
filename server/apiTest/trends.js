@@ -1,81 +1,14 @@
+var config = require('../config/config')
+var UnitedStates = require('./UnitedStates')
 var Twit = require('twit')
 var T = new Twit({
-  consumer_key:         '1QCqJaRuXwKDLwqTD4gcVIuBF',
-  consumer_secret:      'eS6JnAKvvPxTLZZAoDLXmMu3hGVwzwzDBKGjJzMB0J8M0ciDb9',
-  access_token:         '1105101464224104448-TC2who3KTZvHNKqjKTnG7foZZy9dox',
-  access_token_secret:  'TRxY20EbbMTEAAvgdPuiTHlDetZcjlsikFZ8qlmxlX82C',
+  consumer_key:         config._consumer_key,
+  consumer_secret:      config._consumer_secret,
+  access_token:         config._access_token,
+  access_token_secret:  config._access_token_secret,
   timeout_ms:           60*1000,  // optional HTTP request timeout to apply to all requests.
   strictSSL:            true,     // optional - requires SSL certificates to be valid.
 })
-
-var UnitedStates = {
-  name: 'United States',
-  woeid: 23424977,
-  states: [
-    {
-      code: 'AR',
-      cities: []
-    },
-    {
-      code: 'CA',
-      cities: [
-        {
-          name: 'Fresno',
-          woeid: 2407517
-        },
-        {
-          name: 'Long Beach',
-          woeid: 2441472
-        },
-        {
-          name: 'Los Angeles',
-          woeid: 2442047
-        },
-        {
-          name: 'Sacramento',
-          woeid: 2486340
-        },
-        {
-          name: 'San Diego',
-          woeid: 2487889
-        },
-        {
-          name: 'San Francisco',
-          woeid: 2487956
-        },
-        {
-          name: 'SanJose',
-          woeid: 2488042
-        }
-      ]
-    },
-    {
-      code: 'FL',
-      cities: [
-        {
-          name: 'Jacksonville',
-          woeid: 2428344
-        },
-        {
-          name: 'Miami',
-          woeid: 2450022
-        },
-        {
-          name: 'Orlando',
-          woeid: 2466256
-        },
-        {
-          name: 'Tallahassee',
-          woeid: 2503713
-        },
-        {
-          name: 'Tampa',
-          woeid: 2503863
-        }
-      ]
-    }
-  ]
-}
 
 
 /**
