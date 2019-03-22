@@ -15,7 +15,7 @@ var T = new Twit({
 // Chicago, IL: 2379574
 // Miami, FL: 2450022
 
-/* GET trends for a place (works for city/country) */
+/* Get trends for a place (works for city/country). */
   // T.get('trends/place', { id: 2347564}, function(err, data, response) {
   //   trends = data[0].trends;
   //   trends.forEach(trend => {
@@ -26,14 +26,11 @@ var T = new Twit({
   // })
 
 
-/* GET available locations */
+/* Gets available trend locations (cities) within the US. */
 T.get('trends/available', { }, function(err, data, response) {
   data.forEach(element => {
     if (element.countryCode == 'US') {
-      // console.log(
-      //   // element.name + ", " + element.country + ": " + element.woeid
-      //   element
-      // );
+      console.log(element.name + ", " + element.country + ": " + element.woeid);
     }
   });
 })

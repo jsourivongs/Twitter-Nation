@@ -46,9 +46,9 @@ async function getTrendsByWOEID(woeid) {
 
 /**
  * Creates a timed delay.
- * @param {number} ms The time delay (in milliseconds).
+ * @param {number} ms Desired time delay (in milliseconds).
  */
-function sleep(ms) {
+function delay(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
@@ -78,7 +78,7 @@ async function rankStateTrends(cities) {
   });
 
   // Temporary workaround to avoid returning undefined values due to asynchronous JS
-  await sleep(500);
+  await delay(500);
 
   // Remove all duplicate trends in the array
   for (var i = 1; i < statewideTrends.length - 1; i++) {
@@ -107,5 +107,5 @@ async function getTopTrendsByStateCode(stateCode) {
     console.log("No trends available for state: " + stateCode)  
 }
 /* Change the state code in the following line to get trends from a different state */
-getTopTrendsByStateCode('CA');
+getTopTrendsByStateCode('GA');
 

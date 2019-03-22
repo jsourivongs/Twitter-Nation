@@ -1,63 +1,40 @@
-// TODO: Find the woeid associated with each of these cities, and add the city object into the UnitedState object below (line 56 of this file)
-var AK = [] // Alaska
-var AL = ['Birmingham'] // Alabama
-var AR = [] // Arkansas
-var AZ = ['Mesa', 'Phoenix', 'Tucson'] // Arizona
-var CA = ['Fresno', 'Long Beach', 'Los Angeles', 'Sacramento', 'San Diego', 'San Francisco', 'San Jose'] // California
-var CO = ['Colorado Springs', 'Denver'] // Colorado
-var CT = ['New Haven'] // Connecticut
-var DE = [] // Delaware
-var DC = [] 
-var FL = ['Jacksonville', 'Miami', 'Orlando', 'Tallahassee', 'Tampa']; // Florida
-var GA = ['Atlanta'] // Georgia
-var HI = ['Honolulu'] // Hawaii
-var IA = [] // Iowa
-var ID = [] // Idaho
-var IL = ['Chicago'] // Illinois
-var IN = ['Indianapolis'] // Indiana
-var KS = [] // Kansas
-var KY = ['Louisville'] // Kentucky
-var LA = ['Baton Rouge', 'New Orleans'] // Louisiana
-var MA = ['Boston'] // Massachusetts
-var MD = ['Baltimore'] // Maryland
-var ME = [] // Maine
-var MI = ['Detroit'] // Michigan
-var MN = ['Minneapolis'] // Minnesota
-var MO = ['Kansas City', 'St. Louis'] // Missouri
-var MS = ['Jackson'] // Mississippi
-var MT = [] // Montana
-var NC = ['Charlotte', 'Greensboro', 'Raleigh'] // North Carolina
-var ND = [] // North Dakota
-var NE = ['Omaha'] // Nebraska
-var NH = [] // New Hampshire
-var NJ = [] // New Jersey
-var NM = ['Albuquerque'] // New Mexico
-var NV = ['Las Vegas'] // Nevada
-var NY = ['New York'] // New York
-var OH = ['Cincinnati', 'Cleveland', 'Columbus'] // Ohio
-var OK = ['Oklahoma City'] // Oklahoma
-var OR = ['Portland'] // Oregon
-var PA = ['Harrisburg', 'Philadelphia', 'Pittsburgh'] // Pennsylvania
-var RI = ['Providence'] // Rhode Island
-var SC = [] // South Carolina
-var SD = [] // South Dakota
-var TN = ['Memphis', 'Nashville'] // Tennessee
-var TX = ['Austin', 'Dallas-Ft. Worth', 'El Paso', 'Houston', 'San Antonio'] // Texas
-var UT = ['Salt Lake City'] // Utah
-var VA = ['Norfolk', 'Richmond', 'Virginia Beach'] // Virginia
-var VT = [] // Vermont
-var WA = ['Seattle'] // Washington
-var WI = ['Milwaukee'] // Wisconsin
-var WV = [] // West Virginia
-var WY = [] // Wyoming
-
 module.exports = {
   name: 'United States',
   woeid: 23424977,
   states: [
     {
+      code: 'AK',
+      cities: []
+    },
+    {
+      code: 'AL',
+      cities: [
+        {
+          name: 'Birmingham',
+          woeid: 2364559
+        }
+      ]
+    },
+    {
       code: 'AR',
       cities: []
+    },
+    {
+      code: 'AZ',
+      cities: [
+        {
+          name: 'Mesa',
+          woeid: 2449808
+        },
+        {
+          name: 'Phoenix',
+          woeid: 2471390
+        },
+        {
+          name: 'Tucson',
+          woeid: 2508428
+        }
+      ]
     },
     {
       code: 'CA',
@@ -93,6 +70,36 @@ module.exports = {
       ]
     },
     {
+      code: 'CO',
+      cities: [
+        {
+          name: 'Colorado Springs',
+          woeid: 2383489
+        },
+        {
+          name: 'Denver',
+          woeid: 2391279
+        }
+      ]
+    },
+    {
+      code: 'CT',
+      cities: [
+        {
+          name: 'New Haven',
+          woeid: 2458410
+        }
+      ]
+    },
+    {
+      code: 'DE',
+      cities: []
+    },
+    {
+      code: 'DC',
+      cities: []
+    },
+    {
       code: 'FL',
       cities: [
         {
@@ -116,6 +123,370 @@ module.exports = {
           woeid: 2503863
         }
       ]
+    },
+    {
+      code: 'GA',
+      cities: [
+        {
+          name: 'Atlanta',
+          woeid: 2357024
+        }
+      ]
+    },
+    {
+      code: 'HI',
+      cities: [
+        {
+          name: 'Honolulu',
+          woeid: 2423945
+        }
+      ]
+    },
+    {
+      code: 'IA',
+      cities: []
+    },
+    {
+      code: 'ID',
+      cities: []
+    },
+    {
+      code: 'IL',
+      cities: [
+        {
+          name: 'Chicago',
+          woeid: 2379574
+        }
+      ]
+    },
+    {
+      code: 'IN',
+      cities: [
+        {
+          name: 'Indianapolis',
+          woeid: 2427032
+        }
+      ]
+    },
+    {
+      code: 'KS',
+      cities: []
+    },
+    {
+      code: 'KY',
+      cities: [
+        {
+          name: 'Louisville',
+          woeid: 2442327
+        }
+      ]
+    },
+    {
+      code: 'LA',
+      cities: [
+        {
+          name: 'Baton Rouge',
+          woeid: 2359991
+        },
+        {
+          name: 'New Orleans',
+          woeid: 2458833
+        }
+      ]
+    },
+    {
+      code: 'MA',
+      cities: [
+        {
+          name: 'Boston',
+          woeid: 2367105
+        }
+      ]
+    },
+    {
+      code: 'MD',
+      cities: [
+        {
+          name: 'Baltimore',
+          woeid: 2358820
+        }
+      ]
+    },
+    {
+      code: 'ME',
+      cities: []
+    },
+    {
+      code: 'MI',
+      cities: [
+        {
+          name: 'Detroit',
+          woeid: 2391585
+        }
+      ]
+    },
+    {
+      code: 'MN',
+      cities: [
+        {
+          name: 'Minneapolis',
+          woeid: 2452078
+        }
+      ]
+    },
+    {
+      code: 'MO',
+      cities: [
+        {
+          name: 'Kansas City',
+          woeid: 2430683
+        },
+        {
+          name: 'St. Louis',
+          woeid: 2486982
+        }
+      ]
+    },
+    {
+      code: 'MS',
+      cities: [
+        {
+          name: 'Jackson',
+          woeid: 2428184
+        }
+      ]
+    },
+    {
+      code: 'MT',
+      cities: []
+    },
+    {
+      code: 'NC',
+      cities: [
+        {
+          name: 'Charlotte',
+          woeid: 2378426
+        },
+        {
+          name: 'Greensboro',
+          woeid: 2414469
+        },
+        {
+          name: 'Raleigh',
+          woeid: 2478307
+        }
+      ]
+    },
+    {
+      code: 'ND',
+      cities: []
+    },
+    {
+      code: 'NE',
+      cities: [
+        {
+          name: 'Omaha',
+          woeid: 2465512
+        }
+      ]
+    },
+    {
+      code: 'NH',
+      cities: []
+    },
+    {
+      code: 'NJ',
+      cities: []
+    },
+    {
+      code: 'NM',
+      cities: [
+        {
+          name: 'Albuquerque',
+          woeid: 2352824
+        }
+      ]
+    },
+    {
+      code: 'NV',
+      cities: [
+        {
+          name: 'Las Vegas',
+          woeid: 2436704
+        }
+      ]
+    },
+    {
+      code: 'NY',
+      cities: [
+        {
+          name: 'New York',
+          woeid: 2459115
+        }
+      ]
+    },
+    {
+      code: 'OH',
+      cities: [
+        {
+          name: 'Cincinnati',
+          woeid: 2380358
+        },
+        {
+          name: 'Cleveland',
+          woeid: 2381475
+        },
+        {
+          name: 'Columbus',
+          woeid: 2383660
+        }
+      ]
+    },
+    {
+      code: 'OK',
+      cities: [
+        {
+          name: 'Oklahoma City',
+          woeid: 2464592
+        }
+      ]
+    },
+    {
+      code: 'OR',
+      cities: [
+        {
+          name: 'Portland',
+          woeid: 2475687
+        }
+      ]
+    },
+    {
+      code: 'PA',
+      cities: [
+        {
+          name: 'Harrisburg',
+          woeid: 2418046
+        },
+        {
+          name: 'Philadelphia',
+          woeid: 2471217
+        },
+        {
+          name: 'Pittsburgh',
+          woeid: 2473224
+        }
+      ]
+    },
+    {
+      code: 'RI',
+      cities: [
+        {
+          name: 'Providence',
+          woeid: 2477058
+        }
+      ]
+    },
+    {
+      code: 'SC',
+      cities: []
+    },
+    {
+      code: 'SD',
+      cities: []
+    },
+    {
+      code: 'TN',
+      cities: [
+        {
+          name: 'Memphis',
+          woeid: 2449323
+        },
+        {
+          name: 'Nashville',
+          woeid: 2457170
+        }
+      ]
+    },
+    {
+      code: 'TX',
+      cities: [
+        {
+          name: 'Austin',
+          woeid: 2357536
+        },
+        {
+          name: 'Dallas-Ft. Worth',
+          woeid: 2388929
+        },
+        {
+          name: 'El Paso',
+          woeid: 2397816
+        },
+        {
+          name: 'Houston',
+          woeid: 2424766
+        },
+        {
+          name: 'San Antonio',
+          woeid: 2487796
+        }
+      ]
+    },
+    {
+      code: 'UT',
+      cities: [
+        {
+          name: 'Salt Lake City',
+          woeid: 2487610
+        }
+      ]
+    },
+    {
+      code: 'VA',
+      cities: [
+        {
+          name: 'Norfolk',
+          woeid: 2460389
+        },
+        {
+          name: 'Richmond',
+          woeid: 2480894
+        },
+        {
+          name: 'Virginia Beach',
+          woeid: 2512636
+        }
+      ]
+    },
+    {
+      code: 'VT',
+      cities: []
+    },
+    {
+      code: 'WA',
+      cities: [
+        {
+          name: 'Seattle',
+          woeid: 2490383
+        }
+      ]
+    },
+    {
+      code: 'WI',
+      cities: [
+        {
+          name: 'Milwaukee',
+          woeid: 2451822
+        }
+      ]
+    },
+    {
+      code: 'WV',
+      cities: []
+    },
+    {
+      code: 'WY',
+      cities: []
     }
   ]
 }
