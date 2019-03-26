@@ -107,5 +107,21 @@ async function getTopTrendsByStateCode(stateCode) {
     console.log("No trends available for state: " + stateCode)  
 }
 /* Change the state code in the following line to get trends from a different state */
-getTopTrendsByStateCode('GA');
+// getTopTrendsByStateCode('GA');
 
+module.exports = {
+  getTopTrendsByStateCode : async function (stateCode) {
+    var cities = getCitiesByStateCode(stateCode); // Get all cities for a specified state
+    var topTrends = await rankStateTrends(cities);
+    if (topTrends.length > 0)
+      {
+        console.log(topTrends);
+        return topTrends;
+      }
+    else 
+      {
+        console.log("No trends available for state: " + stateCode)  
+        return null;
+      }
+  }
+}
