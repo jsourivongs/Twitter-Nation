@@ -12,3 +12,5 @@ package-lock.json
 
 # VS Code Settings
 .vscode
+client/js/logAndReg
+server/config/config.js

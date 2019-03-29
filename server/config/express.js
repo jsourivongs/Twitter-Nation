@@ -4,7 +4,7 @@ var path = require('path'),
     morgan = require('morgan'),
     bodyParser = require('body-parser'),
     config = require('./config'),
-    listingsRouter = require('../routes/listings.server.routes');
+    accRouter = require('../routes/acc');
 
 module.exports.init = function() {
   //connect to database
@@ -23,17 +23,18 @@ module.exports.init = function() {
   Serve static files */
   app.use(express.static('client'))
 
-  /**TODO
-  Use the listings router for requests to the api */
-  app.use('/api/listings', listingsRouter);
+
+  /**TODO 
+  Use the accounts router for requests to the api */
+  app.use('/api/accounts', accRouter);
 
 
   app.all('/login', function(req, res) {
-    res.redirect('/login.html');
+    res.redirect('/dsahboard.html');
   });
 
   app.all('/*', function(req, res) {
-    res.sendFile('/login.html');
+    res.sendFile('/index.html');
   });
 
   return app;
