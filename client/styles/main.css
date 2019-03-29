@@ -1,17 +1,3 @@
-i {
-    position: absolute;
-    display: inline-block;
-    color: #fff;
-    top: 0px;
-    right: 0px;
-}
-
-body {
-  color: var(--color-primary);
-}
-
-/* End of Dashboard CSS */
-
 #searchBar {
   margin: 15px 10px;
 }
