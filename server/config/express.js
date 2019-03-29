@@ -30,7 +30,7 @@ module.exports.init = function() {
 
 
   app.all('/login', function(req, res) {
-    res.redirect('/index.html');
+    res.redirect('/dsahboard.html');
   });
 
   app.all('/*', function(req, res) {

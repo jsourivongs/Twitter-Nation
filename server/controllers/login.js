@@ -4,10 +4,10 @@ var  model = mongoose.model('User');
 
 exports.create = function(req) {
     var user = new User();
-
-    user.name = req.name;
-    user.username = req.username;
-    user.setPassword(req.password);
+    console.log(req.body.name)
+    user.name = req.body.name;
+    user.username = req.body.username;
+    user.setPassword(req.body.password);
 
     user.save(function(err) {
         if(err) {
