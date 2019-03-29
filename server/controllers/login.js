@@ -1,12 +1,18 @@
-var mongoose = require('mongoose'), 
-    User = require('../models/users');
-    mongoose.Promise = require('bluebird');
+var mongoose = require('mongoose');
+var  User = require('../models/users');
+var  model = mongoose.model('User');
 
 exports.create = function(req) {
-    var user = new User(req);
+    var user = new User();
+
+    user.name = req.name;
+    user.username = req.username;
+    user.setPassword(req.password);
+
     user.save(function(err) {
         if(err) {
             console.log(err);
+            console.log("error on user save\n")
         } else {
             console.log("saved user\n");
         }
@@ -23,12 +29,14 @@ exports.authenticate = async function (req) {
           return false;
         }
         else{
-            console.log(user);
-            if(user.password == password) {
+            
+            if(user.validPassword(password)) {
                 console.log("password matchs\n");
+                console.log(user);
                 return true;
             }
             else {
+                console.log("failure\n");
                 return false;
             }
         }
