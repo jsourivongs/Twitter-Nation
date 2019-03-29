@@ -97,6 +97,10 @@ module.exports = {
     var topTrends = await rankStateTrends(cities);
     if (topTrends.length > 0)
       {
+<<<<<<< HEAD
+=======
+        console.log(topTrends);
+>>>>>>> fb2273cf8af395d291fb7933ac4b858f24cd83e2
         return topTrends;
       }
     else

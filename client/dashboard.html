@@ -1,154 +1,131 @@
 <!DOCTYPE html>
 <html>
-<body>
+  <head>
+    	<link rel="stylesheet" href="styles/main.css">
+      <script src="js/uStates.js"></script> <!-- creates uStates. -->
+      <script src="http://d3js.org/d3.v4.min.js"></script>
+      <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+  </head>
+  <body>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1>Twitter Nation Dashboard</h1>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+
+        </div>
+        <div class="col-md-4">
+          <div id="fullmap">
+
+          <div id="tooltip"></div><!-- div to hold tooltip. -->
+          <svg width="960" height="600" id="statesvg"></svg> <!-- svg to hold the map. -->
+
+          <script>
+
+            function tooltipHtml(stateName, tweetsADay){ /* function to create html content string in tooltip div. */
+              return "<h4>"+ stateName +"</h4><table>"+
+                "<tr><td>Tweets:</td><td>"+(tweetsADay)+"</td></tr></table>";
+            }
+
+            tweet_data = [];
+
+            d3.csv("etc/twitterVolume.csv", function (data) {
+              data.forEach(function (d) {
+                tweet_data.push({"state": d.state, "tweetsADay": +d.tweetsADay});
+              })
+              //console.log(tweet_data);
+            //to find max value in an array
+            var sampleData = [];  /* Sample random data. */
+            start = d3.max([1,d3.min(tweet_data, function(d) {return d.tweetsADay; })]);
+            end = 1 + d3.max(tweet_data, function (d) { /*console.log(d);*/ return d.tweetsADay });
+
+          // Log Scale, starting number had to be greater than or equal to 1 to not break color coding
+              const logScale = d3.scaleLog()
+                .domain([start, end])
+              const colorScaleLog = d3.scaleSequential(
+                  (d) => {
+                    return d3.interpolateBlues(logScale(d)) }
+                )
+
+            tweet_data.forEach(function(d){
+                //console.log("d:", d);
+                uStatePaths.forEach(function (s) {
+                  //console.log("s:", s);
+                  if (d.state == s.n) {
+                    d.n = s.n;
+                    d.d = s.d;
+                    d.id = s.id;
+                  }
+                })
+
+            //console.log(tweet_data)
+            tweetsADay = +d.tweetsADay;
+
+            sampleData.push({
+             n: d.n,
+             state: d.state,
+             tweetsADay: tweetsADay,
+             path: d.d,
+             color: colorScaleLog(tweetsADay),
+             oldColor: colorScaleLog(tweetsADay),
+             color2:d3.interpolate("#000000", "#ffffff")(Math.round(tweetsADay)/100)});
+              });
+            //console.log("sampleData:", sampleData);
+            /* draw states on id #statesvg */
+            uStates.draw("#statesvg", sampleData, tooltipHtml);
+             })
+             d3.select(self.frameElement).style("height", "600px");
+
+
+          </script>
+
+
+          </div>
+        </div>
+        <div class="col-md-4">
+
+        </div>
+      </div>
+    </div>
 
 
 
 
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="embedTweets" style=" width: 50%; margin: 0 auto; overflow: auto; height: 360px; ">
+            <blockquote class="twitter-tweet"><p lang="en" dir="ltr">just setting up my twttr</p>&mdash; jack (@jack) <a href="https://twitter.com/jack/status/20?ref_src=twsrc%5Etfw">March 21, 2006</a></blockquote>
+            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+            <blockquote class="twitter-tweet"><p lang="en" dir="ltr">just setting up my twttr</p>&mdash; jack (@jack) <a href="https://twitter.com/jack/status/20?ref_src=twsrc%5Etfw">March 21, 2006</a></blockquote>
+            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+            <blockquote class="twitter-tweet"><p lang="en" dir="ltr">just setting up my twttr</p>&mdash; jack (@jack) <a href="https://twitter.com/jack/status/20?ref_src=twsrc%5Etfw">March 21, 2006</a></blockquote>
+            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+          </div>
+        </div>
+      </div>
+    </div>
 
 
 
-<style>
-  .state{
-    fill: none;
-    stroke: #a9a9a9;
-    stroke-width: 1;
-  }
-  .state:hover{
-    fill-opacity:0.5;
-  }
-  .active{
-    fill: none;
-    stroke: orange;
-    stroke-width: 6;
-  }
-  #tooltip {   
-    position: absolute;           
-    margin: 10px;
-    font: 12px sans-serif;        
-    border: 1px;      
-    pointer-events: none;         
-  } //css selector, for the tool tip, any h4 elements will be colored plum
-  #tooltip h4{
-    margin:0;
-    font-size:18px;
-    color: plum;
-  }
-  #tooltip{
-    position: absolute;           
-    margin: 10px;
-    font: 14px sans-serif;        
-    pointer-events: none;   
-    background:rgba(0,0,0,0.9);
-    border:1px solid grey;
-    border-radius:5px;
-    width:auto;
-    padding:4px;
-    color:white;
-    opacity:0;
-  }
-  #tooltip table{
-    table-layout:fixed;
-  }
-  #tooltip tr td{
-    padding:0;
-    margin:0;
-  }
-  #tooltip tr td:nth-child(1){
-    width:50px;
-  }
-  #tooltip tr td:nth-child(2){
-    text-align:center;
-  }
-  #fullmap {
-    margin: auto;
-    width: 1000px;
-    height: 630px;
-  }
-</style>
-<body>
-  <div id="fullmap">
-<div id="tooltip"></div><!-- div to hold tooltip. -->
-<svg width="960" height="600" id="statesvg"></svg> <!-- svg to hold the map. -->
-<script src="js/uStates.js"></script> <!-- creates uStates. -->
-<script src="http://d3js.org/d3.v4.min.js"></script>
-<script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <img class="thumbnail img-responsive" src="http://placehold.it/600x400">
 
-<script>
+        </div>
+        <div class="col-md-6">
+          <img class="thumbnail img-responsive" src="http://placehold.it/600x400">
+        </div>
+      </div>
+    </div>
 
-  function tooltipHtml(n, tweetsADay){ /* function to create html content string in tooltip div. */
-    return "<h4>"+n+"</h4><table>"+
-      "<tr><td>Tweets:</td><td>"+(tweetsADay)+"</td></tr></table>";
-  }
-  
-  tweet_data = [];
-  
-  d3.csv("etc/twitterVolume.csv", function (data) {
-    data.forEach(function (d) {
-      //console.log(d);
-      tweet_data.push({"state": d.state, "tweetsADay": +d.tweetsADay});  
-      
-    })
-    //console.log(tweet_data);
-  //to find max value in an array
-  var sampleData = [];  /* Sample random data. */ 
-  start = d3.max([1,d3.min(tweet_data, function(d) {return d.tweetsADay; })]);
-  end = 1 + d3.max(tweet_data, function (d) { /*console.log(d);*/ return d.tweetsADay });
-    
-// Log Scale, starting number had to be greater than or equal to 1 to not break color coding
-    const logScale = d3.scaleLog()
-      .domain([start, end])
-    const colorScaleLog = d3.scaleSequential(
-        (d) => {
-          return d3.interpolateBlues(logScale(d)) }
-      )   
-  
-  tweet_data.forEach(function(d){
-      //console.log("d:", d);
-      uStatePaths.forEach(function (s) {
-        //console.log("s:", s);
-        if (d.state == s.n) { 
-          d.n = s.n;
-          d.d = s.d;
-          d.id = s.id;
-        }
-      })
-
-  //console.log(tweet_data)    
-  tweetsADay = +d.tweetsADay;
-    
-  
-
-  sampleData.push({
-   n: d.n,
-   state: d.state,
-   tweetsADay: tweetsADay,
-   path: d.d,
-   color: colorScaleLog(tweetsADay),
-   oldColor: colorScaleLog(tweetsADay),
-   color2:d3.interpolate("#000000", "#ffffff")(Math.round(tweetsADay)/100)});
-    });
-  //console.log("sampleData:", sampleData);
-  /* draw states on id #statesvg */ 
-  uStates.draw("#statesvg", sampleData, tooltipHtml);
-   })
-  d3.select(self.frameElement).style("height", "600px"); 
-</script>
-</div>
-</body>
-
-
-
-
-
-
-
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
-    <script src="https://code.angularjs.org/1.4.3/angular.js"></script>
-    <script src="js/app.js"></script>
-    <script src="js/factories/listingFactory.js"></script>
-    <script src="js/controllers/listingController.js"></script>
   </body>
 </html>
