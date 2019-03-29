@@ -1,5 +1,5 @@
 // var Twit = require('twit')
- 
+
 // var T = new Twit({
 //   consumer_key:         '1QCqJaRuXwKDLwqTD4gcVIuBF',
 //   consumer_secret:      'eS6JnAKvvPxTLZZAoDLXmMu3hGVwzwzDBKGjJzMB0J8M0ciDb9',
@@ -36,5 +36,28 @@
 // })
 
 var trends = require('./trends');
+var tweets = require('./tweets');
 
-trends.getTopTrendsByStateCode('CA');
+
+function delay(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+
+async function getTrends(){
+  var res = await trends.getTopTrendsByStateCode('GA');
+  //console.log(res);
+  return res;
+}
+async function getTweets(){
+  var tt = await trends.getTopTrendsByStateCode('GA');
+  var res = await tweets.getTopTweetsByTrend(tt);
+  //console.log(res);
+  return res;
+}
+//getTweets();
+var res = getTrends().then(function (result){
+  return result;
+});
+delay(5000);
+console.log(res);
