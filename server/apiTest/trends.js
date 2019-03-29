@@ -115,7 +115,7 @@ module.exports = {
     var topTrends = await rankStateTrends(cities);
     if (topTrends.length > 0)
       {
-        console.log(topTrends);
+        // console.log(topTrends);
         return topTrends;
       }
     else 
