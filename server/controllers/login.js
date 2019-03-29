@@ -19,26 +19,31 @@ exports.create = function(req) {
       });
 };
 
-exports.authenticate = async function (req) {
-    username = req.username;
-    password = req.password;
+exports.authenticate =  function (req) {
+    username = req.body.username;
+    //console.log(req.body.password)
+    
     User.findOne({username: username}, function(err, user) {
+
         if (err)
         {
           console.log(err);
           return false;
         }
-        else{
-            
-            if(user.validPassword(password)) {
-                console.log("password matchs\n");
+        else if(user){   
+           if(user.validPassword(req.body.password)){
+                console.log("password matches\n");
                 console.log(user);
                 return true;
-            }
-            else {
-                console.log("failure\n");
+             }
+            else{
+                console.log("incorrect password\n")
                 return false;
             }
         }
+         else {
+                console.log("failure\n");
+                return false;
+        }
       });
-}
+    };
