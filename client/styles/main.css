@@ -1,12 +1,16 @@
-i {
-  display: inline-block;
-  position: absolute;
-  margin-left: 10px;
-  left = 0;
-  top = 0;
+
+.dropdown-menu {
+  position: relative;
+  top: 100%; /* Bottom of button */
+  margin-right: 100px; /* More to the left */
 }
 
-h1{
+.dropdown-container{
+  position: relative;
+  margin-left: 400px;
+}
+
+h3{
   text-align: center;
 }
 
@@ -90,8 +94,8 @@ h1{
 */
 
 body {
-	margin: 0;
 	/* text-align: center; */
+  padding-top: 70px;
   background-color: #fbfbfb;
 }
 
