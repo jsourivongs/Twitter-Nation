@@ -1,4 +1,4 @@
-/*
+/* 
 	Animation and Keyframes modifed from StackOverFlow and website tutorials
 */
 
@@ -82,7 +82,7 @@ body {
 	-webkit-transform: rotate3d(0, 1, 0, -180deg);
 	        transform: rotate3d(0, 1, 0, -180deg);
 	display: none;
-
+	
 }
 
 .login .login-box p {
