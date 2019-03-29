@@ -19,7 +19,7 @@ function getCitiesByStateCode(stateCode) {
   states = UnitedStates.states;
   states.forEach(state => {
     if (state.code == stateCode)
-      cities = state.cities;      
+      cities = state.cities;
   });
   return cities;
 }
@@ -37,7 +37,7 @@ async function getTrendsByWOEID(woeid) {
   var trendResponse = await T.get('trends/place', {id: woeid});
   var trends = trendResponse.data[0].trends;
   trends.forEach(trend => {
-    if (trend.tweet_volume != null) 
+    if (trend.tweet_volume != null)
       allTrends.push(trend);
   });
   return allTrends;
@@ -51,20 +51,18 @@ async function getTrendsByWOEID(woeid) {
 function delay(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
-
-
 /**
- * Performs several procedures (adding, sorting, removing, etc.) to return 
+ * Performs several procedures (adding, sorting, removing, etc.) to return
  * a state's top five trends (may need to divide the work into several
  * smaller functions later).
  * @param {} cities Array of all trend-available cities within a single state.
  */
 async function rankStateTrends(cities) {
   var statewideTrends = [];
-  
+
   cities.forEach(async city => {
     // Get all trends from the current city
-    var trends = await getTrendsByWOEID(city.woeid); 
+    var trends = await getTrendsByWOEID(city.woeid);
 
     // Add all of the newly found trends to the overall 'statewide' array of trends
     trends.forEach(trend => {
@@ -74,7 +72,7 @@ async function rankStateTrends(cities) {
     // Sort the array of trends in descending order of their tweet counts
     statewideTrends.sort(function(a, b){
       return b.tweet_volume - a.tweet_volume;
-    });    
+    });
   });
 
   // Temporary workaround to avoid returning undefined values due to asynchronous JS
@@ -84,7 +82,7 @@ async function rankStateTrends(cities) {
   for (var i = 1; i < statewideTrends.length - 1; i++) {
     if (statewideTrends[i].name === statewideTrends[i-1].name) {
       statewideTrends.splice(i, 1);
-      i -= 1; // Decrease index by 1 to cancel out the for-loop's increment 
+      i -= 1; // Decrease index by 1 to cancel out the for-loop's increment
               // (want to stay at same index in case there are more duplicates)
     }
   }
@@ -93,34 +91,17 @@ async function rankStateTrends(cities) {
   return statewideTrends.slice(0, 5);
 }
 
- 
-/**
- * Returns the top 5 trends for a particular state. 
- * @param {string} stateCode A state's two-letter mailing code.
- */
-async function getTopTrendsByStateCode(stateCode) {
-  var cities = getCitiesByStateCode(stateCode); // Get all cities for a specified state
-  var topTrends = await rankStateTrends(cities);
-  if (topTrends.length > 0)
-    console.log(topTrends);
-  else 
-    console.log("No trends available for state: " + stateCode)  
-}
-/* Change the state code in the following line to get trends from a different state */
-// getTopTrendsByStateCode('GA');
-
 module.exports = {
   getTopTrendsByStateCode : async function (stateCode) {
     var cities = getCitiesByStateCode(stateCode); // Get all cities for a specified state
     var topTrends = await rankStateTrends(cities);
     if (topTrends.length > 0)
       {
-        // console.log(topTrends);
         return topTrends;
       }
-    else 
+    else
       {
-        console.log("No trends available for state: " + stateCode)  
+        console.log("No trends available for state: " + stateCode)
         return null;
       }
   }
