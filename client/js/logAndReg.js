@@ -52,7 +52,7 @@ window.addEventListener('load', function() {
 
 	document.getElementById('signin').addEventListener('click', function() {
 		validate_login(function() {
-			console.log("Login Success!")
+			console.log("Login sent to server.")
 		}, function(err) {
 			console.log(err);
 		});
@@ -61,7 +61,7 @@ window.addEventListener('load', function() {
 	document.getElementById('reg').addEventListener('click', function() {
 			console.log("reg attempt\n");
 		validate_register(function() {
-			console.log("Registration Success!")
+			console.log("Registration sent to server.")
 		}, function(err) {
 			console.log(err)
 		});

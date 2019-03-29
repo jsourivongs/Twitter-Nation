@@ -32,17 +32,17 @@ exports.authenticate =  function (req) {
         }
         else if(user){   
            if(user.validPassword(req.body.password)){
-                console.log("password matches\n");
+                console.log("Sucessful Login!\n");
                 console.log(user);
                 return true;
              }
             else{
-                console.log("incorrect password\n")
+                console.log("Incorrect Password.\n")
                 return false;
             }
         }
          else {
-                console.log("failure\n");
+                console.log("Incorrect Username\n");
                 return false;
         }
       });
