@@ -94,13 +94,13 @@ h3{
 */
 
 body {
-	/* text-align: center; */
-  padding-top: 70px;
-  background-color: #fbfbfb;
+	margin: 0;
+	background-color: #fbfbfb;
+	text-align: center;
 }
 
 .login {
-	--color-primary: #d6a838; //yellow
+	--color-primary: #d6a838;
 	--color-grey: rgba(68, 160, 179, .06);
 	--color-dark: rgba(68, 160, 179, .5);
 	--color-semidark: rgba(68, 160, 179, .5);
@@ -145,7 +145,7 @@ body {
 	-webkit-box-shadow: 0 4px 40px rgba(0, 0, 0, .07);
 	        box-shadow: 0 4px 40px rgba(0, 0, 0, .07);
 	padding: 10px;
-	background-color: #1DA1F3; //twitter blue
+	background-color: #1DA1F3;
 	z-index: 1;
 	position: relative;
 }
@@ -218,7 +218,6 @@ body {
 	cursor: pointer;
 	-webkit-transition: all .5s;
 	-o-transition: all .5s;
-  animation-timing-function: ease-in-out;
 	transition: all .5s;
 }
 
@@ -242,8 +241,9 @@ body {
 	font-weight: 700;
 }
 
-/* Animations */
 
+
+/* animation */
 .login .login-box.login-animated {
 	-webkit-animation-name: loginAnimated;
 	        animation-name: loginAnimated;
@@ -313,6 +313,7 @@ body {
 	-webkit-animation-fill-mode: forwards;
 	        animation-fill-mode: forwards;
 	-webkit-animation-timing-function: ease-in-out;
+	        animation-timing-function: ease-in-out;
 	-webkit-transform-origin: 0 0;
 	    -ms-transform-origin: 0 0;
 	        transform-origin: 0 0;
