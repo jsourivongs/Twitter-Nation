@@ -35,6 +35,7 @@ async function getTopTweetsByTrend(trends) {
               }
               searchData.push(id);
               maxA.push(max);
+              console.log(maxA);
               max = 0;
           }
       }
@@ -62,9 +63,10 @@ module.exports = {
         var max = 0;
         var maxA = [];
         for(var i = 0; i < 5; i++){
-            var searchResponse = await T.get('search/tweets', {q: trends[i].query}, {result_type: 'popular'});
+            var searchResponse = await T.get('search/tweets', {q: trends[i].query}, {lang: 'en'}, {result_type: 'popular'});
             var len = searchResponse.data.statuses.length;
             var id;
+            console.log(searchResponse.data.statuses);
             for (var j = 0; j < 5; j++) {
                 for(var k = 0; k < len; k++) {
                   try{

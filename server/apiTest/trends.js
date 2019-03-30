@@ -95,18 +95,11 @@ module.exports = {
   getTopTrendsByStateCode : async function (stateCode) {
     var cities = getCitiesByStateCode(stateCode); // Get all cities for a specified state
     var topTrends = await rankStateTrends(cities);
-    if (topTrends.length > 0)
-      {
-<<<<<<< HEAD
-=======
-        console.log(topTrends);
->>>>>>> fb2273cf8af395d291fb7933ac4b858f24cd83e2
+    if (topTrends.length > 0) {
         return topTrends;
-      }
-    else
-      {
+    } else {
         console.log("No trends available for state: " + stateCode)
         return null;
-      }
+    }
   }
 }
