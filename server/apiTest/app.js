@@ -9,12 +9,6 @@
 //   strictSSL:            true,     // optional - requires SSL certificates to be valid.
 // })
 
-// // use the following link to find WOEID: http://woeid.rosselliot.co.nz/lookup/france
-// // United States: 23424977
-// // Orlando, FL: 2466256
-// // Chicago, IL: 2379574
-// // Miami, FL: 2450022
-
 // /* Get trends for a place (works for city/country). */
 //   // T.get('trends/place', { id: 2347564}, function(err, data, response) {
 //   //   trends = data[0].trends;
@@ -52,12 +46,12 @@ async function getTrends(){
 async function getTweets(){
   var tt = await trends.getTopTrendsByStateCode('GA');
   var res = await tweets.getTopTweetsByTrend(tt);
-  //console.log(res);
+  // console.log(res);
   return res;
 }
-//getTweets();
-var res = getTrends().then(function (result){
-  return result;
-});
-delay(5000);
-console.log(res);
+
+var test = getTweets();
+test.then(function(response) {
+  console.log(response) 
+})
+
