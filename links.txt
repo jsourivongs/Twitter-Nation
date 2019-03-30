@@ -13,5 +13,8 @@ res.send - http://expressjs.com/en/4x/api.html#res.send
 res.status - http://expressjs.com/en/4x/api.html#res.status
 
 
-Services vs factories 
+Services vs factories:
 http://tylermcginnis.com/angularjs-factory-vs-service-vs-provider/
+
+WOEID Finder:
+http://woeid.rosselliot.co.nz/lookup/
