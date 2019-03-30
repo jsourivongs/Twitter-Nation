@@ -6,16 +6,18 @@
   <script src="https://code.angularjs.org/1.4.3/angular.js"></script>
   <script src="js/app.js"></script>
   <script src="js/factories/tweetsFactory.js"></script>
-  <script src="js/controllers/tweetsController.js"></script>  
+  <script src="js/controllers/tweetsController.js"></script>
   <!-- Setup d3 -->
   <script src="js/uStates.js"></script> <!-- creates uStates. -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
   <script src="http://d3js.org/d3.v4.min.js"></script>
   <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
-  <link rel="shortcut icon" type="image/png" href="etc/favicon.ico">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+<!-- Favicon -->
+  <link rel="shortcut icon" type="image/png" href="etc/favicon.ico">
+
 </head>
 <body>
 
@@ -30,21 +32,25 @@
                   <i class="fas fa-bars"></i>
                 </button>
                 <div class="dropdown-menu">
-                  <a class="dropdown-item" href="#">Action</a>
-                  <a class="dropdown-item" href="#">Another action</a>
-                  <a class="dropdown-item" href="#">Something else here</a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">Separated link</a>
+                  <span><p class="dropdown-item-text">Account Settings <i class="fas fa-user-circle"></i></p></span>
+                  <hr />
+                  <span><p class="dropdown-item-text">Privacy <i class="fas fa-lock"></i></p></span>
+                  <hr />
+                  <span><p class="dropdown-item-text">Contact Us! <i class="fas fa-phone-square"></i></p></span>
+                  <hr />
+                  <span><p class="dropdown-item-text">Logout <i class="fas fa-sign-out-alt"></i></p></span>
                 </div>
               </div>
-            </h3>
+              </h3>
             </div>
           </nav>
         </div>
       </div>
     </div>
 
-    <div class="container">
+
+
+    <div class="container" style="margin-top: 60px;">
       <div class="row">
         <div class="col-md-4">
           <div id="fullmap">
