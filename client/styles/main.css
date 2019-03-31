@@ -1,5 +1,29 @@
 /* Header CSS Start */
 
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.dashboard-body{
+  background-image: url("https://img.freepik.com/free-vector/elegant-white-background-with-shiny-lines_1017-17580.jpg?size=626&ext=jpg");
+  background-size: cover;
+}
 .dropdown-menu {
   position: relative;
   top: 100%; /* Bottom of button */
@@ -11,16 +35,24 @@
   margin-left: 400px;
 }
 
+.navbar, .container-fluid, .dropdown-toggle{
+  background-color: #22262e;
+  color: #ffffff;
+}
+
 *, *:before, *:after {
 	box-sizing: border-box;
 }
 
 .dropdown-item-text{
   text-align: center;
+  font-size: 16px;
+  color: #22262e;
 }
 
 .dropdown-item-text:hover{
   cursor:pointer;
+  opacity: .5;
 }
 
 h3{
