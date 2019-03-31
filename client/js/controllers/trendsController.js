@@ -27,19 +27,36 @@
 var app = angular.module('twitApp', []);
 app.controller('TrendsController', ['$scope', function($scope) {
 
-    console.log('idk');
+    $scope.showTrends = function($scope) {
+           var messageElem = angular.element(document.querySelector('.stateCode'))
+    console.log(messageElem.text())
+     }
+
+
+/*
+    $scope.stateCode = "US";
+
+     $scope.showTrends = function($scope) {
+       console.log($scope.stateCode)
+     }
+*/
+    /*
     console.log($scope.stateCode);
 
     if ($scope.stateCode == 'FL')
       console.log('Florida');
+    */
+
 
       // $scope.stateName == "Florida";
 
     // $scope.showTrends();
-    // $scope.showTrends = function() {
-    //   if ($scope.stateCode == 'FL')
-    //     $scope.stateName == "Florida";
-    // }
+    /*
+     $scope.showTrends = function() {
+       if ($scope.stateCode == 'FL')
+         $scope.stateName == "Florida";
+       console.log("Florida")
+     }*/
   }
 ]);
 

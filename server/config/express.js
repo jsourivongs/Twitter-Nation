@@ -4,9 +4,9 @@ var path = require('path'),
     morgan = require('morgan'),
     bodyParser = require('body-parser'),
     config = require('./config'),
-    accRouter = require('../routes/acc'),
-    tweetsRouter = require('../routes/tweets.server.routes'),
-    trendsRouter = require('../routes/trends.server.routes');
+    accRouter = require('../routes/acc');
+   // tweetsRouter = require('../routes/tweets.server.routes'),
+   // trendsRouter = require('../routes/trends.server.routes');
 
 module.exports.init = function() {
   //connect to database
@@ -27,8 +27,8 @@ module.exports.init = function() {
 
   /* Use the routers for requests to the api */
   app.use('/api/accounts', accRouter);
-  app.use('/api/tweets', tweetsRouter);
-  app.use('/api/trends', trendsRouter);
+  //app.use('/api/tweets', tweetsRouter);
+  //app.use('/api/trends', trendsRouter);
 
 
   app.all('/login', function(req, res) {

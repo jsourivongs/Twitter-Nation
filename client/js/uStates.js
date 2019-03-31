@@ -78,6 +78,8 @@
       	return d.color; 
     	})
 			.on("mouseover", mouseOver).on("mouseout", mouseOut).on("click", clicked);
+
+			document.getElementById("stateField").innerHTML = 'US';
 	}
 
 	function clicked(d) {
