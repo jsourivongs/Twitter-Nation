@@ -24,22 +24,42 @@
 //   }
 // ]);
 
-var app = angular.module('twitApp', []);
-app.controller('TrendsController', ['$scope', function($scope) {
+// var app = angular.module('twitApp', []);
+angular.module('trends').controller('TrendsController', ['$scope', 'TrendsFactory', 
+function($scope, TrendsFactory) {
+  
+  // $scope.print = function() {
+  //   console.log($scope.stateCode);
+  // };
 
-    console.log('idk');
-    console.log($scope.stateCode);
-
-    if ($scope.stateCode == 'FL')
-      console.log('Florida');
-
-      // $scope.stateName == "Florida";
-
-    // $scope.showTrends();
-    // $scope.showTrends = function() {
-    //   if ($scope.stateCode == 'FL')
-    //     $scope.stateName == "Florida";
-    // }
+  $scope.stateCode = 'FL';
+  
+  $scope.showTrends = function($scope) {
+    console.log("called showTrends()");
+    TrendsFactory.create($scope.stateCode).then(
+      function(response) {
+        // $scope.stateCode = response.data;
+        console.log(response.data);
+      }, 
+      function(error) {
+        console.log('Unable to retrieve listings:', error);
+      }
+    )
   }
-]);
+  showTrends($scope);
+
+  // $scope.stateCode = 'US';
+  // console.log($scope.stateCode);
+
+  // if ($scope.stateCode == 'FL')
+  //   console.log('Florida');
+
+  // $scope.stateName == "Florida";
+
+  // $scope.showTrends();
+  // $scope.showTrends = function() {
+  //   if ($scope.stateCode == 'FL')
+  //     $scope.stateName == "Florida";
+  // }
+}]);
 

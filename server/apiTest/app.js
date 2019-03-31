@@ -62,6 +62,6 @@ module.exports = {
 var test = getTweets();
 test.then(function(response) {
   // console.log("text");
-  console.log(response[0]); 
+  // console.log(response[0]); 
 })
 

@@ -1,23 +1,14 @@
 /* Dependencies */
 var mongoose = require('mongoose'), 
-    Trend = require('../models/trends.server.model.js');
+    Trend = require('../models/trends.server.model.js')
+    var trends = require('../apiTest/trends');
 
 
 /* Create a trend */
 exports.create = function(req, res) {
-
-  /* Instantiate a Trend */
-  var trend = new Trend(req.body);
-
-  /* Then save the trend */
-  trend.save(function(err) {
-    if(err) {
-      console.log(err);
-      res.status(400).send(err);
-    } else {
-      res.json(trend);
-    }
-  });
+  var code = req.body;
+  console.log(req.body);
+  res.status(200).send(trends.getTopTrendsByStateCode(code));
 };
 
 
