@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <link rel="stylesheet" href="styles/main.css">
   <!-- Setup AngularJS -->
   <script src="https://code.angularjs.org/1.4.3/angular.js"></script>
   <script src="js/app.js"></script>
-  <script src="js/factories/tweetsFactory.js"></script>
-  <script src="js/controllers/tweetsController.js"></script>  
+  <!-- <script src="js/factories/tweetsFactory.js"></script>
+  <script src="js/controllers/tweetsController.js"></script> -->
+  <script src="js/controllers/trendsController.js"></script>
   <!-- Setup d3 -->
   <script src="js/uStates.js"></script> <!-- creates uStates. -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -14,37 +16,44 @@
   <script src="http://d3js.org/d3.v4.min.js"></script>
   <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
   <link rel="shortcut icon" type="image/png" href="etc/favicon.ico">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+    integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 </head>
-<body>
 
+<body ng-app="twitApp">
   <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <nav class="navbar navbar-default navbar-fixed-top">
-          <div class="container-fluid" style="position: relative; margin-top: -10px; margin-bottom: 3px;">
-            <h3>Twitter Nation Dashboard
-              <div class="btn-group pull-right">
-                <button type="button" class="btn btn-regular dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <i class="fas fa-bars"></i>
-                </button>
-                <div class="dropdown-menu">
-                  <a class="dropdown-item" href="#">Action</a>
-                  <a class="dropdown-item" href="#">Another action</a>
-                  <a class="dropdown-item" href="#">Something else here</a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">Separated link</a>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container-fluid" style="position: relative; margin-top: -10px; margin-bottom: 3px;">
+              <h3>Twitter Nation Dashboard
+              <!-- <h1>{{ tweets }}</h1> -->
+              <!-- <h1 ng-click="showTweets()">click here {{tweets}}</h1> -->
+                <div class="btn-group pull-right">
+                  <button type="button" class="btn btn-regular dropdown-toggle" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-bars"></i>
+                  </button>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Separated link</a>
+                  </div>
                 </div>
-              </div>
-            </h3>
+              </h3>
             </div>
           </nav>
         </div>
       </div>
     </div>
 
-    <div class="container">
+    <div class="container" ng-controller="TrendsController">
       <div class="row">
         <div class="col-md-4">
           <div id="fullmap">
@@ -53,33 +62,42 @@
             <svg width="960" height="600" style="margin-left:100px;" id="statesvg"></svg> <!-- svg to hold the map. -->
 
             <script>
+              function tooltipHtml(stateName, tweetsADay) {
+                /* function to create html content string in tooltip div. */
+                return "<h4>" + stateName + "</h4><table>" +
+                  "<tr><td>Tweets:</td><td>" + (tweetsADay) + "</td></tr></table>";
+              }
 
-            function tooltipHtml(stateName, tweetsADay){ /* function to create html content string in tooltip div. */
-              return "<h4>"+ stateName +"</h4><table>"+
-              "<tr><td>Tweets:</td><td>"+(tweetsADay)+"</td></tr></table>";
-            }
+              tweet_data = [];
 
-            tweet_data = [];
+              d3.csv("etc/twitterVolume.csv", function (data) {
+                data.forEach(function (d) {
+                  tweet_data.push({
+                    "state": d.state,
+                    "tweetsADay": +d.tweetsADay
+                  });
+                })
+                //console.log(tweet_data);
+                //to find max value in an array
+                var sampleData = []; /* Sample random data. */
+                start = d3.max([1, d3.min(tweet_data, function (d) {
+                  return d.tweetsADay;
+                })]);
+                end = 1 + d3.max(tweet_data, function (d) {
+                  /*console.log(d);*/
+                  return d.tweetsADay
+                });
 
-            d3.csv("etc/twitterVolume.csv", function (data) {
-              data.forEach(function (d) {
-                tweet_data.push({"state": d.state, "tweetsADay": +d.tweetsADay});
-              })
-              //console.log(tweet_data);
-              //to find max value in an array
-              var sampleData = [];  /* Sample random data. */
-              start = d3.max([1,d3.min(tweet_data, function(d) {return d.tweetsADay; })]);
-              end = 1 + d3.max(tweet_data, function (d) { /*console.log(d);*/ return d.tweetsADay });
-
-              // Log Scale, starting number had to be greater than or equal to 1 to not break color coding
-              const logScale = d3.scaleLog()
-              .domain([start, end])
-              const colorScaleLog = d3.scaleSequential(
-                (d) => {
-                  return d3.interpolateBlues(logScale(d)) }
+                // Log Scale, starting number had to be greater than or equal to 1 to not break color coding
+                const logScale = d3.scaleLog()
+                  .domain([start, end])
+                const colorScaleLog = d3.scaleSequential(
+                  (d) => {
+                    return d3.interpolateBlues(logScale(d))
+                  }
                 )
 
-                tweet_data.forEach(function(d){
+                tweet_data.forEach(function (d) {
                   //console.log("d:", d);
                   uStatePaths.forEach(function (s) {
                     //console.log("s:", s);
@@ -95,55 +113,67 @@
 
                   sampleData.push({
                     n: d.n,
+                    id: d.id,
                     state: d.state,
                     tweetsADay: tweetsADay,
                     path: d.d,
                     color: colorScaleLog(tweetsADay),
                     oldColor: colorScaleLog(tweetsADay),
-                    color2:d3.interpolate("#000000", "#ffffff")(Math.round(tweetsADay)/100)});
+                    color2: d3.interpolate("#000000", "#ffffff")(Math.round(tweetsADay) / 100)
                   });
-                  //console.log("sampleData:", sampleData);
-                  /* draw states on id #statesvg */
-                  uStates.draw("#statesvg", sampleData, tooltipHtml);
-                })
-                d3.select(self.frameElement).style("height", "600px");
+                });
+                //console.log("sampleData:", sampleData);
+                /* draw states on id #statesvg */
+                uStates.draw("#statesvg", sampleData, tooltipHtml);
+              })
+              d3.select(self.frameElement).style("height", "600px");
+            </script>
 
-
-                </script>
-
-              </div>
-            </div>
           </div>
         </div>
+      </div>
+      <p id="stateField" ng-bind="stateCode">default</p>
+    </div>
 
-        <div class="container">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="embedTweets" style=" width: 50%; margin: 0 auto; overflow: auto; height: 360px; ">
-                <blockquote class="twitter-tweet"><p lang="en" dir="ltr">just setting up my twttr</p>&mdash; jack (@jack) <a href="https://twitter.com/jack/status/20?ref_src=twsrc%5Etfw">March 21, 2006</a></blockquote>
-                <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-                <blockquote class="twitter-tweet"><p lang="en" dir="ltr">just setting up my twttr</p>&mdash; jack (@jack) <a href="https://twitter.com/jack/status/20?ref_src=twsrc%5Etfw">March 21, 2006</a></blockquote>
-                <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-                <blockquote class="twitter-tweet"><p lang="en" dir="ltr">just setting up my twttr</p>&mdash; jack (@jack) <a href="https://twitter.com/jack/status/20?ref_src=twsrc%5Etfw">March 21, 2006</a></blockquote>
-                <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-              </div>
-            </div>
+    
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="embedTweets" style=" width: 50%; margin: 0 auto; overflow: auto; height: 360px; ">
+            <blockquote class="twitter-tweet">
+              <p lang="en" dir="ltr">just setting up my twttr</p>&mdash; jack (@jack) <a
+                href="https://twitter.com/jack/status/20?ref_src=twsrc%5Etfw">March 21, 2006</a>
+            </blockquote>
+            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+            <blockquote class="twitter-tweet">
+              <p lang="en" dir="ltr">just setting up my twttr</p>&mdash; jack (@jack) <a
+                href="https://twitter.com/jack/status/20?ref_src=twsrc%5Etfw">March 21, 2006</a>
+            </blockquote>
+            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+            <blockquote class="twitter-tweet">
+              <p lang="en" dir="ltr">just setting up my twttr</p>&mdash; jack (@jack) <a
+                href="https://twitter.com/jack/status/20?ref_src=twsrc%5Etfw">March 21, 2006</a>
+            </blockquote>
+            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
           </div>
         </div>
+      </div>
+    </div>
 
-        <br / >
+    <br />
 
-        <div class="container">
-          <div class="row" >
-            <div class="col-md-6">
-              <img class="thumbnail img-responsive" src="http://placehold.it/500x400">
-            </div>
-            <div class="col-md-6">
-              <img class="thumbnail img-responsive" src="http://placehold.it/500x400">
-
-            </div>
-          </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <img class="thumbnail img-responsive" src="http://placehold.it/500x400">
         </div>
+        <div class="col-md-6">
+          <img class="thumbnail img-responsive" src="http://placehold.it/500x400">
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
 
-      </body>
-      </html>
+</html>
