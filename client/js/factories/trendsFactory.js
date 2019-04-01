@@ -1,11 +1,11 @@
-angular.module('trends', []).factory('TrendsFactory', function($http) {
+app.factory('TrendsFactory', function($http) {
     var methods = {
       getAll: function() {
         return $http.get('http://localhost:8080/api/trends');
       },
       
       create: function(stateCode) {
-        return $http.post('http://localhost:8080/api/trends', stateCode);
+        return $http.post('http://localhost:8080/api/trends/' + stateCode);
       }
     };
   

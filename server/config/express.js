@@ -35,9 +35,9 @@ module.exports.init = function() {
     res.redirect('/dashboard.html');
   });
 
-  app.all('/*', function(req, res) {
-    res.sendFile('/index.html');
-  });
+  // app.all('/*', function(req, res) {
+  //   res.sendFile('/index.html');
+  // });
 
   return app;
 };

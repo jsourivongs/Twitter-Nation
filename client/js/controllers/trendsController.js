@@ -25,28 +25,29 @@
 // ]);
 
 // var app = angular.module('twitApp', []);
-angular.module('trends').controller('TrendsController', ['$scope', 'TrendsFactory', 
+app.controller('TrendsController', ['$scope', 'TrendsFactory', 
 function($scope, TrendsFactory) {
   
   // $scope.print = function() {
   //   console.log($scope.stateCode);
   // };
 
-  $scope.stateCode = 'FL';
+  $scope.stateCode = 'CA';
   
   $scope.showTrends = function($scope) {
     console.log("called showTrends()");
+    console.log("$scope.stateCode = " + $scope.stateCode);
     TrendsFactory.create($scope.stateCode).then(
       function(response) {
         // $scope.stateCode = response.data;
         console.log(response.data);
       }, 
       function(error) {
-        console.log('Unable to retrieve listings:', error);
+        console.log('ERROR - Unable to retrieve trends:', error);
       }
     )
   }
-  showTrends($scope);
+  $scope.showTrends($scope);
 
   // $scope.stateCode = 'US';
   // console.log($scope.stateCode);
