@@ -46,14 +46,14 @@ async function getTopTweetsByTrend(trends) {
 }
 
 async function getEmbedBlock(searchData){
-  var top25 = [];
+  var top5 = [];
   for(var i = 0; i < 5; i++){
       var embedResponse = await T.get('statuses/oembed', { url: "https://twitter.com/CEN3031/status/" + searchData[i]});
       if(embedResponse.data.html != undefined){
-      top25.push(embedResponse.data.html);
+      top5.push(embedResponse.data.html);
       }
   }
-  return top25;
+  return top5;
 }
 
 module.exports = {
@@ -67,7 +67,7 @@ module.exports = {
             var len = searchResponse.data.statuses.length;
             var id;
             // console.log(searchResponse.data.statuses);
-            for (var j = 0; j < 5; j++) {
+            for (var j = 0; j < 1; j++) {
                 for(var k = 0; k < len; k++) {
                   try{
                     var count = searchResponse.data.statuses[k].retweeted_status.favorite_count;
@@ -84,7 +84,7 @@ module.exports = {
         }
         return getEmbedBlock(searchData);
     } catch(e) {
-        console.log("ERROR");
+        console.log("ERROR", e);
     }
   }
 }
