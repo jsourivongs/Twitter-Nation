@@ -53,18 +53,18 @@
 	];
 	var uStates={};
 
-	uStates.draw = function(state, data, toolTip){		
-    
+	uStates.draw = function(state, data, toolTip){
+
 		function mouseOver(d){
-			d3.select("#tooltip").transition().duration(200).style("opacity", .9);      
+			d3.select("#tooltip").transition().duration(200).style("opacity", .9);
 			//console.log("mouseover:", d)
-			d3.select("#tooltip").html(toolTip(d.n, d.tweetsADay)) 
-				.style("left", (d3.event.pageX) + "px")     
+			d3.select("#tooltip").html(toolTip(d.n, d.tweetsADay))
+				.style("left", (d3.event.pageX ) + "px")
 				.style("top", (d3.event.pageY - 28) + "px");
 		}
 
 		function mouseOut(){
-			d3.select("#tooltip").transition().duration(500).style("opacity", 0);      
+			d3.select("#tooltip").transition().duration(500).style("opacity", 0);
 		}
 
 
@@ -73,9 +73,9 @@
 			.data(data).enter().append("path").attr("class","state").attr("d",function(d){
       //console.log(d);
       return d.path;})
-			.style("fill",function(d){ 
+			.style("fill",function(d){
       	//console.log(d);
-      	return d.color; 
+      	return d.color;
     	})
 			.on("mouseover", mouseOver).on("mouseout", mouseOut).on("click", clicked);
 	}
@@ -89,7 +89,7 @@
 				.style("fill", function(d){
 				 	return d.oldColor;
 				 });
-			
+
 			var clickedPath = d.path;
 
 			d3.selectAll('path')
@@ -97,22 +97,22 @@
 				.style("fill", function(d){
 				 	return "orange";
 				 });
-			
+
 			//complete border change
-			
+
 			/*
 			d3.selectAll('path')
 				 .classed('active',false)
 				 .classed('.state',true);
 
 		*/
-			
+
 			//d3.selectAll('path')
 			//	 .filter(function(d) { return d.path === clickedPath; })
 			//	 .classed('active',true)
 			//	 .classed('.state',false);
 				//end complete border change
-					
+
 	}
 
 	this.uStates=uStates;
