@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <link rel="stylesheet" href="styles/main.css">
   <!-- Setup AngularJS -->
   <script src="https://code.angularjs.org/1.4.3/angular.js"></script>
   <script src="js/app.js"></script>
-  <script src="js/factories/tweetsFactory.js"></script>
-  <script src="js/controllers/tweetsController.js"></script>
+  <!-- <script src="js/factories/tweetsFactory.js"></script>
+  <script src="js/controllers/tweetsController.js"></script> -->
+  <script src="js/controllers/trendsController.js"></script>
+  <script src="js/factories/trendsFactory.js"></script>
   <!-- Setup d3 -->
   <script src="js/uStates.js"></script> <!-- creates uStates. -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -21,6 +24,7 @@
 </head>
 <body class="dashboard-body">
 
+<body ng-app="twitApp">
   <div class="container">
     <div class="row">
       <div class="col-md-12">
@@ -48,66 +52,74 @@
     </div>
   </div>
 
+    <div class="container" ng-controller="TrendsController" style="margin-top: 30px;">
+      <div class="row">
+        <div class="col-md-4">
+          <div id="fullmap" ng-click="showTrends()">
+            <div id="tooltip"></div><!-- div to hold tooltip. -->
+            <svg width="800" style="margin-left: 125px;" height="600" viewBox="0 0 960 600" id="statesvg"></svg>
+            <!-- <svg width="800" style="display: block; margin: 0 auto;" height="600" viewBox="0 0 960 600" id="statesvg"></svg> -->
+            <!-- <svg width="960" height="600" style="margin-left:100px;" id="statesvg"></svg> -->
+            <script>
+              function tooltipHtml(stateName, tweetsADay) {
+                /* function to create html content string in tooltip div. */
+                return "<h4>" + stateName + "</h4><table>" +
+                  "<tr><td>Tweets:</td><td>" + (tweetsADay) + "</td></tr></table>";
+              }
 
-  <div class="container" style="margin-top: 30px;">
-    <!-- <div class="container" style="margin-top: 60px;"> -->
-    <div class="row">
-      <div class="col-md-4">
-        <div id="fullmap">
-          <div id="tooltip"></div><!-- div to hold tooltip. -->
-          <svg width="800" style="margin-left: 125px;" height="600" viewBox="0 0 960 600" id="statesvg"></svg>
-          <!-- <svg width="800" style="display: block; margin: 0 auto;" height="600" viewBox="0 0 960 600" id="statesvg"></svg> -->
-          <!-- <svg width="960" height="600" style="margin-left:100px;" id="statesvg"></svg> -->
+              tweet_data = [];
 
-          <script>
-
-          function tooltipHtml(stateName, tweetsADay){ /* function to create html content string in tooltip div. */
-            return "<h4>"+ stateName +"</h4><table>"+
-            "<tr><td>Tweets:</td><td>"+(tweetsADay)+"</td></tr></table>";
-          }
-
-          tweet_data = [];
-
-          d3.csv("etc/twitterVolume.csv", function (data) {
-            data.forEach(function (d) {
-              tweet_data.push({"state": d.state, "tweetsADay": +d.tweetsADay});
-            })
-            //console.log(tweet_data);
-            //to find max value in an array
-            var sampleData = [];  /* Sample random data. */
-            start = d3.max([1,d3.min(tweet_data, function(d) {return d.tweetsADay; })]);
-            end = 1 + d3.max(tweet_data, function (d) { /*console.log(d);*/ return d.tweetsADay });
-
-            // Log Scale, starting number had to be greater than or equal to 1 to not break color coding
-            const logScale = d3.scaleLog()
-            .domain([start, end])
-            const colorScaleLog = d3.scaleSequential(
-              (d) => {
-                return d3.interpolateBlues(logScale(d)) }
-              )
-
-              tweet_data.forEach(function(d){
-                //console.log("d:", d);
-                uStatePaths.forEach(function (s) {
-                  //console.log("s:", s);
-                  if (d.state == s.n) {
-                    d.n = s.n;
-                    d.d = s.d;
-                    d.id = s.id;
-                  }
+              d3.csv("etc/twitterVolume.csv", function (data) {
+                data.forEach(function (d) {
+                  tweet_data.push({
+                    "state": d.state,
+                    "tweetsADay": +d.tweetsADay
+                  });
                 })
+                //console.log(tweet_data);
+                //to find max value in an array
+                var sampleData = []; /* Sample random data. */
+                start = d3.max([1, d3.min(tweet_data, function (d) {
+                  return d.tweetsADay;
+                })]);
+                end = 1 + d3.max(tweet_data, function (d) {
+                  /*console.log(d);*/
+                  return d.tweetsADay
+                });
 
-                //console.log(tweet_data)
-                tweetsADay = +d.tweetsADay;
+                // Log Scale, starting number had to be greater than or equal to 1 to not break color coding
+                const logScale = d3.scaleLog()
+                  .domain([start, end])
+                const colorScaleLog = d3.scaleSequential(
+                  (d) => {
+                    return d3.interpolateBlues(logScale(d))
+                  }
+                )
 
-                sampleData.push({
-                  n: d.n,
-                  state: d.state,
-                  tweetsADay: tweetsADay,
-                  path: d.d,
-                  color: colorScaleLog(tweetsADay),
-                  oldColor: colorScaleLog(tweetsADay),
-                  color2:d3.interpolate("#000000", "#ffffff")(Math.round(tweetsADay)/100)});
+                tweet_data.forEach(function (d) {
+                  //console.log("d:", d);
+                  uStatePaths.forEach(function (s) {
+                    //console.log("s:", s);
+                    if (d.state == s.n) {
+                      d.n = s.n;
+                      d.d = s.d;
+                      d.id = s.id;
+                    }
+                  })
+
+                  //console.log(tweet_data)
+                  tweetsADay = +d.tweetsADay;
+
+                  sampleData.push({
+                    n: d.n,
+                    id: d.id,
+                    state: d.state,
+                    tweetsADay: tweetsADay,
+                    path: d.d,
+                    color: colorScaleLog(tweetsADay),
+                    oldColor: colorScaleLog(tweetsADay),
+                    color2: d3.interpolate("#000000", "#ffffff")(Math.round(tweetsADay) / 100)
+                  });
                 });
                 //console.log("sampleData:", sampleData);
                 /* draw states on id #statesvg */
@@ -121,6 +133,7 @@
             </div>
           </div>
         </div>
+        <span id="stateField" class="stateCode" ng-bind="sCode" hidden></span>
       </div>
 
       <div class="container">
@@ -284,5 +297,5 @@
         </div>
       </div>
 
-    </body>
-    </html>
+  </body>
+</html>

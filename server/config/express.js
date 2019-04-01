@@ -4,7 +4,9 @@ var path = require('path'),
     morgan = require('morgan'),
     bodyParser = require('body-parser'),
     config = require('./config'),
-    accRouter = require('../routes/acc');
+    accRouter = require('../routes/acc'),
+    tweetsRouter = require('../routes/tweets.server.routes'),
+    trendsRouter = require('../routes/trends.server.routes');
 
 module.exports.init = function() {
   //connect to database
@@ -13,29 +15,29 @@ module.exports.init = function() {
   //initialize app
   var app = express();
   app.set('view engine', 'html');
+  
   //enable request logging for development debugging
   app.use(morgan('dev'));
 
   //body parsing middleware
   app.use(bodyParser.json());
   
-  /**TODO
-  Serve static files */
+  /* Serve static files */
   app.use(express.static('client'))
 
-
-  /**TODO 
-  Use the accounts router for requests to the api */
+  /* Use the routers for requests to the api */
   app.use('/api/accounts', accRouter);
+  app.use('/api/tweets', tweetsRouter);
+  app.use('/api/trends', trendsRouter);
 
 
   app.all('/login', function(req, res) {
-    res.redirect('/dsahboard.html');
+    res.redirect('/dashboard.html');
   });
 
-  app.all('/*', function(req, res) {
-    res.sendFile('/index.html');
-  });
+  // app.all('/*', function(req, res) {
+  //   res.sendFile('/index.html');
+  // });
 
   return app;
 };

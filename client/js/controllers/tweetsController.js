@@ -1,9 +1,11 @@
-angular.module('tweets').controller('TweetsController', ['$scope', 'Tweets', 
-  function($scope, Tweets) {
+angular.module('tweets').controller('TweetsController', ['$scope', 'TweetsFactory', 
+  function($scope, TweetsFactory) {
+    $scope.tweets = 'idk';
+
     $scope.showTweets = function() {
-      Tweets.getTweets().then(
+      TweetsFactory.getAll().then(
         function(response) {
-          $scope.tweets = response.data;
+          $scope.tweets = response;
         }, 
         function(error) {
           console.log('Unable to retrieve tweets:', error);
@@ -12,6 +14,6 @@ angular.module('tweets').controller('TweetsController', ['$scope', 'Tweets',
 		}
 		
 		// Show tweet data initially
-		$scope.showTweets();
+		// $scope.showTweets();
   }
 ]);
