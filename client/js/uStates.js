@@ -84,7 +84,7 @@
 			
 			document.getElementById("stateField").innerHTML = d.id;
 
-			console.log(d.id)
+			// console.log(d.id)
 			d3.selectAll('path')
 				.style("fill", function(d){
 				 	return d.oldColor;

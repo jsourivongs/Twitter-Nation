@@ -1,66 +1,21 @@
-// angular.module('trends').controller('TrendsController', ['$scope', 'TrendsFactory', 
-//   function($scope, TrendsFactory) {
+app.controller('TrendsController', ['$scope', 'TrendsFactory',
+  function ($scope, TrendsFactory) {
 
-//     $scope.showTrends = function() {
-//       TrendsFactory.getAll().then(
-//         function(response) {
-//           $scope.trends = response.data;
-//         }, 
-//         function(error) {
-//           console.log('Unable to retrieve trends:', error);
-//         }
-//       );
-//     }
+    /* Shows the top 5 trends for a given state code. */
+    $scope.showTrends = function ($scope) {
+      var stateCode = angular.element(document.querySelector('.stateCode')).text();
+      console.log("stateCode = " + stateCode);
 
-//     // Show trends initially
-//     // $scope.showTrends();
-
-//     $scope.addTrend = function() {
-//       TrendsFactory.create($scope.newTrend).then(function(err) {
-//         if (err) console.log(err);
-//         $scope.refreshPage();
-//       })
-//     };
-//   }
-// ]);
-
-// var app = angular.module('twitApp', []);
-app.controller('TrendsController', ['$scope', 'TrendsFactory', 
-function($scope, TrendsFactory) {
-  
-  // $scope.print = function() {
-  //   console.log($scope.stateCode);
-  // };
-
-  $scope.stateCode = 'CA';
-  
-  $scope.showTrends = function($scope) {
-    console.log("called showTrends()");
-    console.log("$scope.stateCode = " + $scope.stateCode);
-    TrendsFactory.create($scope.stateCode).then(
-      function(response) {
-        // $scope.stateCode = response.data;
-        console.log(response.data);
-      }, 
-      function(error) {
-        console.log('ERROR - Unable to retrieve trends:', error);
-      }
-    )
+      /* Makes a request to the backend by passing in a state code, and the received
+       * response is a JSON object containing the 5 top trends for that state. */
+      TrendsFactory.create(stateCode).then(
+        function (response) {
+          console.log(response.data);
+        },
+        function (error) {
+          console.log('ERROR - Unable to retrieve trends:', error);
+        }
+      )
+    }
   }
-  $scope.showTrends($scope);
-
-  // $scope.stateCode = 'US';
-  // console.log($scope.stateCode);
-
-  // if ($scope.stateCode == 'FL')
-  //   console.log('Florida');
-
-  // $scope.stateName == "Florida";
-
-  // $scope.showTrends();
-  // $scope.showTrends = function() {
-  //   if ($scope.stateCode == 'FL')
-  //     $scope.stateName == "Florida";
-  // }
-}]);
-
+]);
