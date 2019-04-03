@@ -6,6 +6,7 @@
   "author": "Medhir Bhargava",
   "license": "MIT",
   "dependencies": {
+    "angular-route": "^1.4.3",
     "body-parser": "^1.18.3",
     "describe": "^1.2.0",
     "express": "^4.16.4",
