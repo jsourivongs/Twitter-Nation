@@ -55,7 +55,7 @@
     <div class="container" ng-controller="TrendsController" style="margin-top: 30px;">
       <div class="row">
         <div class="col-md-4">
-          <div id="fullmap" ng-click="showTrends()">
+          <div id="fullmap" ng-click="stateCode()">
             <div id="tooltip"></div><!-- div to hold tooltip. -->
             <svg width="800" style="margin-left: 125px;" height="600" viewBox="0 0 960 600" id="statesvg"></svg>
             <!-- <svg width="800" style="display: block; margin: 0 auto;" height="600" viewBox="0 0 960 600" id="statesvg"></svg> -->
@@ -135,6 +135,16 @@
         </div>
         <span id="stateField" class="stateCode" ng-bind="sCode" hidden></span>
       </div>
+
+
+      <p ng-controller="TrendsController">{{stateCode()}}</p>
+    </br>
+      <p ng-controller="TrendsController"><button type="button" ng-Click="clicked()"> Show Data</button></br>
+        {{trendNames[0]}}   &emsp;  {{tweetVolume[0]}} </br>
+        {{trendNames[1]}}   &emsp;  {{tweetVolume[1]}} </br>
+        {{trendNames[2]}}   &emsp;  {{tweetVolume[2]}} </br>
+        {{trendNames[3]}}   &emsp;  {{tweetVolume[3]}} </br>
+        {{trendNames[4]}}   &emsp;  {{tweetVolume[4]}} </br> </p>
 
       <div class="container">
         <div class="row">
