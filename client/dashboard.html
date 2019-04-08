@@ -150,18 +150,18 @@
 
 
       <p ng-controller="TrendsController">{{stateCode()}}</p>
-    </br>
       <p ng-controller="TrendsController"><button type="button" ng-Click="clicked()"> Show Data</button></br>
         {{trendNames[0]}}   &emsp;  {{tweetVolume[0]}} </br>
         {{trendNames[1]}}   &emsp;  {{tweetVolume[1]}} </br>
         {{trendNames[2]}}   &emsp;  {{tweetVolume[2]}} </br>
         {{trendNames[3]}}   &emsp;  {{tweetVolume[3]}} </br>
-        {{trendNames[4]}}   &emsp;  {{tweetVolume[4]}} </br> </p>
+        {{trendNames[4]}}   &emsp;  {{tweetVolume[4]}} </br>
+      {{responseJSON}} </p>
 
       <div class="container">
         <div class="row">
-          <div class="col-md-12">
-            <div class="embedTweets" style=" width: 50%; margin: 0 auto; overflow: auto; height: 360px; ">
+          <div class="col-md-6">
+            <div class="embedTweets" style=" width: 100%; margin: 0 auto; overflow: auto; height: 360px; ">
               <blockquote class="twitter-tweet"><p lang="en" dir="ltr">just setting up my twttr</p>&mdash; jack (@jack) <a href="https://twitter.com/jack/status/20?ref_src=twsrc%5Etfw">March 21, 2006</a></blockquote>
               <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
               <blockquote class="twitter-tweet"><p lang="en" dir="ltr">just setting up my twttr</p>&mdash; jack (@jack) <a href="https://twitter.com/jack/status/20?ref_src=twsrc%5Etfw">March 21, 2006</a></blockquote>
@@ -170,12 +170,13 @@
               <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
             </div>
           </div>
-        </div>
-        <div class="col-md-6">
+          <div class="col-md-6">
 
-          <img src="https://placeimg.com/500/350/tech" alt="">
+            <img src="https://placeimg.com/500/350/tech" alt="">
 
+          </div>
         </div>
+
 
       </div>
     </div>
@@ -261,7 +262,7 @@
           </script>
 
         </div>
-        <div class="world col-md-6">
+        <div class="world col-md-6 "  ng-controller="TrendsController">
 
           <script>
             var width = 500;

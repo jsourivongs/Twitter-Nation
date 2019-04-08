@@ -3,6 +3,7 @@ app.controller('TrendsController', ['$scope', 'TrendsFactory',
 
     $scope.trendNames;
     $scope.tweetVolume;
+    $scope.responseJSON;
 
     /* Shows the top 5 trends for a given state code. */
     $scope.stateCode = function () {
@@ -15,6 +16,7 @@ app.controller('TrendsController', ['$scope', 'TrendsFactory',
     $scope.clicked = function(){;
       TrendsFactory.create($scope.stateCode()).then(
        function (response) {
+        $scope.responseJSON = response.data;
          var name=[];
          var volume=[];
          for(var i=0; i<5; i++){

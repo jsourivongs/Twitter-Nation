@@ -6,13 +6,13 @@ angular.module('tweets').controller('TweetsController', ['$scope', 'TweetsFactor
       TweetsFactory.getAll().then(
         function(response) {
           $scope.tweets = response;
-        }, 
+        },
         function(error) {
           console.log('Unable to retrieve tweets:', error);
         }
       )
 		}
-		
+
 		// Show tweet data initially
 		// $scope.showTweets();
   }
