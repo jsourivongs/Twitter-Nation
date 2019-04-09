@@ -148,53 +148,43 @@
       </div>
       <span id="stateField" class="stateCode" ng-bind="sCode" hidden></span>
     </div>
+      <p ng-controller="TrendsController">{{stateCode()}}</p> </br>
+      <p ng-controller="TrendsController"><button type="button" ng-Click="clicked()"> Show Data</button></br>
+        {{trendNames[0]}}   &emsp;  {{tweetVolume[0]}} </br>
+        {{trendNames[1]}}   &emsp;  {{tweetVolume[1]}} </br>
+        {{trendNames[2]}}   &emsp;  {{tweetVolume[2]}} </br>
+        {{trendNames[3]}}   &emsp;  {{tweetVolume[3]}} </br>
+        {{trendNames[4]}}   &emsp;  {{tweetVolume[4]}} </br></p>
+      </div>
 
-
-    <p ng-controller="TrendsController">{{stateCode()}}</p>
-    <p ng-controller="TrendsController"><button type="button" ng-Click="clicked()"> Show Data</button></br>
-      {{trendNames[0]}} &emsp; {{tweetVolume[0]}} </br>
-      {{trendNames[1]}} &emsp; {{tweetVolume[1]}} </br>
-      {{trendNames[2]}} &emsp; {{tweetVolume[2]}} </br>
-      {{trendNames[3]}} &emsp; {{tweetVolume[3]}} </br>
-      {{trendNames[4]}} &emsp; {{tweetVolume[4]}} </br>
-      {{responseJSON}} </p>
-
-    <div class="container" ng-controller="TweetsController">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="embedTweets" style=" width: 50%; margin: 0 auto; overflow: auto; height: 360px; ">
-            <button type="button" ng-Click="showTweets()"> show Tweets</button></br>
-            {{tweetsArray[0]}} </br>
-            {{tweetsArray[1]}} </br>
-            {{tweetsArray[2]}} </br>
-            {{tweetsArray[3]}} </br>
-            {{tweetsArray[4]}} </br>
-            <div class="col-md-6">
-              <div class="embedTweets" style=" width: 100%; margin: 0 auto; overflow: auto; height: 360px; ">
-                <blockquote class="twitter-tweet">
-                  <p lang="en" dir="ltr">just setting up my twttr</p>&mdash; jack (@jack) <a
-                    href="https://twitter.com/jack/status/20?ref_src=twsrc%5Etfw">March 21, 2006</a>
-                </blockquote>
-                <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-                <blockquote class="twitter-tweet">
-                  <p lang="en" dir="ltr">just setting up my twttr</p>&mdash; jack (@jack) <a
-                    href="https://twitter.com/jack/status/20?ref_src=twsrc%5Etfw">March 21, 2006</a>
-                </blockquote>
-                <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-                <blockquote class="twitter-tweet">
-                  <p lang="en" dir="ltr">just setting up my twttr</p>&mdash; jack (@jack) <a
-                    href="https://twitter.com/jack/status/20?ref_src=twsrc%5Etfw">March 21, 2006</a>
-                </blockquote>
-                <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <img src="https://placeimg.com/500/350/tech" alt="">
+      <div class="container" ng-controller="TweetsController">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="embedTweets" style=" width: 50%; margin: 0 auto; overflow: auto; height: 360px; ">
+              <button type="button" ng-Click="showTweets()"> show Tweets</button></br>
+              {{tweetsArray[0]}} </br>
+              {{tweetsArray[1]}} </br>
+              {{tweetsArray[2]}} </br>
+              {{tweetsArray[3]}} </br>
+              {{tweetsArray[4]}} </br>
             </div>
           </div>
         </div>
       </div>
-    </div>
+          <!-- <div class="col-md-6">
+            <div class="embedTweets" style=" width: 100%; margin: 0 auto; overflow: auto; height: 360px; ">
+              <blockquote class="twitter-tweet"><p lang="en" dir="ltr">just setting up my twttr</p>&mdash; jack (@jack) <a href="https://twitter.com/jack/status/20?ref_src=twsrc%5Etfw">March 21, 2006</a></blockquote>
+              <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+              <blockquote class="twitter-tweet"><p lang="en" dir="ltr">just setting up my twttr</p>&mdash; jack (@jack) <a href="https://twitter.com/jack/status/20?ref_src=twsrc%5Etfw">March 21, 2006</a></blockquote>
+              <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+              <blockquote class="twitter-tweet"><p lang="en" dir="ltr">just setting up my twttr</p>&mdash; jack (@jack) <a href="https://twitter.com/jack/status/20?ref_src=twsrc%5Etfw">March 21, 2006</a></blockquote>
+              <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+            </div>
+          </div> -->
+          <div class="col-md-6">
+            <img src="https://placeimg.com/500/350/tech" alt="">
+          </div>
+          
 
     <br/>
 
