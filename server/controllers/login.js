@@ -22,13 +22,13 @@ exports.create = function(req) {
 exports.authenticate =  function (req, res) {
     // console.log(username);
     var result = false;
-    console.log(req.body.password)
+    // console.log(req.body.password)
     User.findOne({username: req.body.username}, function(err, user) {
 
         if (err)
         {
           //console.log(err);
-          return false;
+          result = false;
         }
         else if(user){   
            if(user.validPassword(req.body.password)){
@@ -37,17 +37,18 @@ exports.authenticate =  function (req, res) {
                 result = true;
              }
             else{
-                console.log("Incorrect Password.\n")
+                // console.log("Incorrect Password.\n")
                 result = false;
             }
         }
          else {
-                console.log("Incorrect Username\n");
+                // console.log("Incorrect Username\n");
                 result = false;
         }
+      }).then(function() {
+          res.json(result);
+          return result;
       });
-      console.log("login returning " + result);
-      return result;
     };
 
 // exports.authenticate =  function (req) {
