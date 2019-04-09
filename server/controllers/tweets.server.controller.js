@@ -1,15 +1,12 @@
 /* Dependencies */
-var mongoose = require('mongoose'), 
+var mongoose = require('mongoose'),
     Tweet = require('../models/tweets.server.model.js')
-    api = require('../apiTest/app');
+    tweets = require('../apiTest/tweets');
 
 /* Retreive all the tweets (in block quote form) */
-exports.list = function(req, res) {
-  Tweet.find({}).exec(function(err, listings) {
-    if (err)
-      res.status(404).send(err);
-    else 
-      res.status(200).json(listings);
-  })
+exports.create = async function(req, res) {
+  var trends = req.body;
+  console.log("You are checking the trends array: "+ trends);
+  var tweetData = await tweets.getTopTweetsByTrend(trends);
+  res.status(200).json(tweetData);
 };
-  
