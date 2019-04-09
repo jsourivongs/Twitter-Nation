@@ -13,6 +13,7 @@
   	<script src="js/app.js"></script>
 	<script src="./js/logAndReg.js"></script>
 	<script src="./js/controllers/loginController.js"></script>
+	<script src="./js/factories/loginFactory.js"></script>
 
 </head>
 
@@ -28,17 +29,15 @@
 						<p>Sign in to Twitter Nation</p>
 						<div class="login-group">
 							<label>Username</label>
-							<input type="username" id="f_username" autocomplete="username" name="username" class="login-input">
+							<input required type="username" ng-model="username" autocomplete="username"  class="login-input">
 						</div>
 						<div class="login-group password-group">
 							<label>Password </label>
-							<input type="password" id="f_password" name="password" autocomplete="current-password" class="login-input">
+							<input required type="password" ng-model="password" autocomplete="current-password" class="login-input">
 						</div>
 
-						<button id="signin"  ng-click="changeView()" class="login-btn login-btn">
-						<a class="login-ar" href="/dashboard.html" style="color: white; border-bottom: none;">
+						<button type="button" id="signin"  ng-click="authenticate(username,password)" class="login-btn login-btn">
 							Sign In
-						</a>
 						</button>
 						<div class="text-foot">
 							Don't have an account? <a href="" class="register-link">Register</a>
