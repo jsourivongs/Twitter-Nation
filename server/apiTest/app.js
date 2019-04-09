@@ -32,6 +32,18 @@
 var trends = require('./trends');
 var tweets = require('./tweets');
 
+
+function delay(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+
+// async function getTrends(){
+//   var res = await trends.getTopTrendsByStateCode('GA');
+//   //console.log(res);
+//   return res;
+// }
+
 async function getTweets(){
   var topTrends = await trends.getTopTrendsByStateCode('FL');
   var topTweets = await tweets.getTopTweetsByTrend(topTrends);
@@ -39,17 +51,16 @@ async function getTweets(){
   return topTweets;
 }
 
-module.exports = {
-  getTweets : async function(topTrends) {
-    // var topTrends = await trends.getTopTrendsByStateCode('FL');
-    var topTweets = await tweets.getTopTweetsByTrend(topTrends);
-    return topTweets;
-  }
-}
+// module.exports = {
+//   getTweets : async function() {
+//     var tt = await trends.getTopTrendsByStateCode('GA');
+//     var res = await tweets.getTopTweetsByTrend(tt);
+//     return res;
+//   }
+// }
 
 var test = getTweets();
 test.then(function(response) {
   // console.log("text");
-  console.log(response); 
+  console.log(response[0]); 
 })
-

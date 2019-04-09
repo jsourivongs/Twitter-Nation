@@ -1,8 +1,10 @@
-app.controller('TweetsController', ['$scope', 'TweetsFactory',
-  function ($scope, TweetsFactory) {
+app.controller('TweetsController', ['$scope', '$rootScope','TweetsFactory',
+  function ($scope, $rootScope, TweetsFactory) {
+
+    $scope.tweetsArray;
 
     $scope.showTweets = function() {
-      TweetsFactory.getAll().then(
+      TweetsFactory.create($rootScope.trendQuery).then(
         function(response) {
           $scope.tweets = response;
         },

@@ -1,6 +1,6 @@
 /* Dependencies */
-var trends = require('../controllers/trends.server.controller.js'), 
-    express = require('express'), 
+var trends = require('../controllers/trends.server.controller.js'),
+    express = require('express'),
     router = express.Router();
 
 // router.route('/')
@@ -9,10 +9,5 @@ var trends = require('../controllers/trends.server.controller.js'),
 
 router.route('/:stateCode')
   .post(trends.create);
-
-
-
-
-
 
 module.exports = router;

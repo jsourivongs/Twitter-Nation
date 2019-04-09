@@ -1,7 +1,8 @@
-app.controller('TrendsController', ['$scope', 'TrendsFactory',
-  function ($scope, TrendsFactory) {
+app.controller('TrendsController', ['$scope', '$rootScope', 'TrendsFactory',
+  function ($scope, $rootScope, TrendsFactory) {
 
-    $scope.trendNames;
+    $rootScope.trendQuery;
+    $scope.trendNmaes;
     $scope.tweetVolume;
     $scope.responseJSON;
 
@@ -13,16 +14,19 @@ app.controller('TrendsController', ['$scope', 'TrendsFactory',
        return code;
     }
 
-    $scope.clicked = function(){;
+    $scope.clicked = function(){
       TrendsFactory.create($scope.stateCode()).then(
        function (response) {
         $scope.responseJSON = response.data;
          var name=[];
          var volume=[];
+         var query=[];
          for(var i=0; i<5; i++){
            name.push(response.data[i].name);
+           query.push(response.data[i].query);
            volume.push(response.data[i].tweet_volume);
          }
+         $rootScope.trendQuery=query;
          $scope.trendNames=name;
          $scope.tweetVolume=volume;
        },

@@ -6,6 +6,7 @@
   <!-- Setup AngularJS -->
   <script src="https://code.angularjs.org/1.4.3/angular.js"></script>
   <script src="js/app.js"></script>
+  <script src="js/factories/tweetsFactory.js"></script>
   <script src="js/controllers/tweetsController.js"></script>
   <script src="js/controllers/trendsController.js"></script>
   <script src="js/factories/tweetsFactory.js"></script>
@@ -53,7 +54,9 @@
                     </span>
                     <hr />
                     <span>
-                      <a href="index.html"><p class="dropdown-item-text">Logout <i class="fas fa-sign-out-alt"></i></p></a>
+                      <a href="index.html">
+                        <p class="dropdown-item-text">Logout <i class="fas fa-sign-out-alt"></i></p>
+                      </a>
                     </span>
                   </div>
                 </div>
@@ -138,8 +141,6 @@
                 uStates.draw("#statesvg", sampleData, tooltipHtml);
               })
               d3.select(self.frameElement).style("height", "600px");
-
-
             </script>
 
           </div>
@@ -149,46 +150,59 @@
     </div>
 
 
-      <p ng-controller="TrendsController">{{stateCode()}}</p>
-      <p ng-controller="TrendsController"><button type="button" ng-Click="clicked()"> Show Data</button></br>
-        {{trendNames[0]}}   &emsp;  {{tweetVolume[0]}} </br>
-        {{trendNames[1]}}   &emsp;  {{tweetVolume[1]}} </br>
-        {{trendNames[2]}}   &emsp;  {{tweetVolume[2]}} </br>
-        {{trendNames[3]}}   &emsp;  {{tweetVolume[3]}} </br>
-        {{trendNames[4]}}   &emsp;  {{tweetVolume[4]}} </br>
+    <p ng-controller="TrendsController">{{stateCode()}}</p>
+    <p ng-controller="TrendsController"><button type="button" ng-Click="clicked()"> Show Data</button></br>
+      {{trendNames[0]}} &emsp; {{tweetVolume[0]}} </br>
+      {{trendNames[1]}} &emsp; {{tweetVolume[1]}} </br>
+      {{trendNames[2]}} &emsp; {{tweetVolume[2]}} </br>
+      {{trendNames[3]}} &emsp; {{tweetVolume[3]}} </br>
+      {{trendNames[4]}} &emsp; {{tweetVolume[4]}} </br>
       {{responseJSON}} </p>
 
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6">
-            <div class="embedTweets" style=" width: 100%; margin: 0 auto; overflow: auto; height: 360px; ">
-              <blockquote class="twitter-tweet"><p lang="en" dir="ltr">just setting up my twttr</p>&mdash; jack (@jack) <a href="https://twitter.com/jack/status/20?ref_src=twsrc%5Etfw">March 21, 2006</a></blockquote>
-              <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-              <blockquote class="twitter-tweet"><p lang="en" dir="ltr">just setting up my twttr</p>&mdash; jack (@jack) <a href="https://twitter.com/jack/status/20?ref_src=twsrc%5Etfw">March 21, 2006</a></blockquote>
-              <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-              <blockquote class="twitter-tweet"><p lang="en" dir="ltr">just setting up my twttr</p>&mdash; jack (@jack) <a href="https://twitter.com/jack/status/20?ref_src=twsrc%5Etfw">March 21, 2006</a></blockquote>
-              <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <div class="container" ng-controller="TweetsController">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="embedTweets" style=" width: 50%; margin: 0 auto; overflow: auto; height: 360px; ">
+            <button type="button" ng-Click="showTweets()"> show Tweets</button></br>
+            {{tweetsArray[0]}} </br>
+            {{tweetsArray[1]}} </br>
+            {{tweetsArray[2]}} </br>
+            {{tweetsArray[3]}} </br>
+            {{tweetsArray[4]}} </br>
+            <div class="col-md-6">
+              <div class="embedTweets" style=" width: 100%; margin: 0 auto; overflow: auto; height: 360px; ">
+                <blockquote class="twitter-tweet">
+                  <p lang="en" dir="ltr">just setting up my twttr</p>&mdash; jack (@jack) <a
+                    href="https://twitter.com/jack/status/20?ref_src=twsrc%5Etfw">March 21, 2006</a>
+                </blockquote>
+                <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                <blockquote class="twitter-tweet">
+                  <p lang="en" dir="ltr">just setting up my twttr</p>&mdash; jack (@jack) <a
+                    href="https://twitter.com/jack/status/20?ref_src=twsrc%5Etfw">March 21, 2006</a>
+                </blockquote>
+                <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                <blockquote class="twitter-tweet">
+                  <p lang="en" dir="ltr">just setting up my twttr</p>&mdash; jack (@jack) <a
+                    href="https://twitter.com/jack/status/20?ref_src=twsrc%5Etfw">March 21, 2006</a>
+                </blockquote>
+                <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <img src="https://placeimg.com/500/350/tech" alt="">
             </div>
           </div>
-          <div class="col-md-6">
-
-            <img src="https://placeimg.com/500/350/tech" alt="">
-
-          </div>
         </div>
-
-
       </div>
     </div>
 
-    <br />
+    <br/>
 
     <div class="container">
       <div class="row">
         <div class="hello col-md-6">
 
           <script>
-
             var realData;
             var sizeOfDisplay = Math.min(Math.min(window.innerWidth, window.innerHeight), 400);
             var colorScheme = d3.scaleOrdinal(d3.schemeCategory20c);
@@ -226,43 +240,66 @@
               });
 
               // only keep words used 10 or more times
-              keys = keys.filter(function(key) {
-              	return counts[key] >= 10 ? key : '';
+              keys = keys.filter(function (key) {
+                return counts[key] >= 10 ? key : '';
               });
 
-              var root = d3.hierarchy({ children: keys })
-                .sum(function (d) { return counts[d]; });
+              var root = d3.hierarchy({
+                  children: keys
+                })
+                .sum(function (d) {
+                  return counts[d];
+                });
 
               var node = chart.selectAll(".node")
                 .data(pack(root).leaves())
                 .enter().append("g")
                 .attr("class", "node")
-                .attr("transform", function (d) { return "translate(" + d.x + "," + d.y + ")"; });
+                .attr("transform", function (d) {
+                  return "translate(" + d.x + "," + d.y + ")";
+                });
 
               node.append("circle")
-                .attr("id", function (d) { return d.data; })
-                .attr("r", function (d) { return d.r; })
-                .style("fill", function (d) { return colorScheme(d.data); });
+                .attr("id", function (d) {
+                  return d.data;
+                })
+                .attr("r", function (d) {
+                  return d.r;
+                })
+                .style("fill", function (d) {
+                  return colorScheme(d.data);
+                });
 
               node.append("clipPath")
-                .attr("id", function (d) { return "clip-" + d.data; })
+                .attr("id", function (d) {
+                  return "clip-" + d.data;
+                })
                 .append("use")
-                .attr("xlink:href", function (d) { return "#" + d.data; });
+                .attr("xlink:href", function (d) {
+                  return "#" + d.data;
+                });
 
               node.append("text")
-                .attr("clip-path", function (d) { return "url(#clip-" + d.data + ")"; })
+                .attr("clip-path", function (d) {
+                  return "url(#clip-" + d.data + ")";
+                })
                 .append("tspan")
                 .attr("x", 0)
-                .attr("y", function (d) { return d.r / 8; })
-                .attr("font-size", function (d) { return d.r / 2; })
-                .text(function (d) { return d.data; });
+                .attr("y", function (d) {
+                  return d.r / 8;
+                })
+                .attr("font-size", function (d) {
+                  return d.r / 2;
+                })
+                .text(function (d) {
+                  return d.data;
+                });
 
             });
-
           </script>
 
         </div>
-        <div class="world col-md-6 "  ng-controller="TrendsController">
+        <div class="world col-md-6 " ng-controller="TrendsController">
 
           <script>
             var width = 500;
@@ -281,7 +318,9 @@
 
             var pie = d3.pie()
               .sort(null)
-              .value(function (d) { return d.tweet_volume; });
+              .value(function (d) {
+                return d.tweet_volume;
+              });
 
             var svg = d3.select(".world").append("svg")
               .attr("width", width)
@@ -305,7 +344,7 @@
                 });
 
               g.append("text")
-                .attr("transform", function(d) {
+                .attr("transform", function (d) {
                   var _d = arc.centroid(d);
                   _d[0] *= 1.5;
                   _d[1] *= 1.5;
@@ -323,8 +362,6 @@
               d.tweet_volume = +d.tweet_volume;
               return d;
             }
-
-
           </script>
 
         </div>

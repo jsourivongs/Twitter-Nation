@@ -3,12 +3,11 @@ app.factory('TrendsFactory', function($http) {
       getAll: function() {
         return $http.get('http://localhost:8080/api/trends');
       },
-      
+
       create: function(stateCode) {
         return $http.post('http://localhost:8080/api/trends/' + stateCode);
       }
     };
-  
+
     return methods;
   });
-  
