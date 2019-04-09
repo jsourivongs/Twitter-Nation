@@ -26,8 +26,11 @@ app.controller('TrendsController', ['$scope', 'TrendsFactory',
          }
          $scope.trendNames = name;
          $scope.tweetVolume = volume;
+        //  console.log("tvvvvv " + $scope.tweetVolume);
          $scope.$watch('tweetVolume', function(newVal, oldVal) {
           $scope.tweetVolume = newVal;
+          //  console.log("new " + $scope.tweetVolume);
+
         }, true);
         $scope.data = volume;
         $scope.$watch('data', function(newVal, oldVal) {
