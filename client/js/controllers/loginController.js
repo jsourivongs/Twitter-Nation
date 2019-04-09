@@ -18,7 +18,7 @@ app.controller('LoginController', ['$scope', '$window', 'LoginFactory',
 
     $scope.logout = function(){
       LoginFactory.logout().then(function(){
-        $window.location.href = '/index.html';
+        $window.location.href = '/';
       })
     }
   }
