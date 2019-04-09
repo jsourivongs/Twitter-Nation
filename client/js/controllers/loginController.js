@@ -7,12 +7,19 @@ app.controller('LoginController', ['$scope', '$window', 'LoginFactory',
       LoginFactory.login(username, password).then(function(response) {
         if (response.data) {
           $window.location.href = '/dashboard.html';
+          //$scope.username = username;
         }
         else {
           $window.alert("Wrong username or password!");
         }
       });
       
+    }
+
+    $scope.logout = function(){
+      LoginFactory.logout().then(function(){
+        $window.location.href = '/index.html';
+      })
     }
   }
 ]);

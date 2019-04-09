@@ -10,6 +10,8 @@
   <script src="js/controllers/tweetsController.js"></script>
   <script src="js/controllers/trendsController.js"></script>
   <script src="js/factories/trendsFactory.js"></script>
+  <script src="./js/controllers/loginController.js"></script>
+  <script src="./js/factories/loginFactory.js"></script>
   <!-- Setup d3 -->
   <script src="js/uStates.js"></script> <!-- creates uStates. -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -52,7 +54,7 @@
                       <p class="dropdown-item-text">Contact Us! <i class="fas fa-phone-square"></i></p>
                     </span>
                     <hr />
-                    <span>
+                    <span ng-click="logout()">
                       <a href="index.html"><p class="dropdown-item-text">Logout <i class="fas fa-sign-out-alt"></i></p></a>
                     </span>
                   </div>
