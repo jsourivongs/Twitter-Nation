@@ -19,11 +19,11 @@ exports.create = function(req) {
       });
 };
 
-exports.authenticate =  function (username, password) {
-    console.log(username);
+exports.authenticate =  function (req, res) {
+    // console.log(username);
     var result = false;
-    //console.log(req.body.password)
-    User.findOne({username: username}, function(err, user) {
+    console.log(req.body.password)
+    User.findOne({username: req.body.username}, function(err, user) {
 
         if (err)
         {
@@ -31,7 +31,7 @@ exports.authenticate =  function (username, password) {
           return false;
         }
         else if(user){   
-           if(user.validPassword(password)){
+           if(user.validPassword(req.body.password)){
                 //console.log("Sucessful Login!\n");
                 console.log(user);
                 result = true;
@@ -46,6 +46,7 @@ exports.authenticate =  function (username, password) {
                 result = false;
         }
       });
+      console.log("login returning " + result);
       return result;
     };
 

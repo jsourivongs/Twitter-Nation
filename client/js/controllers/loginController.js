@@ -5,7 +5,8 @@ app.controller('LoginController', ['$scope', '$window', 'LoginFactory',
       //$window.alert(username+" "+password);
       var loggedIn = false;
       loggedIn = LoginFactory.login(username, password);
-      if (loggedIn) {
+      console.log(loggedIn);
+      if (false) {
         $window.location.href = '/dashboard.html';
       }
       else {

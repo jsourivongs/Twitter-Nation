@@ -8,7 +8,7 @@ var login = require('../controllers/login'),
 //   .post(trends.create);
 
 router.route('/')
-  .get(login.authenticate);
+  .post(login.authenticate);
 
 
 

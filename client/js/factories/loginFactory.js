@@ -5,7 +5,11 @@ app.factory('LoginFactory' , function($http) {
           username: username,
           password: password
         }
-        return $http.get('http://localhost:8080/api/login', credentials);
+        console.log("Hello from inside the loginFactory\n");
+        console.log(credentials);
+        var ret = $http.post('http://localhost:8080/api/login', credentials);
+        // console.log(ret);
+        return ret;
       },
       retTrue: function(username, password) {
         return true;
