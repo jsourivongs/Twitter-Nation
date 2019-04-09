@@ -19,31 +19,62 @@ exports.create = function(req) {
       });
 };
 
-exports.authenticate =  function (req) {
-    username = req.body.username;
+exports.authenticate =  function (username, password) {
+    console.log(username);
+    var result = false;
     //console.log(req.body.password)
-    
     User.findOne({username: username}, function(err, user) {
 
         if (err)
         {
-          console.log(err);
+          //console.log(err);
           return false;
         }
         else if(user){   
-           if(user.validPassword(req.body.password)){
-                console.log("Sucessful Login!\n");
+           if(user.validPassword(password)){
+                //console.log("Sucessful Login!\n");
                 console.log(user);
-                return true;
+                result = true;
              }
             else{
                 console.log("Incorrect Password.\n")
-                return false;
+                result = false;
             }
         }
          else {
                 console.log("Incorrect Username\n");
-                return false;
+                result = false;
         }
       });
+      return result;
     };
+
+// exports.authenticate =  function (req) {
+//     username = req.body.username;
+//     var result = false;
+//     //console.log(req.body.password)
+//     User.findOne({username: username}, function(err, user) {
+
+//         if (err)
+//         {
+//             console.log(err);
+//             return false;
+//         }
+//         else if(user){   
+//             if(user.validPassword(req.body.password)){
+//                 console.log("Sucessful Login!\n");
+//                 console.log(user);
+//                 result = true;
+//                 }
+//             else{
+//                 console.log("Incorrect Password.\n")
+//                 result = false;
+//             }
+//         }
+//             else {
+//                 console.log("Incorrect Username\n");
+//                 result = false;
+//         }
+//         });
+//         return result;
+//     };

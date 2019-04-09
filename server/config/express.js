@@ -7,6 +7,7 @@ var path = require('path'),
     accRouter = require('../routes/acc'),
     tweetsRouter = require('../routes/tweets.server.routes'),
     trendsRouter = require('../routes/trends.server.routes');
+    loginRouter = require('../routes/login.server.routes');
 
 module.exports.init = function() {
   //connect to database
@@ -29,6 +30,7 @@ module.exports.init = function() {
   app.use('/api/accounts', accRouter);
   app.use('/api/tweets', tweetsRouter);
   app.use('/api/trends', trendsRouter);
+  app.use('/api/login', loginRouter);
 
 
   app.all('/login', function(req, res) {
