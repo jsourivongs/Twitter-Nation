@@ -1,21 +1,35 @@
 app.controller('TrendsController', ['$scope', 'TrendsFactory',
   function ($scope, TrendsFactory) {
 
-    /* Shows the top 5 trends for a given state code. */
-    $scope.showTrends = function ($scope) {
-      var stateCode = angular.element(document.querySelector('.stateCode')).text();
-      console.log("stateCode = " + stateCode);
+    $scope.trendNames;
+    $scope.tweetVolume;
+    $scope.responseJSON;
 
+    /* Shows the top 5 trends for a given state code. */
+    $scope.stateCode = function () {
       /* Makes a request to the backend by passing in a state code, and the received
        * response is a JSON object containing the 5 top trends for that state. */
-      TrendsFactory.create(stateCode).then(
-        function (response) {
-          console.log(response.data);
-        },
-        function (error) {
-          console.log('ERROR - Unable to retrieve trends:', error);
-        }
-      )
+       var code = angular.element(document.querySelector('.stateCode')).text();
+       return code;
+    }
+
+    $scope.clicked = function(){;
+      TrendsFactory.create($scope.stateCode()).then(
+       function (response) {
+        $scope.responseJSON = response.data;
+         var name=[];
+         var volume=[];
+         for(var i=0; i<5; i++){
+           name.push(response.data[i].name);
+           volume.push(response.data[i].tweet_volume);
+         }
+         $scope.trendNames=name;
+         $scope.tweetVolume=volume;
+       },
+       function (error) {
+         console.log('ERROR - Unable to retrieve trends:', error);
+       }
+     );
     }
   }
 ]);

@@ -63,7 +63,7 @@ h3{
 
 /* BarGraph CSS Start */
 
-.bar { fill: steelblue; }
+/* IN PROGRESS */
 
 /* BarGraph CSS End */
 
@@ -87,18 +87,14 @@ h3{
   cursor: pointer;
   fill-opacity:0.5;
 }
-.active{
-  fill: none;
-  stroke: orange;
-  stroke-width: 6;
-}
+
 #tooltip {
   position: absolute;
   margin: 10px;
   font: 12px sans-serif;
   border: 1px;
   pointer-events: none;
-  } //css selector, for the tool tip, any h4 elements will be colored plum
+  }
 
   #tooltip h4{
     margin:0;

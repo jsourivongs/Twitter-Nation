@@ -82,10 +82,18 @@
 
 	function clicked(d) {
 			
+			
 			document.getElementById("stateField").innerHTML = d.id;
 
-			// console.log(d.id)
+			// console.log("d id: " + d.id);
 			d3.selectAll('path')
+				.filter(function(d) { 
+					for(var x = 0; x < uStatePaths.length; x++){
+						if(d.id === uStatePaths[x].id){
+							return true;
+						}
+					}
+				})
 				.style("fill", function(d){
 				 	return d.oldColor;
 				 });
