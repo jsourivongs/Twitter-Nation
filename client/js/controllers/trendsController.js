@@ -17,22 +17,27 @@ app.controller('TrendsController', ['$scope', 'TrendsFactory',
       TrendsFactory.create($scope.stateCode()).then(
        function (response) {
         $scope.responseJSON = response.data;
+        // console.log($scope.responseJSON);
          var name=[];
          var volume=[];
          for(var i=0; i<5; i++){
            name.push(response.data[i].name);
            volume.push(response.data[i].tweet_volume);
          }
-         $scope.trendNames=name;
-         $scope.tweetVolume=volume;
+         $scope.trendNames = name;
+         $scope.tweetVolume = volume;
+         $scope.$watch('tweetVolume', function(newVal, oldVal) {
+          $scope.tweetVolume = newVal;
+        }, true);
+        $scope.data = volume;
+        $scope.$watch('data', function(newVal, oldVal) {
+          $scope.data = newVal;
+        }, true);
        },
        function (error) {
          console.log('ERROR - Unable to retrieve trends:', error);
        }
      );
     }
-
-
-
   }
 ]);

@@ -3,19 +3,21 @@
 
 <head>
   <link rel="stylesheet" href="styles/main.css">
+  <!-- Setup D3 -->
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
   <!-- Setup AngularJS -->
-  <script src="https://code.angularjs.org/1.4.3/angular.js"></script>
+  <script data-require="angular.js@1.4.3" data-semver="1.4.3" src="https://code.angularjs.org/1.4.3/angular.js"></script>
   <script src="js/app.js"></script>
   <!-- <script src="js/factories/tweetsFactory.js"></script>
   <script src="js/controllers/tweetsController.js"></script> -->
   <script src="js/controllers/trendsController.js"></script>
   <script src="js/factories/trendsFactory.js"></script>
-  <!-- Setup d3 -->
+  <script src="bar-chart.js"></script>
+  <!-- Setup BS/jquery -->
   <script src="js/uStates.js"></script> <!-- creates uStates. -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-  <script src="https://d3js.org/d3.v4.min.js"></script>
-  <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
     integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
@@ -148,7 +150,6 @@
       <span id="stateField" class="stateCode" ng-bind="sCode" hidden></span>
     </div>
 
-
       <p ng-controller="TrendsController">{{stateCode()}}</p>
       <p ng-controller="TrendsController"><button type="button" ng-Click="clicked()"> Show Data</button></br>
         {{trendNames[0]}}   &emsp;  {{tweetVolume[0]}} </br>
@@ -156,7 +157,10 @@
         {{trendNames[2]}}   &emsp;  {{tweetVolume[2]}} </br>
         {{trendNames[3]}}   &emsp;  {{tweetVolume[3]}} </br>
         {{trendNames[4]}}   &emsp;  {{tweetVolume[4]}} </br>
-      {{responseJSON}} </p>
+        {{responseJSON}}
+        <bar-chart data="data"></bar-chart>
+
+      </p>
 
       <div class="container">
         <div class="row">
@@ -185,9 +189,13 @@
 
     <div class="container">
       <div class="row">
-        <div class="hello col-md-6">
+        <div class="hello col-md-6" ng-controller="TrendsController">
 
-          <script>
+          <bar-chart data="tweetVolume"></bar-chart>
+
+          <!-- <img src="https://placeimg.com/500/350/tech" alt=""> -->
+
+          <!-- <script>
 
             var realData;
             var sizeOfDisplay = Math.min(Math.min(window.innerWidth, window.innerHeight), 400);
@@ -259,12 +267,14 @@
 
             });
 
-          </script>
+          </script> -->
 
         </div>
-        <div class="world col-md-6 "  ng-controller="TrendsController">
+        <div class="world col-md-6" ng-controller="TrendsController">
 
-          <script>
+          <img src="https://placeimg.com/500/350/tech" alt="">
+
+          <!-- <script>
             var width = 500;
             var height = 500;
             var radius = Math.min(width, height) / 2;
@@ -325,7 +335,7 @@
             }
 
 
-          </script>
+          </script> -->
 
         </div>
       </div>
