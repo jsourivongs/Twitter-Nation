@@ -2,6 +2,8 @@ app.directive('barChart', function($window) {
     return {
       restrict: 'E',
       replace: true,
+    //   transclude: true,
+    //   encapsulation: ViewEncapsulation.None,
       scope: {
         item: '&',
         data: '=',
@@ -14,20 +16,25 @@ app.directive('barChart', function($window) {
         var d3 = $window.d3;
         var rawSvg = element;
   
-        var colors = d3.scaleOrdinal(d3.schemeCategory20c);
-  
-        var canvas = d3.select(rawSvg[0])
-          .append('svg')
-          .attr("width", 300)
-          .attr("height", 150);
-  
-        // watching for any changes in the data
-        // if new data is detected, the chart repaint code is run
-
         scope.$watch('data', function(newVal, oldVal) {
             scope.data = newVal;
             if( typeof data !== 'undefined' ) console.log(data);
           }, true);
+
+        var colors = d3.scaleOrdinal(d3.schemeCategory20c);
+  
+        var canvas = d3.select(rawSvg[0])
+          .append('svg')
+          .attr("width", 400)
+          .attr("height", 300);
+  
+        // watching for any changes in the data
+        // if new data is detected, the chart repaint code is run
+
+        // scope.$watch('data', function(newVal, oldVal) {
+        //     scope.data = newVal;
+        //     if( typeof data !== 'undefined' ) console.log(data);
+        //   }, true);
 
         var xscale = d3.scaleLinear()
           .domain([0, 100])
@@ -70,4 +77,5 @@ app.directive('barChart', function($window) {
         }
       }
     }
+    $compile(scope.contents())(scope); 
   });

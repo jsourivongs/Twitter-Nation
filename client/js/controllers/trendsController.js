@@ -20,18 +20,15 @@ app.controller('TrendsController', ['$scope', 'TrendsFactory',
         // console.log($scope.responseJSON);
          var name=[];
          var volume=[];
+         
          for(var i=0; i<5; i++){
            name.push(response.data[i].name);
            volume.push(response.data[i].tweet_volume);
-         }
+          
+          }
          $scope.trendNames = name;
          $scope.tweetVolume = volume;
-        //  console.log("tvvvvv " + $scope.tweetVolume);
-         $scope.$watch('tweetVolume', function(newVal, oldVal) {
-          $scope.tweetVolume = newVal;
-          //  console.log("new " + $scope.tweetVolume);
 
-        }, true);
         $scope.data = volume;
         $scope.$watch('data', function(newVal, oldVal) {
           $scope.data = newVal;
