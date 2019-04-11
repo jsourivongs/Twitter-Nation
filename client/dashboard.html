@@ -76,9 +76,10 @@
             <!-- <svg width="960" height="600" style="margin-left:100px;" id="statesvg"></svg> -->
             <script>
               function tooltipHtml(stateName, tweetsADay) {
+
                 /* function to create html content string in tooltip div. */
                 return "<h4>" + stateName + "</h4><table>" +
-                  "<tr><td>Tweets:</td><td>" + (tweetsADay) + "</td></tr></table>";
+                  "<tr><td>Twitter Rank:</td><td>" + (51-(tweetsADay)) + "</td></tr></table>";
               }
 
               tweet_data = [];
