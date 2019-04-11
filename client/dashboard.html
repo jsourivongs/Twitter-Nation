@@ -4,10 +4,11 @@
 <head>
   <link rel="stylesheet" href="styles/main.css">
   <!-- Setup D3 -->
+  <meta charset="utf-8">  <!-- it's important for d3.js -->
   <script src="https://d3js.org/d3.v4.min.js"></script>
   <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
   <!-- Setup AngularJS -->
-  <script data-require="angular.js@1.4.3" data-semver="1.4.3" src="https://code.angularjs.org/1.4.3/angular.js"></script>
+  <script src="https://code.angularjs.org/1.4.3/angular.js"></script>
   <script src="js/app.js"></script>
   <!-- <script src="js/factories/tweetsFactory.js"></script>
   <script src="js/controllers/tweetsController.js"></script> -->
@@ -161,10 +162,6 @@
         
   <bar-chart data="data" ></bar-chart> 
 
-<!-- showXAxis="true"
-                showYAxis="true"
-                tooltips="true"
-                interactive="true" -->
 
       </p>
 
@@ -197,151 +194,13 @@
       <div class="row">
         <div class="hello col-md-6" ng-controller="TrendsController">
 
-          <!-- <bar-chart data="tweetVolume"></bar-chart> -->
+          <img src="https://placeimg.com/500/350/tech" alt="">
 
-          <!-- <img src="https://placeimg.com/500/350/tech" alt=""> -->
-
-          <!-- <script>
-
-            var realData;
-            var sizeOfDisplay = Math.min(Math.min(window.innerWidth, window.innerHeight), 400);
-            var colorScheme = d3.scaleOrdinal(d3.schemeCategory20c);
-
-            var chart = d3.select(".hello")
-              .append('svg')
-              .attr("width", sizeOfDisplay)
-              .attr("height", sizeOfDisplay);
-
-            var pack = d3.pack()
-              .size([sizeOfDisplay, sizeOfDisplay])
-              .padding(sizeOfDisplay * 0.005);
-
-            d3.text('https://s3-us-west-2.amazonaws.com/s.cdpn.io/310408/youFailMe.txt', function (error, data) {
-              // d3.text('ect/wordBubble.txt', function (error, data) {
-              if (error) throw error;
-
-              realData = data.split(/\W+/);
-
-              var keys = [];
-
-              // count the word frequency
-              var counts = realData.reduce(function (obj, word) {
-                if (!obj[word]) {
-                  obj[word] = 0;
-                  keys.push(word);
-                }
-                obj[word]++;
-                return obj;
-              }, {});
-
-              // sort the keys from highest to lowest
-              keys.sort(function (a, b) {
-                return counts[b] - counts[a];
-              });
-
-              // only keep words used 10 or more times
-              keys = keys.filter(function(key) {
-              	return counts[key] >= 10 ? key : '';
-              });
-
-              var root = d3.hierarchy({ children: keys })
-                .sum(function (d) { return counts[d]; });
-
-              var node = chart.selectAll(".node")
-                .data(pack(root).leaves())
-                .enter().append("g")
-                .attr("class", "node")
-                .attr("transform", function (d) { return "translate(" + d.x + "," + d.y + ")"; });
-
-              node.append("circle")
-                .attr("id", function (d) { return d.data; })
-                .attr("r", function (d) { return d.r; })
-                .style("fill", function (d) { return colorScheme(d.data); });
-
-              node.append("clipPath")
-                .attr("id", function (d) { return "clip-" + d.data; })
-                .append("use")
-                .attr("xlink:href", function (d) { return "#" + d.data; });
-
-              node.append("text")
-                .attr("clip-path", function (d) { return "url(#clip-" + d.data + ")"; })
-                .append("tspan")
-                .attr("x", 0)
-                .attr("y", function (d) { return d.r / 8; })
-                .attr("font-size", function (d) { return d.r / 2; })
-                .text(function (d) { return d.data; });
-
-            });
-
-          </script> -->
 
         </div>
         <div class="world col-md-6" ng-controller="TrendsController">
 
           <img src="https://placeimg.com/500/350/tech" alt="">
-
-          <!-- <script>
-            var width = 500;
-            var height = 500;
-            var radius = Math.min(width, height) / 2;
-
-            var colorScheme = d3.scaleOrdinal(d3.schemeCategory10);
-
-            var arc = d3.arc()
-              .outerRadius(radius - 10)
-              .innerRadius(0);
-
-            var labelArc = d3.arc()
-              .outerRadius(radius - 40)
-              .innerRadius(radius - 40);
-
-            var pie = d3.pie()
-              .sort(null)
-              .value(function (d) { return d.tweet_volume; });
-
-            var svg = d3.select(".world").append("svg")
-              .attr("width", width)
-              .attr("height", height)
-              .append("g")
-              .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
-
-            // d3.csv("data.csv", type, function(error, data) {
-            d3.csv("etc/name_tweetvol.csv", type, function (error, data) {
-              if (error) throw error;
-
-              var g = svg.selectAll(".arc")
-                .data(pie(data))
-                .enter().append("g")
-                .attr("class", "arc");
-
-              g.append("path")
-                .attr("d", arc)
-                .style("fill", function (d) {
-                  return colorScheme(d.data.name);
-                });
-
-              g.append("text")
-                .attr("transform", function(d) {
-                  var _d = arc.centroid(d);
-                  _d[0] *= 1.5;
-                  _d[1] *= 1.5;
-                  return "translate(" + _d + ")";
-                })
-                .attr("dy", ".50em")
-                .style("text-anchor", "middle")
-                .text(function (d) {
-
-                  return d.data.name + " " + d.data.tweet_volume;
-                });
-            });
-
-            function type(d) {
-              d.tweet_volume = +d.tweet_volume;
-              return d;
-            }
-
-
-          </script> -->
 
         </div>
       </div>
