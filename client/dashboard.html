@@ -4,7 +4,7 @@
 <head>
   <link rel="stylesheet" href="styles/main.css">
   <!-- Setup D3 -->
-  <meta charset="utf-8">  <!-- it's important for d3.js -->
+  <meta charset="utf-8"> <!-- it's important for d3.js -->
   <script src="https://d3js.org/d3.v4.min.js"></script>
   <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
   <!-- Setup ChartJS -->
@@ -27,6 +27,8 @@
     integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
   <!-- Favicon -->
   <link rel="shortcut icon" type="image/png" href="etc/favicon.ico">
+  <!-- Image placeholder -->
+  <!-- <img src="https://placeimg.com/500/350/tech" alt=""> -->
 
 </head>
 
@@ -58,7 +60,9 @@
                     </span>
                     <hr />
                     <span>
-                      <a href="index.html"><p class="dropdown-item-text">Logout <i class="fas fa-sign-out-alt"></i></p></a>
+                      <a href="index.html">
+                        <p class="dropdown-item-text">Logout <i class="fas fa-sign-out-alt"></i></p>
+                      </a>
                     </span>
                   </div>
                 </div>
@@ -72,6 +76,10 @@
     <div class="container" ng-controller="TrendsController" style="margin-top: 30px;">
       <div class="row">
         <div class="col-md-4">
+          <br />
+          <p ng-controller="TrendsController">
+            <button type="button" class="btn btn-primary" ng-Click="clicked()"> Show Data</button>
+          </p>
           <div id="fullmap" ng-click="stateCode()">
             <div id="tooltip"></div><!-- div to hold tooltip. -->
             <svg width="800" style="margin-left: 125px;" height="600" viewBox="0 0 960 600" id="statesvg"></svg>
@@ -144,7 +152,6 @@
               })
               d3.select(self.frameElement).style("height", "600px");
 
-
             </script>
 
           </div>
@@ -153,51 +160,46 @@
       <span id="stateField" class="stateCode" ng-bind="sCode" hidden></span>
     </div>
 
-      <p ng-controller="TrendsController">{{stateCode()}}</p>
-      <p ng-controller="TrendsController"><button type="button" ng-Click="clicked()"> Show Data</button></br>
-        {{trendNames[0]}}   &emsp;  {{tweetVolume[0]}} </br>
-        {{trendNames[1]}}   &emsp;  {{tweetVolume[1]}} </br>
-        {{trendNames[2]}}   &emsp;  {{tweetVolume[2]}} </br>
-        {{trendNames[3]}}   &emsp;  {{tweetVolume[3]}} </br>
-        {{trendNames[4]}}   &emsp;  {{tweetVolume[4]}} </br>
-        <!-- {{responseJSON}} -->
-
-      </p>
-
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6">
-            <div class="embedTweets" style=" width: 100%; margin: 0 auto; overflow: auto; height: 360px; ">
-              <blockquote class="twitter-tweet"><p lang="en" dir="ltr">just setting up my twttr</p>&mdash; jack (@jack) <a href="https://twitter.com/jack/status/20?ref_src=twsrc%5Etfw">March 21, 2006</a></blockquote>
-              <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-              <blockquote class="twitter-tweet"><p lang="en" dir="ltr">just setting up my twttr</p>&mdash; jack (@jack) <a href="https://twitter.com/jack/status/20?ref_src=twsrc%5Etfw">March 21, 2006</a></blockquote>
-              <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-              <blockquote class="twitter-tweet"><p lang="en" dir="ltr">just setting up my twttr</p>&mdash; jack (@jack) <a href="https://twitter.com/jack/status/20?ref_src=twsrc%5Etfw">March 21, 2006</a></blockquote>
-              <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-            </div>
-          </div>
-          <div class="col-md-6">
-
-            <!-- <img src="https://placeimg.com/500/350/tech" alt=""> -->
-            <canvas id="polar-chart" width="500" height="350"></canvas>
-
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="embedTweets" style=" width: 100%; margin: 0 auto; overflow: auto; height: 360px; ">
+            <blockquote class="twitter-tweet">
+              <p lang="en" dir="ltr">just setting up my twttr</p>&mdash; jack (@jack) <a
+                href="https://twitter.com/jack/status/20?ref_src=twsrc%5Etfw">March 21, 2006</a>
+            </blockquote>
+            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+            <blockquote class="twitter-tweet">
+              <p lang="en" dir="ltr">just setting up my twttr</p>&mdash; jack (@jack) <a
+                href="https://twitter.com/jack/status/20?ref_src=twsrc%5Etfw">March 21, 2006</a>
+            </blockquote>
+            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+            <blockquote class="twitter-tweet">
+              <p lang="en" dir="ltr">just setting up my twttr</p>&mdash; jack (@jack) <a
+                href="https://twitter.com/jack/status/20?ref_src=twsrc%5Etfw">March 21, 2006</a>
+            </blockquote>
+            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
           </div>
         </div>
+        <div class="polarChart col-md-6">
 
+          <canvas id="polar-chart" width="500" height="350"></canvas>
 
+        </div>
       </div>
+    </div>
     </div>
 
     <br />
 
     <div class="container">
       <div class="row">
-        <div class="hello col-md-6" ng-controller="TrendsController">
+        <div class="barChart col-md-6" ng-controller="TrendsController">
 
           <canvas id="bar-chart" width="500" height="350"></canvas>
 
         </div>
-        <div class="world col-md-6" ng-controller="TrendsController">
+        <div class="pieChart col-md-6" ng-controller="TrendsController">
 
           <canvas id="pie-chart" width="500" height="350"></canvas>
 
