@@ -30,6 +30,28 @@
   <!-- Image placeholder -->
   <!-- <img src="https://placeimg.com/500/350/tech" alt=""> -->
 
+
+
+
+  <script>
+    window.twttr = (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0],
+        t = window.twttr || {};
+      if (d.getElementById(id)) return t;
+      js = d.createElement(s);
+      js.id = id;
+      js.src = "https://platform.twitter.com/widgets.js";
+      fjs.parentNode.insertBefore(js, fjs);
+
+      t._e = [];
+      t.ready = function(f) {
+        t._e.push(f);
+      };
+
+      return t;
+    }(document, "script", "twitter-wjs"));
+  </script>
+
 </head>
 
 <body class="dashboard-body">
@@ -59,7 +81,7 @@
                       <p class="dropdown-item-text">Contact Us! <i class="fas fa-phone-square"></i></p>
                     </span>
                     <hr />
-                    <span>
+                    <span ng-click="logout()">
                       <a href="index.html">
                         <p class="dropdown-item-text">Logout <i class="fas fa-sign-out-alt"></i></p>
                       </a>
@@ -73,6 +95,7 @@
       </div>
     </div>
 
+    <!-- US Map -->
     <div class="container" ng-controller="TrendsController" style="margin-top: 30px;">
       <div class="row">
         <div class="col-md-4">
@@ -90,7 +113,7 @@
 
                 /* function to create html content string in tooltip div. */
                 return "<h4>" + stateName + "</h4><table>" +
-                  "<tr><td>Twitter Rank:</td><td>" + (51-(tweetsADay)) + "</td></tr></table>";
+                  "<tr><td>Twitter Rank:</td><td>" + (51 - (tweetsADay)) + "</td></tr></table>";
               }
 
               tweet_data = [];
@@ -152,7 +175,6 @@
                 uStates.draw("#statesvg", sampleData, tooltipHtml);
               })
               d3.select(self.frameElement).style("height", "600px");
-
             </script>
 
           </div>
@@ -161,25 +183,32 @@
       <span id="stateField" class="stateCode" ng-bind="sCode" hidden></span>
     </div>
 
-    <div class="container">
+    <!-- Displays trend data -->
+    <div>
+      <p ng-controller="TrendsController">{{stateCode()}}</p> </br>
+      <p ng-controller="TrendsController"><button type="button" ng-Click="clicked()"> Show Data</button></br>
+        {{trendNames[0]}} &emsp; {{tweetVolume[0]}} </br>
+        {{trendNames[1]}} &emsp; {{tweetVolume[1]}} </br>
+        {{trendNames[2]}} &emsp; {{tweetVolume[2]}} </br>
+        {{trendNames[3]}} &emsp; {{tweetVolume[3]}} </br>
+        {{trendNames[4]}} &emsp; {{tweetVolume[4]}} </br>
+      </p>
+    </div>
+
+
+
+
+    <!-- Displays tweet data relating to the above trends -->
+    <div class="container" ng-controller="TweetsController">
       <div class="row">
-        <div class="col-md-6">
-          <div class="embedTweets" style=" width: 100%; margin: 0 auto; overflow: auto; height: 360px; ">
-            <blockquote class="twitter-tweet">
-              <p lang="en" dir="ltr">just setting up my twttr</p>&mdash; jack (@jack) <a
-                href="https://twitter.com/jack/status/20?ref_src=twsrc%5Etfw">March 21, 2006</a>
-            </blockquote>
-            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-            <blockquote class="twitter-tweet">
-              <p lang="en" dir="ltr">just setting up my twttr</p>&mdash; jack (@jack) <a
-                href="https://twitter.com/jack/status/20?ref_src=twsrc%5Etfw">March 21, 2006</a>
-            </blockquote>
-            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-            <blockquote class="twitter-tweet">
-              <p lang="en" dir="ltr">just setting up my twttr</p>&mdash; jack (@jack) <a
-                href="https://twitter.com/jack/status/20?ref_src=twsrc%5Etfw">March 21, 2006</a>
-            </blockquote>
-            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        <div class="col-md-12">
+          <div class="embedTweets" style=" width: 50%; margin: 0 auto; overflow: auto; height: 360px; ">
+            <button type="button" ng-Click="showTweets()"> show Tweets</button></br>
+            {{tweetsArray[0]}} </br>
+            {{tweetsArray[1]}} </br>
+            {{tweetsArray[2]}} </br>
+            {{tweetsArray[3]}} </br>
+            {{tweetsArray[4]}} </br>
           </div>
         </div>
         <div class="polarChart col-md-6">
@@ -189,10 +218,42 @@
         </div>
       </div>
     </div>
+    <!-- <div class="col-md-6">
+            <div class="embedTweets" style=" width: 100%; margin: 0 auto; overflow: auto; height: 360px; ">
+              <blockquote class="twitter-tweet"><p lang="en" dir="ltr">just setting up my twttr</p>&mdash; jack (@jack) <a href="https://twitter.com/jack/status/20?ref_src=twsrc%5Etfw">March 21, 2006</a></blockquote>
+              <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+              <blockquote class="twitter-tweet"><p lang="en" dir="ltr">just setting up my twttr</p>&mdash; jack (@jack) <a href="https://twitter.com/jack/status/20?ref_src=twsrc%5Etfw">March 21, 2006</a></blockquote>
+              <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+              <blockquote class="twitter-tweet"><p lang="en" dir="ltr">just setting up my twttr</p>&mdash; jack (@jack) <a href="https://twitter.com/jack/status/20?ref_src=twsrc%5Etfw">March 21, 2006</a></blockquote>
+              <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+            </div>
+          </div> -->
+
+    <!-- Tweet search -->
+    <div class="container" ng-controller="TweetsController">
+      <form ng-submit="searchTweets()">
+        <input type="text" ng-model="searchQuery" placeholder="Enter a topic to search...">
+        <button type="submit"><i class="fa fa-search"></i></button>
+      </form>
+      {{searchResult[0]}}
     </div>
+
+    <script>
+      twttr.ready(function (twttr) {
+        twttr.widgets.load();
+      });
+      // twttr.widgets.load();
+    </script>
+
+    <!-- Placeholder image -->
+    <div class="col-md-6">
+      <img src="https://placeimg.com/500/350/tech" alt="">
+    </div>
+
 
     <br />
 
+    <!-- Displays d3 graphs -->
     <div class="container">
       <div class="row">
         <div class="barChart col-md-6" ng-controller="TrendsController">
@@ -207,7 +268,7 @@
         </div>
       </div>
     </div>
-
+    <script id="twitter-wjs" type="text/javascript" async defer src="//platform.twitter.com/widgets.js"></script>
   </body>
 
 </html>
