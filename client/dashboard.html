@@ -80,7 +80,8 @@
           <p ng-controller="TrendsController">
             <button type="button" class="btn btn-primary" ng-Click="clicked()"> Show Data</button>
           </p>
-          <div id="fullmap" ng-click="stateCode()">
+          <button type="button" class="btn btn-primary" onclick="clearMap()" ng-Click="setUS()"> United States</button>
+          <div id="fullmap" ng-Click="clicked()" ng-click="stateCode()">
             <div id="tooltip"></div><!-- div to hold tooltip. -->
             <svg width="800" style="margin-left: 125px;" height="600" viewBox="0 0 960 600" id="statesvg"></svg>
             <!-- <svg width="800" style="display: block; margin: 0 auto;" height="600" viewBox="0 0 960 600" id="statesvg"></svg> -->
@@ -157,7 +158,7 @@
           </div>
         </div>
       </div>
-      <span id="stateField" class="stateCode" ng-bind="sCode" hidden></span>
+      <span data-ng-init="onloadFun()" id="stateField" class="stateCode" ng-bind="sCode">US</span>
     </div>
 
     <div class="container">

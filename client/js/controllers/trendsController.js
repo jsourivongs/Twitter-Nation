@@ -4,16 +4,22 @@ app.controller('TrendsController', ['$scope', 'TrendsFactory',
     $scope.tweetVolume;
     $scope.responseJSON;
 
+    $scope.setUS = function() {
+        document.getElementById("stateField").innerHTML = "US";
+        $scope.clicked();
+        console.log("setUS")
+    }
     /* Shows the top 5 trends for a given state code. */
     $scope.stateCode = function () {
       /* Makes a request to the backend by passing in a state code, and the received
        * response is a JSON object containing the 5 top trends for that state. */
       var code = angular.element(document.querySelector('.stateCode')).text();
+      
       return code;
     }
 
     $scope.clicked = function () {
-      ;
+      console.log("clicked")
       TrendsFactory.create($scope.stateCode()).then(
         function (response) {
           $scope.responseJSON = response.data;
@@ -26,6 +32,8 @@ app.controller('TrendsController', ['$scope', 'TrendsFactory',
             volume.push(response.data[i].tweet_volume);
 
           }
+          console.log(name)
+          console.log(volume)
 
           // Bar chart
           new Chart(document.getElementById("bar-chart"), {
@@ -100,5 +108,9 @@ app.controller('TrendsController', ['$scope', 'TrendsFactory',
         }
       );
     }
+    $scope.onloadFun = function() {
+        $scope.clicked();
+        console.log("onload")
+      }
   }
 ]);

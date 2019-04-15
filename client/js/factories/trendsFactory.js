@@ -5,6 +5,7 @@ app.factory('TrendsFactory', function($http) {
       },
       
       create: function(stateCode) {
+        console.log(stateCode)
         return $http.post('http://localhost:8080/api/trends/' + stateCode);
       }
     };

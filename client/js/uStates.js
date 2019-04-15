@@ -55,6 +55,9 @@
 
 	uStates.draw = function(state, data, toolTip){
 
+		document.getElementById("stateField").innerHTML = "US";
+
+
 		function mouseOver(d){
 			d3.select("#tooltip").transition().duration(200).style("opacity", .9);
 			//console.log("mouseover:", d)
