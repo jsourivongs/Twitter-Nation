@@ -10,7 +10,6 @@
   <script src="js/controllers/tweetsController.js"></script>
   <script src="js/controllers/trendsController.js"></script>
   <script src="js/factories/trendsFactory.js"></script>
-  <script src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
   <!-- Setup d3 -->
   <script src="js/uStates.js"></script> <!-- creates uStates. -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -163,8 +162,10 @@
             <div class="embedTweets" style=" width: 50%; margin: 0 auto; overflow: auto; height: 360px; ">
               <button type="button" ng-Click="showTweets()"> show Tweets</button></br>
               <div id="tweets">
-<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Raise your hand if you’re voting for President Trump in 2020 👋</p>&mdash; Ryan Fournier (@RyanAFournier) <a href="https://twitter.com/RyanAFournier/status/1114591506042642439?ref_src=twsrc%5Etfw">April 6, 2019</a></blockquote>              </div>
-              <button ng-Click="stringBasedHTML()">Copy And Paste</button>
+                <blockquote class="twitter-tweet"><p lang="en" dir="ltr">My heart breaks for the people of Paris after seeing the fire at Notre Dame Cathedral. Praying for everyone’s safety.</p>&mdash; Melania Trump (@FLOTUS) <a href="https://twitter.com/FLOTUS/status/1117851477693718528?ref_src=twsrc%5Etfw">April 15, 2019</a></blockquote>
+                <script id="hello" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+              </div>
+                <button ng-Click="stringBasedHTML()">Copy And Paste</button>
             </div>
           </div>
         </div>
@@ -333,7 +334,6 @@
         </div>
       </div>
     </div>
-
   </body>
 
 </html>

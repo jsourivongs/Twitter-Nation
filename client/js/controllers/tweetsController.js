@@ -2,7 +2,7 @@ app.controller('TweetsController', ['$scope', '$rootScope','TweetsFactory',
   function ($scope, $rootScope, TweetsFactory) {
 
     $scope.tweetsArray;
-    const tweets = document.getElementById("tweets");
+    const tweets = $("#tweets");
     $scope.showTweets = function() {
       TweetsFactory.create($rootScope.trendQuery).then(
         function(response) {
@@ -20,11 +20,25 @@ app.controller('TweetsController', ['$scope', '$rootScope','TweetsFactory',
 		}
 
     $scope.stringBasedHTML = function(){
-      var s = $scope.tweetsArray[0];
-      var index = s.indexOf("<script");
-      s=s.substring(0,index);
+      var s = "";
+      for(var i=0; i<5; i++){
+        s=s+$scope.tweetsArray[i];
+      }
       console.log(s);
-      tweets.innerHTML = s;
+      //var index = s.indexOf("<script");
+      //s=s.substring(0,index);
+      //var index = s.indexOf("<script");
+      //  s=s.substring(0,index);
+
+      tweets.html(s);
+
+    //<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+     //  var codes = tweets.getElementsByTagName("script");
+     //  for(var i=0;i<codes.length;i++)
+     //  {
+     //   eval(codes[i].innerHTML);
+     // }
+     // console.log(codes[0]);
     }
 
 		// Show tweet data initially

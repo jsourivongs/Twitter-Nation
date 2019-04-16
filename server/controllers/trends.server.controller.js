@@ -1,5 +1,5 @@
 /* Dependencies */
-var mongoose = require('mongoose'), 
+var mongoose = require('mongoose'),
     Trend = require('../models/trends.server.model.js')
     trends = require('../apiTest/trends');
 
@@ -18,8 +18,7 @@ exports.create = async function(req, res) {
 //   Trend.find({}).exec(function(err, trends) {
 //     if (err)
 //       res.status(404).send(err);
-//     else 
+//     else
 //       res.status(200).json(trends);
 //   })
 // };
-
