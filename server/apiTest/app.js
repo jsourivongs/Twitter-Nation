@@ -38,11 +38,11 @@ function delay(ms) {
 }
 
 
-async function getTrends(){
-  var res = await trends.getTopTrendsByStateCode('GA');
-  //console.log(res);
-  return res;
-}
+// async function getTrends(){
+//   var res = await trends.getTopTrendsByStateCode('GA');
+//   //console.log(res);
+//   return res;
+// }
 
 async function getTweets(){
   var tt = await trends.getTopTrendsByStateCode('GA');
@@ -51,17 +51,16 @@ async function getTweets(){
   return res;
 }
 
-module.exports = {
-  getTweets : async function() {
-    var tt = await trends.getTopTrendsByStateCode('GA');
-    var res = await tweets.getTopTweetsByTrend(tt);
-    return res;
-  }
-}
+// module.exports = {
+//   getTweets : async function() {
+//     var tt = await trends.getTopTrendsByStateCode('GA');
+//     var res = await tweets.getTopTweetsByTrend(tt);
+//     return res;
+//   }
+// }
 
 var test = getTweets();
 test.then(function(response) {
   // console.log("text");
-  // console.log(response[0]); 
+  console.log(response[0]); 
 })
-

@@ -63,7 +63,7 @@ module.exports = {
         var max = 0;
         var maxA = [];
         for(var i = 0; i < 5; i++){
-            var searchResponse = await T.get('search/tweets', {q: trends[i].query}, {lang: 'en'}, {result_type: 'popular'});
+            var searchResponse = await T.get('search/tweets', {q: trends[i]}, {lang: 'en'}, {result_type: 'popular'});
             var len = searchResponse.data.statuses.length;
             var id;
             // console.log(searchResponse.data.statuses);

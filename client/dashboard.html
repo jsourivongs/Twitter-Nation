@@ -12,12 +12,12 @@
   <!-- Setup AngularJS -->
   <script src="https://code.angularjs.org/1.4.3/angular.js"></script>
   <script src="js/app.js"></script>
-  <!-- <script src="js/factories/tweetsFactory.js"></script>
-  <script src="js/controllers/tweetsController.js"></script> -->
+  <script src="js/factories/tweetsFactory.js"></script>
+  <script src="js/controllers/tweetsController.js"></script>
   <script src="js/controllers/trendsController.js"></script>
   <script src="js/factories/trendsFactory.js"></script>
-  <script src="bar-chart.js"></script>
-  <!-- Setup BS/jquery -->
+  <script src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+  <!-- Setup d3 -->
   <script src="js/uStates.js"></script> <!-- creates uStates. -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
@@ -160,29 +160,41 @@
       </div>
       <span data-ng-init="onloadFun()" id="stateField" class="stateCode" ng-bind="sCode">US</span>
     </div>
+      <p ng-controller="TrendsController">{{stateCode()}}</p> </br>
+      <p ng-controller="TrendsController"><button type="button" ng-Click="clicked()"> Show Data</button></br>
+        {{trendNames[0]}}   &emsp;  {{tweetVolume[0]}} </br>
+        {{trendNames[1]}}   &emsp;  {{tweetVolume[1]}} </br>
+        {{trendNames[2]}}   &emsp;  {{tweetVolume[2]}} </br>
+        {{trendNames[3]}}   &emsp;  {{tweetVolume[3]}} </br>
+        {{trendNames[4]}}   &emsp;  {{tweetVolume[4]}} </br></p>
+      </div>
 
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6">
-          <div class="embedTweets" style=" width: 100%; margin: 0 auto; overflow: auto; height: 360px; ">
-            <blockquote class="twitter-tweet">
-              <p lang="en" dir="ltr">just setting up my twttr</p>&mdash; jack (@jack) <a
-                href="https://twitter.com/jack/status/20?ref_src=twsrc%5Etfw">March 21, 2006</a>
-            </blockquote>
-            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-            <blockquote class="twitter-tweet">
-              <p lang="en" dir="ltr">just setting up my twttr</p>&mdash; jack (@jack) <a
-                href="https://twitter.com/jack/status/20?ref_src=twsrc%5Etfw">March 21, 2006</a>
-            </blockquote>
-            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-            <blockquote class="twitter-tweet">
-              <p lang="en" dir="ltr">just setting up my twttr</p>&mdash; jack (@jack) <a
-                href="https://twitter.com/jack/status/20?ref_src=twsrc%5Etfw">March 21, 2006</a>
-            </blockquote>
-            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+      <div class="container" ng-controller="TweetsController">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="embedTweets" style=" width: 50%; margin: 0 auto; overflow: auto; height: 360px; ">
+              <button type="button" ng-Click="showTweets()"> show Tweets</button></br>
+              <div id="tweets">
+                <blockquote class="twitter-tweet"><p lang="en" dir="ltr">Raise your hand if you’re voting for President Trump in 2020 👋</p>&mdash; Ryan Fournier (@RyanAFournier) <a href="https://twitter.com/RyanAFournier/status/1114591506042642439?ref_src=twsrc%5Etfw">April 6, 2019</a></blockquote>
+              </div>
+              <button ng-Click="stringBasedHTML()">Copy And Paste</button>
+            </div>
           </div>
         </div>
-        <div class="polarChart col-md-6">
+      </div>
+          <!-- <div class="col-md-6">
+            <div class="embedTweets" style=" width: 100%; margin: 0 auto; overflow: auto; height: 360px; ">
+              <blockquote class="twitter-tweet"><p lang="en" dir="ltr">just setting up my twttr</p>&mdash; jack (@jack) <a href="https://twitter.com/jack/status/20?ref_src=twsrc%5Etfw">March 21, 2006</a></blockquote>
+              <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+              <blockquote class="twitter-tweet"><p lang="en" dir="ltr">just setting up my twttr</p>&mdash; jack (@jack) <a href="https://twitter.com/jack/status/20?ref_src=twsrc%5Etfw">March 21, 2006</a></blockquote>
+              <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+              <blockquote class="twitter-tweet"><p lang="en" dir="ltr">just setting up my twttr</p>&mdash; jack (@jack) <a href="https://twitter.com/jack/status/20?ref_src=twsrc%5Etfw">March 21, 2006</a></blockquote>
+              <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+            </div>
+          </div> -->
+          <div class="col-md-6">
+            <img src="https://placeimg.com/500/350/tech" alt="">
+          </div>
 
           <canvas id="polar-chart" width="500" height="350"></canvas>
 
