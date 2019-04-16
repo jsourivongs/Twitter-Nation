@@ -19,7 +19,6 @@
   <script src="./js/controllers/loginController.js"></script>
   <script src="./js/factories/loginFactory.js"></script>
   <script src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-  <!-- Setup d3 -->
   <script src="js/uStates.js"></script> <!-- creates uStates. -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
@@ -29,35 +28,12 @@
     integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
   <!-- Favicon -->
   <link rel="shortcut icon" type="image/png" href="etc/favicon.ico">
-  <!-- Image placeholder -->
-  <!-- <img src="https://placeimg.com/500/350/tech" alt=""> -->
-
-
-
-
-  <script>
-    window.twttr = (function (d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0],
-        t = window.twttr || {};
-      if (d.getElementById(id)) return t;
-      js = d.createElement(s);
-      js.id = id;
-      js.src = "https://platform.twitter.com/widgets.js";
-      fjs.parentNode.insertBefore(js, fjs);
-
-      t._e = [];
-      t.ready = function (f) {
-        t._e.push(f);
-      };
-
-      return t;
-    }(document, "script", "twitter-wjs"));
-  </script>
 
 </head>
 
 <body class="dashboard-body">
 
+  <!-- Navbar -->
   <body ng-app="twitApp">
     <div class="container">
       <div class="row">
@@ -227,13 +203,6 @@
       </form>
       <div id="abcd"></div>
     </div>
-
-    <script>
-      twttr.ready(function (twttr) {
-        twttr.widgets.load();
-      });
-      // twttr.widgets.load();
-    </script>
 
     <!-- Placeholder image -->
     <div class="col-md-6">

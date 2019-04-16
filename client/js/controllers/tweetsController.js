@@ -1,61 +1,63 @@
-app.controller('TweetsController', ['$scope', '$rootScope','TweetsFactory',
+app.controller('TweetsController', ['$scope', '$rootScope', 'TweetsFactory',
   function ($scope, $rootScope, TweetsFactory, $timeout) {
 
     $scope.tweetsArray;
     const tweets = $("#tweets");
     const search = $("#abcd");
-    $scope.showTweets = function() {
+    $scope.showTweets = function () {
       TweetsFactory.create($rootScope.trendQuery).then(
-        function(response) {
+        function (response) {
           var tweets = [];
-          for(var i=0; i<5; i++){
+          for (var i = 0; i < 5; i++) {
             tweets.push(response.data[i]);
           }
-          $scope.tweetsArray=tweets;
+          $scope.tweetsArray = tweets;
           console.log("done");
         },
-        function(error) {
+        function (error) {
           console.log('Unable to retrieve tweets:', error);
         }
       )
     }
 
-    $scope.searchResult = "(No search results yet)";
-    
-    $scope.searchTweets = function() {
+    $scope.searchResult;
+    $scope.searchTweets = function () {
       if ($scope.searchQuery) {
         encodedQuery = encodeURIComponent($scope.searchQuery);
         TweetsFactory.getTweetsByQuery(encodedQuery).then(
-          function(response) {
+          function (response) {
             var tweets = [];
-            for(var i=0; i<5; i++){
+            for (var i = 0; i < 5; i++) {
               tweets.push(response.data[i]);
             }
             $scope.searchResult = tweets;
           },
-          function(error) {
+          function (error) {
             console.log('Unable to retrieve tweets:', error);
           }
         )
       }
     }
 
-    $scope.stringBasedHTML = function(){
-      var s ="";
-      for( var i=0; i<5; i++){
-        s+=$scope.tweetsArray[i];
+    $scope.stringBasedHTML = function () {
+      var s = "";
+      for (var i = 0; i < 5; i++) {
+        s += $scope.tweetsArray[i];
       }
       console.log(s);
       tweets.html(s);
     }
 
-    $scope.stringBasedHTML2 = function(){
-      
-        s=$scope.searchResult[0];
+    $scope.stringBasedHTML2 = function () {
+      delay(50);
+      s = $scope.searchResult[0];
       search.html(s);
     }
 
-		// Show tweet data initially
-		// $scope.showTweets();
+    function delay(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+    }    
+    // Show tweet data initially
+    // $scope.showTweets();
   }
 ]);
