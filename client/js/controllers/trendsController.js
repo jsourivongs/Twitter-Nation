@@ -1,5 +1,5 @@
-app.controller('TrendsController', ['$scope', '$rootScope', 'TrendsFactory',
-function ($scope, $rootScope, TrendsFactory) {
+app.controller('TrendsController', ['$scope', '$rootScope', 'TrendsFactory','$window',
+function ($scope, $rootScope, TrendsFactory, $window) {
 
   $rootScope.trendQuery;
   $scope.trendNmaes;
@@ -107,6 +107,7 @@ function ($scope, $rootScope, TrendsFactory) {
         console.log('ERROR - Unable to retrieve trends:', error);
       }
     );
+    $window.scrollTo(0,1250);
   }
   $scope.onloadFun = function() {
     $scope.clicked();
