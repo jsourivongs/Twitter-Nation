@@ -4,8 +4,8 @@ var mongoose = require('mongoose'),
     trends = require('../apiTest/trends');
 
 
-/* Create a trend */
-exports.create = async function(req, res) {
+/* List the tops trends for the chosen state. */
+exports.list = async function(req, res) {
   var stateCode = req.params.stateCode;
   console.log("req.params.stateCode = " + stateCode);
   var trendData = await trends.getTopTrendsByStateCode(stateCode)

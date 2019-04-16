@@ -32,6 +32,8 @@ exports.authenticate =  function (req, res) {
         }
         else if(user){   
            if(user.validPassword(req.body.password)){
+                req.session.username = req.body.username;
+
                 //console.log("Sucessful Login!\n");
                 console.log(user);
                 result = true;
