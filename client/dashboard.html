@@ -80,7 +80,7 @@
           <p ng-controller="TrendsController">
             <button type="button" class="btn btn-primary" ng-Click="clicked()"> Show Data</button>
           </p>
-          <button type="button" class="btn btn-primary" onclick="clearMap()" ng-Click="setUS()"> United States</button>
+          <button type="button" class="btn btn-primary" onClick="window.location.reload();" ng-Click="setUS()"> United States</button>
           <div id="fullmap" ng-Click="clicked()" ng-click="stateCode()">
             <div id="tooltip"></div><!-- div to hold tooltip. -->
             <svg width="800" style="margin-left: 125px;" height="600" viewBox="0 0 960 600" id="statesvg"></svg>
