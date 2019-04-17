@@ -2,6 +2,8 @@ var should = require('should'),
     request = require('supertest'), 
     express = require('../config/express');
 
+var app, agent;
+
 describe('Testing login routes', function() {
 
     this.timeout(10000);
@@ -13,9 +15,11 @@ describe('Testing login routes', function() {
         done();
     });
     it('should be able to authenticate a user', function(done) {
-        agent.get('api/login')
+        agent.post('/api/login')
             .expect(200)
             .end(function(err, res) {
+                should.not.exist(err);
+                should.exist(res);
                 done();
             });
     });

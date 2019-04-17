@@ -13,10 +13,22 @@ describe('Testing trends routes', function() {
         done();
     });
     it('should be able to get trends from a state', function(done) {
-        agent.get('api/trends/FL')
+        agent.get('/api/trends/FL')
             .expect(200)
             .end(function(err, res) {
+                should.not.exist(err);
+                should.exist(res);
                 done();
             });
     });
+    it('should be able to get trends from the US', function(done) {
+        agent.get('/api/trends/US')
+            .expect(200)
+            .end(function(err, res) {
+                should.not.exist(err);
+                should.exist(res);
+                done();
+            });
+    });
+
 });
