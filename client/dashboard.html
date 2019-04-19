@@ -46,6 +46,7 @@
                     aria-haspopup="true" aria-expanded="false">
                     <i class="fas fa-bars"></i>
                   </button>
+
                   <div class="dropdown-menu">
                     <span>
                       <p class="dropdown-item-text">Account Settings <i class="fas fa-user-circle"></i></p>
@@ -73,13 +74,24 @@
       </div>
     </div>
 
+    <br />
+    <br />
+    <br />
+    <!-- Tweet search -->
+    <div class="container" ng-controller="TweetsController">
+      <form ng-submit="searchTweets()">
+        <input type="text" ng-model="searchQuery" placeholder="Enter a topic to search...">
+        <a href="#abcd"><button class="btn btn-primary" type="submit"><i class="fa fa-search" ng-Click="stringBasedHTML2()"></i></button></a>
+      </form>
+    </div>
+
     <!-- US Map -->
     <div class="container" ng-controller="TrendsController" style="margin-top: 30px;">
       <div class="row">
         <div class="col-md-4">
           <br />
           <button type="button" class="btn btn-primary" onClick="window.location.reload();" ng-Click="setUS()"> United
-            States</button>
+            States <i class="fas fa-sync"></i></button>
           <div id="fullmap" ng-Click="clicked()" ng-click="stateCode()">
             <div id="tooltip"></div><!-- div to hold tooltip. -->
             <svg width="800" style="margin-left: 125px;" height="600" viewBox="0 0 960 600" id="statesvg"></svg>
@@ -168,36 +180,37 @@
             <button type="button" ng-Click="showTweets()"> show Tweets</button></br>
             <div id="tweets">
             </div>
-            <!-- <button ng-Click="stringBasedHTML()">Copy And Paste</button> -->
           </div>
         </div>
       </div>
     </div>
     </div>
 
-    <!-- Tweet search -->
-    <div class="container" ng-controller="TweetsController">
-      <form ng-submit="searchTweets()">
-        <input type="text" ng-model="searchQuery" placeholder="Enter a topic to search...">
-        <button type="submit"><i class="fa fa-search" ng-Click="stringBasedHTML2()"></i></button>
-      </form>
-      <div id="abcd"></div>
+    <div class="container">
+      <!-- Placeholder image -->
+      <div class="col-md-6">
+        <canvas id="polar-chart" width="500" height="350"></canvas>
+      </div>
+
+      <!-- Bar chart for trend data -->
+      <div class="barChart col-md-6" ng-controller="TrendsController">
+        <canvas id="bar-chart" width="500" height="350"></canvas>
+      </div>
     </div>
 
-    <!-- Placeholder image -->
-    <div class="col-md-6">
-      <canvas id="polar-chart" width="500" height="350"></canvas>
+    <div class="container">
+      <!-- Pie chart for trend data -->
+      <div class="pieChart col-md-6" ng-controller="TrendsController">
+        <canvas id="pie-chart" width="500" height="350"></canvas>
+      </div>
+
+      <div class="col-md-6">
+        <br />
+        <div id="abcd" style= "height: 350; width: 500;"></div>
+      </div>
     </div>
 
-    <!-- Bar chart for trend data -->
-    <div class="barChart col-md-6" ng-controller="TrendsController">
-      <canvas id="bar-chart" width="500" height="350"></canvas>
-    </div>
-
-    <!-- Pie chart for trend data -->
-    <div class="pieChart col-md-6" ng-controller="TrendsController">
-      <canvas id="pie-chart" width="500" height="350"></canvas>
-    </div>
+    <br />
 
     <script id="twitter-wjs" type="text/javascript" async defer src="//platform.twitter.com/widgets.js"></script>
   </body>
