@@ -14,7 +14,7 @@ exports.create = async function(req, res) {
 /* Get tweets by keyword (search query) */
 exports.getTweetsByQuery = async function(req, res) {
   var searchQuery = req.params.searchQuery;
-  console.log("req.params.searchQuery = " + searchQuery);
+  //console.log("req.params.searchQuery = " + searchQuery);
   var searchResults = await tweets.getTweetsByQuery(searchQuery);
   res.status(200).json(searchResults);
 };
