@@ -86,5 +86,30 @@ module.exports = {
     } catch(e) {
         console.log("ERROR", e);
     }
+  },
+  getTweetsByQuery : async function(searchQuery) {
+    var searchData = [];
+    var max = 0;
+    var maxA = [];
+    var searchResponse = await T.get('search/tweets', {q: searchQuery}, {lang: 'en'}, {result_type: 'popular'});
+    var len = searchResponse.data.statuses.length;
+    var id;
+    // console.log(searchResponse.data.statuses);
+    for (var j = 0; j < 5; j++) {
+        for(var k = 0; k < len; k++) {
+          try{
+            var count = searchResponse.data.statuses[k].retweeted_status.favorite_count;
+            if (count > max && maxA.indexOf(count) == -1){
+                id = searchResponse.data.statuses[k].id_str;
+                max = count;
+            }
+          }catch(e) { console.log("error"); }
+        }
+        searchData.push(id);
+        maxA.push(max);
+        max = 0;
+    }
+    return getEmbedBlock(searchData);
+    // return searchData;
   }
 }

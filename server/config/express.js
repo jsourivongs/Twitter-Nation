@@ -5,8 +5,10 @@ var path = require('path'),
     bodyParser = require('body-parser'),
     config = require('./config'),
     accRouter = require('../routes/acc'),
+    session = require('express-session'),
     tweetsRouter = require('../routes/tweets.server.routes'),
-    trendsRouter = require('../routes/trends.server.routes');
+    trendsRouter = require('../routes/trends.server.routes'),
+    logout = require('../routes/logout.server.routes'),
     loginRouter = require('../routes/login.server.routes');
 
 module.exports.init = function() {
@@ -22,6 +24,13 @@ module.exports.init = function() {
 
   //body parsing middleware
   app.use(bodyParser.json());
+
+  app.use(session({
+    secret: 'isdjfkjasdflkjasdf',
+    resave: false,
+    saveUninitialized: true,
+  }));
+
   
   /* Serve static files */
   app.use(express.static('client'))
