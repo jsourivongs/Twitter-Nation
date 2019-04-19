@@ -1,9 +1,10 @@
-app.controller('TweetsController', ['$scope', '$rootScope', 'TweetsFactory',
+app.controller('TweetsController', ['$scope', '$rootScope', 'TweetsFactory', "$timeout",
   function ($scope, $rootScope, TweetsFactory, $timeout) {
 
     $scope.tweetsArray;
     const tweets = $("#tweets");
     const search = $("#abcd");
+
     $scope.showTweets = function () {
       TweetsFactory.create($rootScope.trendQuery).then(
         function (response) {
@@ -12,12 +13,13 @@ app.controller('TweetsController', ['$scope', '$rootScope', 'TweetsFactory',
             tweets.push(response.data[i]);
           }
           $scope.tweetsArray = tweets;
-          console.log("done");
+          console.log($scope.tweetsArray);
+          $scope.stringBasedHTML();
         },
         function (error) {
           console.log('Unable to retrieve tweets:', error);
         }
-      )
+      );
     }
 
     $scope.searchResult;
@@ -40,6 +42,7 @@ app.controller('TweetsController', ['$scope', '$rootScope', 'TweetsFactory',
     }
 
     $scope.stringBasedHTML = function () {
+      delay(50);
       var s = "";
       for (var i = 0; i < 5; i++) {
         s += $scope.tweetsArray[i];
@@ -56,8 +59,13 @@ app.controller('TweetsController', ['$scope', '$rootScope', 'TweetsFactory',
 
     function delay(ms) {
       return new Promise(resolve => setTimeout(resolve, ms));
-    }    
+    }
     // Show tweet data initially
     // $scope.showTweets();
+
+    $scope.onloadFun = function() {
+      $timeout(
+      $scope.showTweets(), 300000);
+    }
   }
 ]);

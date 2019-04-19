@@ -80,9 +80,6 @@
       <div class="row">
         <div class="col-md-4">
           <br />
-          <p ng-controller="TrendsController">
-            <button type="button" class="btn btn-primary" ng-Click="clicked()"> Show Data</button>
-          </p>
           <button type="button" class="btn btn-primary" onClick="window.location.reload();" ng-Click="setUS()"> United
             States</button>
           <div id="fullmap" ng-Click="clicked()" ng-click="stateCode()">
@@ -158,39 +155,22 @@
               })
               d3.select(self.frameElement).style("height", "600px");
             </script>
-
           </div>
         </div>
       </div>
       <span data-ng-init="onloadFun()" id="stateField" class="stateCode" ng-bind="sCode">US</span>
     </div>
 
-    <!-- Displays trend data -->
-    <div>
-      <p ng-controller="TrendsController">{{stateCode()}}</p> </br>
-      <p ng-controller="TrendsController"><button type="button" ng-Click="clicked()"> Show Data</button></br>
-        {{trendNames[0]}} &emsp; {{tweetVolume[0]}} </br>
-        {{trendNames[1]}} &emsp; {{tweetVolume[1]}} </br>
-        {{trendNames[2]}} &emsp; {{tweetVolume[2]}} </br>
-        {{trendNames[3]}} &emsp; {{tweetVolume[3]}} </br>
-        {{trendNames[4]}} &emsp; {{tweetVolume[4]}} </br>
-      </p>
-    </div>
 
     <div class="container" ng-controller="TweetsController">
+        <span data-ng-init="onloadFun()"></span>
       <div class="row">
         <div class="col-md-12">
           <div class="embedTweets" style=" width: 50%; margin: 0 auto; overflow: auto; height: 360px; ">
             <button type="button" ng-Click="showTweets()"> show Tweets</button></br>
             <div id="tweets">
-              <blockquote class="twitter-tweet">
-                <p lang="en" dir="ltr">Raise your hand if you’re voting for President Trump in 2020 👋</p>&mdash; Ryan
-                Fournier (@RyanAFournier) <a
-                  href="https://twitter.com/RyanAFournier/status/1114591506042642439?ref_src=twsrc%5Etfw">April 6,
-                  2019</a>
-              </blockquote>
             </div>
-            <button ng-Click="stringBasedHTML()">Copy And Paste</button>
+            <!-- <button ng-Click="stringBasedHTML()">Copy And Paste</button> -->
           </div>
         </div>
       </div>
