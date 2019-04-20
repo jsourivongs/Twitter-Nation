@@ -36,6 +36,9 @@ function ($scope, $rootScope, TrendsFactory, $window, $timeout) {
         $scope.trendNames=name;
         $scope.tweetVolume=volume;
 
+        // Removes old bar chart 
+        $('#bar-chart').remove();
+        $('#bar-chart-cont').html('<canvas id="bar-chart" width="500" height="350"></canvas>');
         new Chart(document.getElementById("bar-chart"), {
           type: 'bar',
           data: {
@@ -57,6 +60,9 @@ function ($scope, $rootScope, TrendsFactory, $window, $timeout) {
           }
         });
 
+        // Removes old pie chart
+        $('#pie-chart').remove();
+        $('#pie-chart-cont').html('<canvas id="pie-chart" width="500" height="350"></canvas>');
         new Chart(document.getElementById("pie-chart"), {
           type: 'pie',
           data: {
@@ -75,6 +81,9 @@ function ($scope, $rootScope, TrendsFactory, $window, $timeout) {
           }
         });
 
+        // Removes old polar chart 
+        $('#polar-chart').remove();
+        $('#polar-chart-cont').html('<canvas id="polar-chart" width="500" height="350"></canvas>');
         new Chart(document.getElementById("polar-chart"), {
           type: 'polarArea',
           data: {
@@ -97,7 +106,6 @@ function ($scope, $rootScope, TrendsFactory, $window, $timeout) {
 
         $scope.trendNames = name;
         $scope.tweetVolume = volume;
-
         $scope.data = volume;
         $scope.$watch('data', function (newVal, oldVal) {
           $scope.data = newVal;
@@ -111,6 +119,7 @@ function ($scope, $rootScope, TrendsFactory, $window, $timeout) {
   }
   $scope.onloadFun = function() {
     $scope.clicked();
+    // console.log("onload")
   }
 }
 ]);

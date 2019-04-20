@@ -2,12 +2,12 @@ var config = require('../config/config')
 var UnitedStates = require('./UnitedStates')
 var Twit = require('twit')
 var T = new Twit({
-  consumer_key:         config._consumer_key,
-  consumer_secret:      config._consumer_secret,
-  access_token:         config._access_token,
-  access_token_secret:  config._access_token_secret,
-  timeout_ms:           60*1000,  // optional HTTP request timeout to apply to all requests.
-  strictSSL:            true,     // optional - requires SSL certificates to be valid.
+  consumer_key: config._consumer_key,
+  consumer_secret: config._consumer_secret,
+  access_token: config._access_token,
+  access_token_secret: config._access_token_secret,
+  timeout_ms: 60 * 1000, // optional HTTP request timeout to apply to all requests.
+  strictSSL: true, // optional - requires SSL certificates to be valid.
 })
 
 
@@ -70,7 +70,7 @@ async function rankStateTrends(cities) {
     });
 
     // Sort the array of trends in descending order of their tweet counts
-    statewideTrends.sort(function(a, b){
+    statewideTrends.sort(function (a, b) {
       return b.tweet_volume - a.tweet_volume;
     });
   });
@@ -80,10 +80,10 @@ async function rankStateTrends(cities) {
 
   // Remove all duplicate trends in the array
   for (var i = 1; i < statewideTrends.length - 1; i++) {
-    if (statewideTrends[i].name === statewideTrends[i-1].name) {
+    if (statewideTrends[i].name === statewideTrends[i - 1].name) {
       statewideTrends.splice(i, 1);
       i -= 1; // Decrease index by 1 to cancel out the for-loop's increment
-              // (want to stay at same index in case there are more duplicates)
+      // (want to stay at same index in case there are more duplicates)
     }
   }
 
@@ -92,18 +92,18 @@ async function rankStateTrends(cities) {
 }
 
 module.exports = {
-  getTopTrendsByStateCode : async function (stateCode) {
-    if (stateCode == "US"){
-      var cities = [{name:"United States", woeid:2380358}];
-    }else{
-    var cities = getCitiesByStateCode(stateCode); // Get all cities for a specified state
-}
+  getTopTrendsByStateCode: async function (stateCode) {
+    if (stateCode == "US") {
+      var cities = [{name: "United States",woeid: 2380358}];
+    } else {
+      var cities = getCitiesByStateCode(stateCode); // Get all cities for a specified state
+    }
     var topTrends = await rankStateTrends(cities);
     if (topTrends.length > 0) {
-        return topTrends;
+      return topTrends;
     } else {
-        console.log("No trends available for state: " + stateCode)
-        return null;
+      console.log("No trends available for state: " + stateCode)
+      return null;
     }
   }
 }
