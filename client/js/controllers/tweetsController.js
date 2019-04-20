@@ -3,7 +3,6 @@ app.controller('TweetsController', ['$scope', '$rootScope', 'TweetsFactory', "$t
 
     $scope.tweetsArray;
     const tweets = $("#tweets");
-    const search = $("#abcd");
 
     $scope.showTweets = function () {
       $timeout( function(){
@@ -24,7 +23,9 @@ app.controller('TweetsController', ['$scope', '$rootScope', 'TweetsFactory', "$t
     }, 1500);
   }
 
+    const search = $("#abcd");
     $scope.searchResult;
+
     $scope.searchTweets = function () {
       if ($scope.searchQuery) {
         encodedQuery = encodeURIComponent($scope.searchQuery);
@@ -40,7 +41,7 @@ app.controller('TweetsController', ['$scope', '$rootScope', 'TweetsFactory', "$t
             $scope.stringBasedHTML2();
           },
           function (error) {
-            console.log('Unable to retrieve tweets:', error);
+            console.log('Unable to retrieve a tweet for your search:', error);
           }
         )
       }
@@ -61,7 +62,7 @@ app.controller('TweetsController', ['$scope', '$rootScope', 'TweetsFactory', "$t
 
 
     $scope.onloadFun = function() {
-        $scope.showTweets();
+      $scope.showTweets();
     }
   }
 ]);

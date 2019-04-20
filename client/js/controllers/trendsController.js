@@ -119,6 +119,7 @@ function ($scope, $rootScope, TrendsFactory, $window, $timeout) {
   }
   $scope.onloadFun = function() {
     $scope.clicked();
+    // console.log("onload")
   }
 }
 ]);
