@@ -14,46 +14,46 @@ function delay(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-async function getTopTweetsByTrend(trends) {
-  try {
-      var searchData = [];
-      var max = 0;
-      var maxA = [];
-      for(var i = 0; i < 1; i++){
-          var searchResponse = await T.get('search/tweets', {q: trends[i].query}, {result_type: 'popular'});
-          var len = searchResponse.data.statuses.length;
-          var id;
-          for (var j = 0; j < 5; j++) {
-              for(var k = 0; k < len; k++) {
-                try{
-                  var count = searchResponse.data.statuses[k].retweeted_status.favorite_count;
-                  if (count > max && maxA.indexOf(count) == -1){
-                      id = searchResponse.data.statuses[k].id_str;
-                      max = count;
-                  }
-                }catch(e){}
-              }
-              searchData.push(id);
-              maxA.push(max);
-              // console.log(maxA);
-              max = 0;
-          }
-      }
-      return getEmbedBlock(searchData);
-  } catch(e) {
-      console.log("ERROR");
-  }
-}
+// async function getTopTweetsByTrend(trends) {
+//   try {
+//       var searchData = [];
+//       var max = 0;
+//       var maxA = [];
+//       for(var i = 0; i < 1; i++){
+//           var searchResponse = await T.get('search/tweets', {q: trends[i].query}, {result_type: 'popular'});
+//           var len = searchResponse.data.statuses.length;
+//           var id;
+//           for (var j = 0; j < 5; j++) {
+//               for(var k = 0; k < len; k++) {
+//                 try{
+//                   var count = searchResponse.data.statuses[k].retweeted_status.favorite_count;
+//                   if (count > max && maxA.indexOf(count) == -1){
+//                       id = searchResponse.data.statuses[k].id_str;
+//                       max = count;
+//                   }
+//                 }catch(e){}
+//               }
+//               searchData.push(id);
+//               maxA.push(max);
+//               // console.log(maxA);
+//               max = 0;
+//           }
+//       }
+//       return getEmbedBlock(searchData);
+//   } catch(e) {
+//       console.log("ERROR");
+//   }
+// }
 
 async function getEmbedBlock(searchData){
-  var top25 = [];
+  var top5 = [];
   for(var i = 0; i < 5; i++){
       var embedResponse = await T.get('statuses/oembed', { url: "https://twitter.com/CEN3031/status/" + searchData[i]});
       if(embedResponse.data.html != undefined){
-      top25.push(embedResponse.data.html);
+      top5.push(embedResponse.data.html);
       }
   }
-  return top25;
+  return top5;
 }
 
 module.exports = {
@@ -61,32 +61,33 @@ module.exports = {
     try {
         var searchData = [];
         var max = 0;
-        var maxA = [];
+        //var maxA = [];
         for(var i = 0; i < 5; i++){
             var searchResponse = await T.get('search/tweets', {q: trends[i]}, {lang: 'en'}, {result_type: 'popular'});
             var len = searchResponse.data.statuses.length;
             var id;
             // console.log(searchResponse.data.statuses);
-            for (var j = 0; j < 5; j++) {
+            //for (var j = 0; j < 5; j++) {
                 for(var k = 0; k < len; k++) {
                   try{
                     var count = searchResponse.data.statuses[k].retweeted_status.favorite_count;
-                    if (count > max && maxA.indexOf(count) == -1){
+                    if (count > max && searchData.indexOf(searchResponse.data.statuses[k].id_str) == -1){
                         id = searchResponse.data.statuses[k].id_str;
                         max = count;
                     }
                   }catch(e){}
                 }
                 searchData.push(id);
-                maxA.push(max);
+                //maxA.push(max);
                 max = 0;
             }
-        }
+        //}
         return getEmbedBlock(searchData);
     } catch(e) {
         console.log("ERROR");
     }
   },
+
   getTweetsByQuery : async function(searchQuery) {
     var searchData = [];
     var max = 0;

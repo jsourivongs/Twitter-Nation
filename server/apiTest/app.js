@@ -27,40 +27,40 @@
 //       console.log(element.name + ", " + element.country + ": " + element.woeid);
 //     }
 //   });
-// })
-
-var trends = require('./trends');
-var tweets = require('./tweets');
-
-
-function delay(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
-
-
-// async function getTrends(){
-//   var res = await trends.getTopTrendsByStateCode('GA');
-//   //console.log(res);
+// // })
+//
+// var trends = require('./trends');
+// var tweets = require('./tweets');
+//
+//
+// function delay(ms) {
+//   return new Promise(resolve => setTimeout(resolve, ms));
+// }
+//
+//
+// // async function getTrends(){
+// //   var res = await trends.getTopTrendsByStateCode('GA');
+// //   //console.log(res);
+// //   return res;
+// // }
+//
+// async function getTweets(){
+//   var tt = await trends.getTopTrendsByStateCode('GA');
+//   var res = await tweets.getTopTweetsByTrend(tt);
+//   // console.log(res);
 //   return res;
 // }
-
-async function getTweets(){
-  var tt = await trends.getTopTrendsByStateCode('GA');
-  var res = await tweets.getTopTweetsByTrend(tt);
-  // console.log(res);
-  return res;
-}
-
-// module.exports = {
-//   getTweets : async function() {
-//     var tt = await trends.getTopTrendsByStateCode('GA');
-//     var res = await tweets.getTopTweetsByTrend(tt);
-//     return res;
-//   }
-// }
-
-var test = getTweets();
-test.then(function(response) {
-  // console.log("text");
-  console.log(response[0]); 
-})
+//
+// // module.exports = {
+// //   getTweets : async function() {
+// //     var tt = await trends.getTopTrendsByStateCode('GA');
+// //     var res = await tweets.getTopTweetsByTrend(tt);
+// //     return res;
+// //   }
+// // }
+//
+// var test = getTweets();
+// test.then(function(response) {
+//   // console.log("text");
+//   console.log(response[0]);
+// })

@@ -1,5 +1,5 @@
-app.controller('TrendsController', ['$scope', '$rootScope', 'TrendsFactory','$window',
-function ($scope, $rootScope, TrendsFactory, $window) {
+app.controller('TrendsController', ['$scope', '$rootScope', 'TrendsFactory','$window', '$timeout',
+function ($scope, $rootScope, TrendsFactory, $window, $timeout) {
 
   $rootScope.trendQuery;
   $scope.trendNmaes;
@@ -111,7 +111,6 @@ function ($scope, $rootScope, TrendsFactory, $window) {
   }
   $scope.onloadFun = function() {
     $scope.clicked();
-    console.log("onload")
   }
 }
 ]);

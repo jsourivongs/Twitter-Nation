@@ -23,9 +23,9 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
-    integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+  integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
-    integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
   <!-- Favicon -->
   <link rel="shortcut icon" type="image/png" href="etc/favicon.ico">
 
@@ -43,54 +43,55 @@
               <h3>Twitter Nation Dashboard
                 <div class="btn-group pull-right">
                   <button type="button" class="btn btn-regular dropdown-toggle" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
-                    <i class="fas fa-bars"></i>
-                  </button>
-                  <div class="dropdown-menu">
-                    <span>
-                      <p class="dropdown-item-text">Account Settings <i class="fas fa-user-circle"></i></p>
-                    </span>
-                    <hr />
-                    <span>
-                      <p class="dropdown-item-text">Privacy <i class="fas fa-lock"></i></p>
-                    </span>
-                    <hr />
-                    <span>
-                      <p class="dropdown-item-text">Contact Us! <i class="fas fa-phone-square"></i></p>
-                    </span>
-                    <hr />
-                    <span ng-click="logout()">
-                      <a href="index.html">
-                        <p class="dropdown-item-text">Logout <i class="fas fa-sign-out-alt"></i></p>
-                      </a>
-                    </span>
-                  </div>
+                  aria-haspopup="true" aria-expanded="false">
+                  <i class="fas fa-bars"></i>
+                </button>
+                <div class="dropdown-menu">
+                  <span>
+                    <p class="dropdown-item-text">Account Settings <i class="fas fa-user-circle"></i></p>
+                  </span>
+                  <hr />
+                  <span>
+                    <p class="dropdown-item-text">Privacy <i class="fas fa-lock"></i></p>
+                  </span>
+                  <hr />
+                  <span>
+                    <p class="dropdown-item-text">Contact Us! <i class="fas fa-phone-square"></i></p>
+                  </span>
+                  <hr />
+                  <span ng-click="logout()">
+                    <a href="index.html">
+                      <p class="dropdown-item-text">Logout <i class="fas fa-sign-out-alt"></i></p>
+                    </a>
+                  </span>
                 </div>
-              </h3>
-            </div>
-          </nav>
-        </div>
+              </div>
+            </h3>
+          </div>
+        </nav>
       </div>
     </div>
+  </div>
 
-    <!-- US Map -->
-    <div class="container" ng-controller="TrendsController" style="margin-top: 30px;">
-      <div class="row">
-        <div class="col-md-4">
-          <br />
-          <button type="button" class="btn btn-primary" onClick="window.location.reload();" ng-Click="setUS()"> United
-            States</button>
-          <div id="fullmap" ng-Click="clicked()" ng-click="stateCode()">
-            <div id="tooltip"></div><!-- div to hold tooltip. -->
-            <svg width="800" style="margin-left: 125px;" height="600" viewBox="0 0 960 600" id="statesvg"></svg>
-            <!-- <svg width="800" style="display: block; margin: 0 auto;" height="600" viewBox="0 0 960 600" id="statesvg"></svg> -->
-            <!-- <svg width="960" height="600" style="margin-left:100px;" id="statesvg"></svg> -->
-            <script>
+  <!-- US Map -->
+  <div class="container" ng-controller="TrendsController" style="margin-top: 30px;">
+    <div class="row">
+      <div class="col-md-4">
+        <br />
+        <button type="button" class="btn btn-primary" onClick="window.location.reload();" ng-Click="setUS()"> United
+          States</button>
+          <div ng-controller="TweetsController">
+            <div id="fullmap" ng-Click="clicked();showTweets()">
+              <div id="tooltip"></div><!-- div to hold tooltip. -->
+              <svg width="800" style="margin-left: 125px;" height="600" viewBox="0 0 960 600" id="statesvg"></svg>
+              <!-- <svg width="800" style="display: block; margin: 0 auto;" height="600" viewBox="0 0 960 600" id="statesvg"></svg> -->
+              <!-- <svg width="960" height="600" style="margin-left:100px;" id="statesvg"></svg> -->
+              <script>
               function tooltipHtml(stateName, tweetsADay) {
 
                 /* function to create html content string in tooltip div. */
                 return "<h4>" + stateName + "</h4><table>" +
-                  "<tr><td>Twitter Rank:</td><td>" + (51 - (tweetsADay)) + "</td></tr></table>";
+                "<tr><td>Twitter Rank:</td><td>" + (51 - (tweetsADay)) + "</td></tr></table>";
               }
 
               tweet_data = [];
@@ -115,7 +116,7 @@
 
                 // Log Scale, starting number had to be greater than or equal to 1 to not break color coding
                 const logScale = d3.scaleLog()
-                  .domain([start, end])
+                .domain([start, end])
                 const colorScaleLog = d3.scaleSequential(
                   (d) => {
                     return d3.interpolateBlues(logScale(d))
@@ -152,7 +153,8 @@
                 uStates.draw("#statesvg", sampleData, tooltipHtml);
               })
               d3.select(self.frameElement).style("height", "600px");
-            </script>
+              </script>
+            </div>
           </div>
         </div>
       </div>
@@ -161,11 +163,10 @@
 
 
     <div class="container" ng-controller="TweetsController">
-        <span data-ng-init="onloadFun()"></span>
+      <span data-ng-init="onloadFun()"></span>
       <div class="row">
         <div class="col-md-12">
-          <div class="embedTweets" style=" width: 50%; margin: 0 auto; overflow: auto; height: 360px; ">
-            <button type="button" ng-Click="showTweets()"> show Tweets</button></br>
+          <div class="embedTweets" style=" width: 40%; margin: 0 auto; overflow: auto; height: 360px; ">
             <div id="tweets">
             </div>
             <!-- <button ng-Click="stringBasedHTML()">Copy And Paste</button> -->
@@ -173,33 +174,33 @@
         </div>
       </div>
     </div>
-    </div>
+  </div>
 
-    <!-- Tweet search -->
-    <div class="container" ng-controller="TweetsController">
-      <form ng-submit="searchTweets()">
-        <input type="text" ng-model="searchQuery" placeholder="Enter a topic to search...">
-        <button type="submit"><i class="fa fa-search" ng-Click="stringBasedHTML2()"></i></button>
-      </form>
-      <div id="abcd"></div>
-    </div>
+  <!-- Tweet search -->
+  <div class="container" ng-controller="TweetsController">
+    <form ng-submit="searchTweets()">
+      <input type="text" ng-model="searchQuery" placeholder="Enter a topic to search...">
+      <button type="submit"><i class="fa fa-search" ng-Click="stringBasedHTML2()"></i></button>
+    </form>
+    <div id="abcd"></div>
+  </div>
 
-    <!-- Placeholder image -->
-    <div class="col-md-6">
-      <canvas id="polar-chart" width="500" height="350"></canvas>
-    </div>
+  <!-- Placeholder image -->
+  <div class="col-md-6">
+    <canvas id="polar-chart" width="500" height="350"></canvas>
+  </div>
 
-    <!-- Bar chart for trend data -->
-    <div class="barChart col-md-6" ng-controller="TrendsController">
-      <canvas id="bar-chart" width="500" height="350"></canvas>
-    </div>
+  <!-- Bar chart for trend data -->
+  <div class="barChart col-md-6" ng-controller="TrendsController">
+    <canvas id="bar-chart" width="500" height="350"></canvas>
+  </div>
 
-    <!-- Pie chart for trend data -->
-    <div class="pieChart col-md-6" ng-controller="TrendsController">
-      <canvas id="pie-chart" width="500" height="350"></canvas>
-    </div>
+  <!-- Pie chart for trend data -->
+  <div class="pieChart col-md-6" ng-controller="TrendsController">
+    <canvas id="pie-chart" width="500" height="350"></canvas>
+  </div>
 
-    <script id="twitter-wjs" type="text/javascript" async defer src="//platform.twitter.com/widgets.js"></script>
-  </body>
+  <script id="twitter-wjs" type="text/javascript" async defer src="//platform.twitter.com/widgets.js"></script>
+</body>
 
 </html>

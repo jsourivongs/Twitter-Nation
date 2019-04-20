@@ -93,7 +93,11 @@ async function rankStateTrends(cities) {
 
 module.exports = {
   getTopTrendsByStateCode : async function (stateCode) {
+    if (stateCode == "US"){
+      var cities = [{name:"United States", woeid:2380358}];
+    }else{
     var cities = getCitiesByStateCode(stateCode); // Get all cities for a specified state
+}
     var topTrends = await rankStateTrends(cities);
     if (topTrends.length > 0) {
         return topTrends;
