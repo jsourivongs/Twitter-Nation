@@ -30,12 +30,13 @@ app.controller('TweetsController', ['$scope', '$rootScope', 'TweetsFactory', "$t
         encodedQuery = encodeURIComponent($scope.searchQuery);
         TweetsFactory.getTweetsByQuery(encodedQuery).then(
           function (response) {
-            var tweets = [];
-            for (var i = 0; i < 5; i++) {
-              tweets.push(response.data[i]);
-            }
-            $scope.searchResult = tweets;
-            console.log($scope.searchResult);
+            $scope.searchResult = response.data;
+
+
+            console.log(response.data.favorite_count);
+            console.log(response.data.followers_count);
+            console.log(response.data.retweet_count);
+
             $scope.stringBasedHTML2();
           },
           function (error) {
@@ -54,17 +55,10 @@ app.controller('TweetsController', ['$scope', '$rootScope', 'TweetsFactory', "$t
     }
 
     $scope.stringBasedHTML2 = function () {
-      $timeout( function(){
-        s = $scope.searchResult[0];
+        s = $scope.searchResult.block_quote;
         search.html(s);
-      },2000);
     }
 
-    // function delay(ms) {
-    //   return new Promise(resolve => setTimeout(resolve, ms));
-    // }
-    // Show tweet data initially
-    // $scope.showTweets();
 
     $scope.onloadFun = function() {
         $scope.showTweets();

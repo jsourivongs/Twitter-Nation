@@ -89,28 +89,38 @@ module.exports = {
   },
 
   getTweetsByQuery : async function(searchQuery) {
-    var searchData = [];
     var max = 0;
-    var maxA = [];
     var searchResponse = await T.get('search/tweets', {q: searchQuery}, {lang: 'en'}, {result_type: 'popular'});
     var len = searchResponse.data.statuses.length;
     var id;
+    var favCount, followCount, retweetCount;
     // console.log(searchResponse.data.statuses);
-    for (var j = 0; j < 5; j++) {
         for(var k = 0; k < len; k++) {
           try{
             var count = searchResponse.data.statuses[k].retweeted_status.favorite_count;
-            if (count > max && maxA.indexOf(count) == -1){
+            if (count > max){
                 id = searchResponse.data.statuses[k].id_str;
+                favCount = count;
+                followCount = searchResponse.data.statuses[k].retweeted_status.user.followers_count;
+                retweetCount = searchResponse.data.statuses[k].retweeted_status.retweet_count;
                 max = count;
             }
           }catch(e) { console.log("error"); }
         }
-        searchData.push(id);
-        maxA.push(max);
-        max = 0;
+
+    var quote = await T.get('statuses/oembed', { url: "https://twitter.com/CEN3031/status/" + id});
+    var result;
+    if(quote.data.html != undefined){
+      result = quote.data.html;
     }
-    return getEmbedBlock(searchData);
+
+    var TweetObject = {
+      favorite_count: favCount,
+      block_quote: result,
+      followers_count: followCount,
+      retweet_count: retweetCount
+    }
+    return TweetObject;
     // return searchData;
   }
 }
