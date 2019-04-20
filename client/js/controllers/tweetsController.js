@@ -35,6 +35,8 @@ app.controller('TweetsController', ['$scope', '$rootScope', 'TweetsFactory', "$t
               tweets.push(response.data[i]);
             }
             $scope.searchResult = tweets;
+            console.log($scope.searchResult);
+            $scope.stringBasedHTML2();
           },
           function (error) {
             console.log('Unable to retrieve tweets:', error);
