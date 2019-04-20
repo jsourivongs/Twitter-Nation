@@ -5,6 +5,7 @@ function ($scope, $rootScope, TrendsFactory, $window, $timeout) {
   $scope.trendNmaes;
   $scope.tweetVolume;
   $scope.responseJSON;
+  $scope.oldCode = "";
 
   $scope.setUS = function() {
     document.getElementById("stateField").innerHTML = "US";
@@ -20,7 +21,17 @@ function ($scope, $rootScope, TrendsFactory, $window, $timeout) {
     return code;
   }
 
+  $scope.setOldCode = function (code) {
+    $scope.oldCode = code;
+    console.log("old code:", code)
+  }
+
   $scope.clicked = function(){
+    if($scope.stateCode()==$scope.oldCode){
+        console.log("same call")
+    }
+    else{
+
     TrendsFactory.create($scope.stateCode()).then(
       function (response) {
         $scope.responseJSON = response.data;
@@ -107,7 +118,9 @@ function ($scope, $rootScope, TrendsFactory, $window, $timeout) {
         console.log('ERROR - Unable to retrieve trends:', error);
       }
     );
-    $window.scrollTo(0,1250);
+    //$window.scrollTo(0,1250);
+    $scope.setOldCode($scope.stateCode());
+  }
   }
   $scope.onloadFun = function() {
     $scope.clicked();

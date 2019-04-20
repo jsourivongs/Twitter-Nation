@@ -22,6 +22,33 @@
   <script src="js/uStates.js"></script> <!-- creates uStates. -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script>
+$(document).ready(function(){
+  // Add smooth scrolling to all links
+  $("a").on('click', function(event) {
+
+    // Make sure this.hash has a value before overriding default behavior
+    if (this.hash !== "") {
+      // Prevent default anchor click behavior
+      event.preventDefault();
+
+      // Store hash
+      var hash = this.hash;
+
+      // Using jQuery's animate() method to add smooth page scroll
+      // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+      $('html, body').animate({
+        scrollTop: $(hash).offset().top
+      }, 800, function(){
+   
+        // Add hash (#) to URL when done scrolling (default click behavior)
+        window.location.hash = hash;
+      });
+    } // End if
+  });
+});
+</script>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
   integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
@@ -35,10 +62,10 @@
 
   <!-- Navbar -->
   <body ng-app="twitApp">
-    <div class="container">
+    <div id="top" class="container">
       <div class="row">
         <div class="col-md-12">
-          <nav class="navbar navbar-default navbar-fixed-top">
+                    <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container-fluid" style="position: relative; margin-top: -10px; margin-bottom: 3px;">
               <h3>Twitter Nation Dashboard
                 <div class="btn-group pull-right">
@@ -80,6 +107,7 @@
   <!-- Tweet search -->
   <div class="container" ng-controller="TweetsController">
     <form ng-submit="searchTweets()">
+      <a href="#top" ng-hide="">Scroll to Top</a>
       <input type="text" ng-model="searchQuery" placeholder="Enter a topic to search...">
       <a href="#abcd"><button class="btn btn-primary" type="submit"><i class="fa fa-search"></i></button></a>
     </form>
@@ -170,13 +198,15 @@
           </div>
         </div>
       </div>
+      
       <span data-ng-init="onloadFun()" id="stateField" class="stateCode" ng-bind="sCode">US</span>
+  
     </div>
 
 
-    <div class="container" ng-controller="TweetsController">
-      <span data-ng-init="onloadFun()"></span>
-      <div class="row">
+    <div id="datasection" class="container"  ng-controller="TweetsController">
+            <span data-ng-init="onloadFun()"></span>
+          <div class="row">
         <div class="col-md-12">
           <div class="embedTweets" style=" width: 40%; margin: 0 auto; overflow: auto; height: 360px; ">
             <div id="tweets">
@@ -187,7 +217,9 @@
     </div>
   </div>
 
-  <div class="container">
+  
+
+  <div  class="container">
     <!-- Placeholder image -->
     <div class="col-md-6">
       <canvas id="polar-chart" width="500" height="350"></canvas>
@@ -199,7 +231,7 @@
     </div>
   </div>
 
-  <div class="container">
+  <div  class="container">
     <!-- Pie chart for trend data -->
     <div class="pieChart col-md-6" ng-controller="TrendsController">
       <canvas id="pie-chart" width="500" height="350"></canvas>
@@ -210,6 +242,8 @@
       <div id="abcd" style= "height: 350; width: 500;"></div>
     </div>
   </div>
+
+  <button></button>
 
   <br />
 
