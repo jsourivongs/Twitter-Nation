@@ -188,20 +188,20 @@
   </div>
 
   <div class="container">
-    <!-- Placeholder image -->
-    <div class="col-md-6">
+    <!-- Polar chart for trend data -->
+    <div class="col-md-6" id="polar-chart-cont">
       <canvas id="polar-chart" width="500" height="350"></canvas>
     </div>
 
     <!-- Bar chart for trend data -->
-    <div class="barChart col-md-6" ng-controller="TrendsController">
+    <div class="barChart col-md-6" id="bar-chart-cont" ng-controller="TrendsController">
       <canvas id="bar-chart" width="500" height="350"></canvas>
     </div>
   </div>
 
   <div class="container">
     <!-- Pie chart for trend data -->
-    <div class="pieChart col-md-6" ng-controller="TrendsController">
+    <div class="pieChart col-md-6" id="pie-chart-cont" ng-controller="TrendsController">
       <canvas id="pie-chart" width="500" height="350"></canvas>
     </div>
 
