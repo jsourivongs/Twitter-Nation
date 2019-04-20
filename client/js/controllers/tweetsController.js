@@ -3,7 +3,6 @@ app.controller('TweetsController', ['$scope', '$rootScope', 'TweetsFactory', "$t
 
     $scope.tweetsArray;
     const tweets = $("#tweets");
-    const search = $("#abcd");
 
     $scope.showTweets = function () {
       TweetsFactory.create($rootScope.trendQuery).then(
@@ -22,20 +21,18 @@ app.controller('TweetsController', ['$scope', '$rootScope', 'TweetsFactory', "$t
       );
     }
 
+    const search = $("#abcd");
     $scope.searchResult;
+
     $scope.searchTweets = function () {
       if ($scope.searchQuery) {
         encodedQuery = encodeURIComponent($scope.searchQuery);
         TweetsFactory.getTweetsByQuery(encodedQuery).then(
           function (response) {
-            var tweets = [];
-            for (var i = 0; i < 5; i++) {
-              tweets.push(response.data[i]);
-            }
-            $scope.searchResult = tweets;
+            $scope.searchResult = response.data;
           },
           function (error) {
-            console.log('Unable to retrieve tweets:', error);
+            console.log('Unable to retrieve a tweet for your search:', error);
           }
         )
       }
@@ -52,8 +49,11 @@ app.controller('TweetsController', ['$scope', '$rootScope', 'TweetsFactory', "$t
     }
 
     $scope.stringBasedHTML2 = function () {
-      delay(50);
-      s = $scope.searchResult[0];
+      delay(500);
+      s = $scope.searchResult.block_quote;
+      console.log('rt count: ' + $scope.searchResult.retweet_count);
+      console.log('fav count: ' + $scope.searchResult.favorite_count);
+      console.log('fol count: ' + $scope.searchResult.followers_count);
       search.html(s);
     }
 

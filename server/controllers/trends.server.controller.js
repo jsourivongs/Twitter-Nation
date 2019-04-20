@@ -7,7 +7,7 @@ var mongoose = require('mongoose'),
 /* List the tops trends for the chosen state. */
 exports.list = async function(req, res) {
   var stateCode = req.params.stateCode;
-  console.log("req.params.stateCode = " + stateCode);
+  // console.log("req.params.stateCode = " + stateCode);
   var trendData = await trends.getTopTrendsByStateCode(stateCode)
   res.status(200).json(trendData);
 };

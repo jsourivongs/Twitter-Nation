@@ -93,13 +93,26 @@ async function rankStateTrends(cities) {
 
 module.exports = {
   getTopTrendsByStateCode : async function (stateCode) {
-    var cities = getCitiesByStateCode(stateCode); // Get all cities for a specified state
-    var topTrends = await rankStateTrends(cities);
-    if (topTrends.length > 0) {
-        return topTrends;
+    if (stateCode == 'US') {
+      // Get all trends for US
+      allTrends = await getTrendsByWOEID(UnitedStates.woeid);
+
+      // Sort in descending order of tweet volume
+      allTrends.sort(function(a, b){
+        return b.tweet_volume - a.tweet_volume;
+      });
+  
+      // Return top 5 for US
+      return allTrends.slice(0, 5);
     } else {
-        console.log("No trends available for state: " + stateCode)
-        return null;
+      var cities = getCitiesByStateCode(stateCode); // Get all cities for a specified state
+      var topTrends = await rankStateTrends(cities);
+      if (topTrends.length > 0) {
+          return topTrends;
+      } else {
+          console.log("No trends available for state: " + stateCode)
+          return null;
+      }
     }
   }
 }
