@@ -26,6 +26,16 @@ app.controller('TweetsController', ['$scope', '$rootScope', 'TweetsFactory', "$t
     const search = $("#abcd");
     $scope.searchResult;
 
+    $scope.scroll = function (){
+      var hash = "#abcd";
+        $('html, body').animate({
+               scrollTop: $(hash).offset().top
+               }, 800, function(){
+
+          window.location.hash = hash;
+          });
+    }
+
     $scope.searchTweets = function () {
       if ($scope.searchQuery) {
         encodedQuery = encodeURIComponent($scope.searchQuery);
@@ -45,6 +55,7 @@ app.controller('TweetsController', ['$scope', '$rootScope', 'TweetsFactory', "$t
           }
         )
       }
+      $scope.scroll();
     }
 
     $scope.stringBasedHTML = function () {

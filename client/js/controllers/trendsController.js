@@ -5,11 +5,16 @@ function ($scope, $rootScope, TrendsFactory, $window, $timeout) {
   $scope.trendNmaes;
   $scope.tweetVolume;
   $scope.responseJSON;
+  $scope.oldCode = "";
 
   $scope.setUS = function() {
     document.getElementById("stateField").innerHTML = "US";
     $scope.clicked();
     console.log("setUS")
+  }
+   $scope.setOldCode = function (code) {
+    $scope.oldCode = code;
+    console.log("old code:", code)
   }
   /* Shows the top 5 trends for a given state code. */
   $scope.stateCode = function () {
@@ -21,6 +26,10 @@ function ($scope, $rootScope, TrendsFactory, $window, $timeout) {
   }
 
   $scope.clicked = function(){
+    if($scope.stateCode()==$scope.oldCode){
+        console.log("same call")
+    }
+    else{
     TrendsFactory.create($scope.stateCode()).then(
       function (response) {
         $scope.responseJSON = response.data;
@@ -115,7 +124,7 @@ function ($scope, $rootScope, TrendsFactory, $window, $timeout) {
         console.log('ERROR - Unable to retrieve trends:', error);
       }
     );
-    $window.scrollTo(0,1250);
+  }
   }
   $scope.onloadFun = function() {
     $scope.clicked();

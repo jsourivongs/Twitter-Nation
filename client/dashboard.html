@@ -22,13 +22,18 @@
   <script src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
   <script src="js/uStates.js"></script> <!-- creates uStates. -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="js/scroll.js"></script>
+
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
     integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
     integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
   <!-- Favicon -->
   <link rel="shortcut icon" type="image/png" href="etc/favicon.ico">
+
+
 
 </head>
 
@@ -81,8 +86,9 @@
     <!-- Tweet search -->
     <div class="container" ng-controller="TweetsController">
       <form ng-submit="searchTweets()">
+        <a href="#top">Scroll to Top</a>
         <input type="text" ng-model="searchQuery" placeholder="Enter a topic to search...">
-        <a href="#abcd"><button class="btn btn-primary" type="submit"><i class="fa fa-search"></i></button></a>
+        <button class="btn btn-primary" type="submit"><i class="fa fa-search"></i></button>
       </form>
     </div>
 
@@ -175,7 +181,7 @@
     </div>
 
 
-    <div class="container" ng-controller="TweetsController">
+    <div class="container" id="datasection" ng-controller="TweetsController">
       <span data-ng-init="onloadFun()"></span>
       <div class="row">
         <div class="col-md-12">
