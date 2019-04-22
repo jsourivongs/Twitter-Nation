@@ -178,12 +178,14 @@
         </div>
       </div>
       <span data-ng-init="onloadFun()" ng-hide= "true" id="stateField" class="stateCode" ng-bind="sCode">US</span>
+
     </div>
-    <span  ng-controller="TrendsController" id="takeInStateName" id="dataHead"></span>
+
+    <span  ng-controller="TrendsController" id="takeInStateName"></span>
     
     
 
-    <div class="container" id="datasection">
+    <div class="container" id="firstRowOfCharts" >
       <!-- Polar chart for trend data -->
       <div class="col-md-6" id="polar-chart-cont">
         <canvas id="polar-chart" width="500" height="350"></canvas>
@@ -195,13 +197,13 @@
       </div>
     </div>
 
-    <div class="container">
+    <div id="secondRowOfCharts"  class="container">
       <!-- Pie chart for trend data -->
       <div class="pieChart col-md-6" id="pie-chart-cont" ng-controller="TrendsController">
         <canvas id="pie-chart" width="500" height="350"></canvas>
       </div>
 
-<div class="container" id="mainTweetCon" ng-controller="TweetsController">
+<div class="container"  id="mainTweetCon" ng-controller="TweetsController">
       <span data-ng-init="onloadFun()"></span>
       <div class="row">
         <div class="col-md-6">
@@ -212,24 +214,27 @@
         </div>
 </div>
 </div>
-<span ng-controller="TweetsController" id="searchTitle"></span>
 
+<hr id="line" />
+
+<div id="searchHead">
+<span id="searchPre"> Search: <span ng-controller="TweetsController" id="searchTitle"></span> </span>
+</div>
       
-
-     <div class="">
-        <br />
-        <div id="abcd" style="height: 350; width: 475; display: inline;"></div>
+<div class="row">
+     <div class="col-md-6">
+        
+        <div id="abcd" style="height: 350; width: 475; "></div>
       </div>
     
 
-  <div class="col-md-6" style="width: 475px; height: 350px; display: inline;" ng-controller="TweetsController">
+  <div class="col-md-6" style="width: 475px; height: 350px; margin-top: 70px;" ng-controller="TweetsController">
           <canvas id="searchGraph" width="500" height="350"></canvas>
     </div>
      
     </div>
 
-
-
+<div style="height: 80px;"></div>
 
     <script id="twitter-wjs" type="text/javascript" async defer src="//platform.twitter.com/widgets.js"></script>
   </body>

@@ -145,6 +145,7 @@ h3{
     height: 520px;
   }
 
+
   /* Map CSS End */
 
   /*
@@ -634,12 +635,40 @@ h3{
   #takeInStateName{
     font-size: 28px;
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
   }
 
   #searchTitle{
     font-size: 28px;
+
+  }
+
+  #searchPre{
+    font-size: 28px;
     text-align: center;
     margin-bottom: 20px;
-    margin-top: 50px;
+    
   }
+
+  #searchHead{
+    margin-top: 30px;
+    margin-bottom: 40px;
+  }
+
+
+#line{
+  display: block;
+  margin-top: 40px;
+  border-color: #3e95cd !important;
+  border-width: 4px;
+  width: 700px;
+  height: 10px !important;
+  opacity: .5;
+}
+
+#firstRowOfCharts{
+  margin-top: 30px;
+}
+#secondRowOfCharts{
+  margin-top: 50px;
+}

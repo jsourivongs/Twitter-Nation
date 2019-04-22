@@ -8,13 +8,6 @@ function ($scope, $rootScope, TrendsFactory, $window, $timeout) {
   $scope.oldCode = "";
   $scope.stateName= "United States";
 
-$scope.$watch( 'stateName',
-function(newValue, oldValue){
-console.log('stateName Changed');
-console.log(newValue);
-console.log(oldValue);
-}
-);
 
  $scope.setState = function (input) {
         var states = [

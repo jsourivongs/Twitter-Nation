@@ -9,7 +9,7 @@ app.controller('TweetsController', ['$scope', '$rootScope', 'TweetsFactory', "$t
       $timeout( function(){
       TweetsFactory.create($rootScope.trendQuery).then(
         function (response) {
-          console.log(response);
+         // console.log(response);
           var tweets = [];
           for (var i = 0; i < 5; i++) {
             tweets.push(response.data[i]);
@@ -30,7 +30,7 @@ app.controller('TweetsController', ['$scope', '$rootScope', 'TweetsFactory', "$t
     $scope.scroll = function (){
       var hash = "#abcd";
         $('html, body').animate({
-               scrollTop: $(hash).offset().top
+               scrollTop: $(hash).offset().top + 600
                }, 800, function(){
 
           window.location.hash = hash;
@@ -40,28 +40,34 @@ app.controller('TweetsController', ['$scope', '$rootScope', 'TweetsFactory', "$t
     $scope.searchTweets = function () {
       if ($scope.searchQuery) {
         document.getElementById("searchTitle").innerHTML = $scope.searchQuery;
-        console.log($scope.searchQuery);
+        //console.log($scope.searchQuery);
         encodedQuery = encodeURIComponent($scope.searchQuery);
         TweetsFactory.getTweetsByQuery(encodedQuery).then(
           function (response) {
             $scope.searchResult = response.data;
 
 
-            console.log(response.data.favorite_count);
-            console.log(response.data.followers_count);
-            console.log(response.data.retweet_count);
-
+ 
 
             var ctx = document.getElementById('searchGraph').getContext('2d');
             var myChart = new Chart(ctx, {
               type: 'bar',
               data: {
-                labels: ['Favorite Count', 'Followers Count (Thousands)', 'Retweet Count'],
+                labels: ['Favorites', 'Followers (Hundreds)', 'Retweets'],
                 datasets: [{
                   label: 'Data',
-                  data: [response.data.favorite_count, response.data.followers_count/1000, response.data.retweet_count],
-                  backgroundColor: "rgba(63, 127, 191, 1)"
+                  data: [response.data.favorite_count, response.data.followers_count/100, response.data.retweet_count],
+                  backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f"]
                 }]
+              },
+              options: {
+                scales: {
+                  yAxes: [{
+                    ticks: {
+                      suggestedMin: 0
+                    }
+                  }]
+                }
               }
             });
 
