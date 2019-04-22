@@ -20,14 +20,14 @@ exports.create = function(req) {
 };
 
 exports.authenticate =  function (req, res) {
-    // console.log(username);
+    //console.log(req);
     var result = false;
     // console.log(req.body.password)
     User.findOne({username: req.body.username}, function(err, user) {
 
         if (err)
         {
-          //console.log(err);
+          console.log(err);
           result = false;
         }
         else if(user){   
@@ -35,20 +35,21 @@ exports.authenticate =  function (req, res) {
                 req.session.username = req.body.username;
 
                 //console.log("Sucessful Login!\n");
-                console.log(user);
+                //console.log(user);
                 result = true;
              }
             else{
-                // console.log("Incorrect Password.\n")
+                //console.log("Incorrect Password.\n")
                 result = false;
             }
         }
          else {
-                // console.log("Incorrect Username\n");
+                //console.log("Incorrect Username\n");
                 result = false;
         }
       }).then(function() {
           res.json(result);
+          //console.log(result);
           return result;
       });
     };
