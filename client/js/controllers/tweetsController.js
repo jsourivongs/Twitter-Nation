@@ -48,6 +48,20 @@ app.controller('TweetsController', ['$scope', '$rootScope', 'TweetsFactory', "$t
             console.log(response.data.followers_count);
             console.log(response.data.retweet_count);
 
+
+            var ctx = document.getElementById('searchGraph').getContext('2d');
+            var myChart = new Chart(ctx, {
+              type: 'bar',
+              data: {
+                labels: ['Favorite Count', 'Followers Count', 'Retweet Count'],
+                datasets: [{
+                  label: 'Data',
+                  data: [response.data.favorite_count, response.data.followers_count, response.data.retweet_count],
+                  backgroundColor: "rgba(63, 127, 191, 1)"
+                }]
+              }
+            });
+
             $scope.stringBasedHTML2();
           },
           function (error) {
