@@ -3,6 +3,7 @@ app.controller('TweetsController', ['$scope', '$rootScope', 'TweetsFactory', "$t
 
     $scope.tweetsArray;
     const tweets = $("#tweets");
+    $scope.query = "No Current Search"
 
     $scope.showTweets = function () {
       $timeout( function(){
@@ -38,6 +39,8 @@ app.controller('TweetsController', ['$scope', '$rootScope', 'TweetsFactory', "$t
 
     $scope.searchTweets = function () {
       if ($scope.searchQuery) {
+        document.getElementById("searchTitle").innerHTML = $scope.searchQuery;
+        console.log($scope.searchQuery);
         encodedQuery = encodeURIComponent($scope.searchQuery);
         TweetsFactory.getTweetsByQuery(encodedQuery).then(
           function (response) {
@@ -53,10 +56,10 @@ app.controller('TweetsController', ['$scope', '$rootScope', 'TweetsFactory', "$t
             var myChart = new Chart(ctx, {
               type: 'bar',
               data: {
-                labels: ['Favorite Count', 'Followers Count', 'Retweet Count'],
+                labels: ['Favorite Count', 'Followers Count (Thousands)', 'Retweet Count'],
                 datasets: [{
                   label: 'Data',
-                  data: [response.data.favorite_count, response.data.followers_count, response.data.retweet_count],
+                  data: [response.data.favorite_count, response.data.followers_count/1000, response.data.retweet_count],
                   backgroundColor: "rgba(63, 127, 191, 1)"
                 }]
               }

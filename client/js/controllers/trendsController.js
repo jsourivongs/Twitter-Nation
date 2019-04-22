@@ -6,8 +6,15 @@ function ($scope, $rootScope, TrendsFactory, $window, $timeout) {
   $scope.tweetVolume;
   $scope.responseJSON;
   $scope.oldCode = "";
-  $scope.stateName = "United States";
+  $scope.stateName= "United States";
 
+$scope.$watch( 'stateName',
+function(newValue, oldValue){
+console.log('stateName Changed');
+console.log(newValue);
+console.log(oldValue);
+}
+);
 
  $scope.setState = function (input) {
         var states = [
@@ -65,39 +72,43 @@ function ($scope, $rootScope, TrendsFactory, $window, $timeout) {
         ['Wyoming', 'WY'],
         ['United States', 'US'],
     ];
-    //var input ="WI";
-    //input = input.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
         for(i = 0; i < states.length; i++){
             if(states[i][1] == input){
-              console.log(states[i][0])
-              $scope.stateName = states[i][0];
+              //console.log(states[i][0]
+                    $scope.stateName = states[i][0];
+                    break;
             }
         }    
-        console.log(input)
   }
 
 
   $scope.setUS = function() {
     document.getElementById("stateField").innerHTML = "US";
     $scope.clicked();
-    console.log("setUS")
+    //console.log("setUS")
   }
+  //redunandcy test measure
    $scope.setOldCode = function (code) {
     $scope.oldCode = code;
-    console.log("old code:", code)
+    //console.log("old code:", code)
   }
   /* Shows the top 5 trends for a given state code. */
   $scope.stateCode = function () {
     /* Makes a request to the backend by passing in a state code, and the received
     * response is a JSON object containing the 5 top trends for that state. */
     var code = angular.element(document.querySelector('.stateCode')).text();
-    $scope.setState(code)
+    $scope.setState(code);
+    document.getElementById("takeInStateName").innerHTML = $scope.stateName;
     return code;
+  }
+
+  $scope.changeName = function (input){
+    $scope.stateName = input;
   }
 
   $scope.clicked = function(){
     if($scope.stateCode()==$scope.oldCode){
-        console.log("same call")
+        //console.log("same call")
     }
     else{
     TrendsFactory.create($scope.stateCode()).then(
@@ -202,5 +213,6 @@ function ($scope, $rootScope, TrendsFactory, $window, $timeout) {
     $scope.clicked();
     // console.log("onload")
   }
+
 }
 ]);
