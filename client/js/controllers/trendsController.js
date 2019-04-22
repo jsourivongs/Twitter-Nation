@@ -6,6 +6,76 @@ function ($scope, $rootScope, TrendsFactory, $window, $timeout) {
   $scope.tweetVolume;
   $scope.responseJSON;
   $scope.oldCode = "";
+  $scope.stateName = "United States";
+
+
+ $scope.setState = function (input) {
+        var states = [
+        ['Arizona', 'AZ'],
+        ['Alabama', 'AL'],
+        ['Alaska', 'AK'],
+        ['Arizona', 'AZ'],
+        ['Arkansas', 'AR'],
+        ['California', 'CA'],
+        ['Colorado', 'CO'],
+        ['Connecticut', 'CT'],
+        ['Delaware', 'DE'],
+        ['Florida', 'FL'],
+        ['Georgia', 'GA'],
+        ['Hawaii', 'HI'],
+        ['Idaho', 'ID'],
+        ['Illinois', 'IL'],
+        ['Indiana', 'IN'],
+        ['Iowa', 'IA'],
+        ['Kansas', 'KS'],
+        ['Kentucky', 'KY'],
+        ['Kentucky', 'KY'],
+        ['Louisiana', 'LA'],
+        ['Maine', 'ME'],
+        ['Maryland', 'MD'],
+        ['Massachusetts', 'MA'],
+        ['Michigan', 'MI'],
+        ['Minnesota', 'MN'],
+        ['Mississippi', 'MS'],
+        ['Missouri', 'MO'],
+        ['Montana', 'MT'],
+        ['Nebraska', 'NE'],
+        ['Nevada', 'NV'],
+        ['New Hampshire', 'NH'],
+        ['New Jersey', 'NJ'],
+        ['New Mexico', 'NM'],
+        ['New York', 'NY'],
+        ['North Carolina', 'NC'],
+        ['North Dakota', 'ND'],
+        ['Ohio', 'OH'],
+        ['Oklahoma', 'OK'],
+        ['Oregon', 'OR'],
+        ['Pennsylvania', 'PA'],
+        ['Rhode Island', 'RI'],
+        ['South Carolina', 'SC'],
+        ['South Dakota', 'SD'],
+        ['Tennessee', 'TN'],
+        ['Texas', 'TX'],
+        ['Utah', 'UT'],
+        ['Vermont', 'VT'],
+        ['Virginia', 'VA'],
+        ['Washington', 'WA'],
+        ['West Virginia', 'WV'],
+        ['Wisconsin', 'WI'],
+        ['Wyoming', 'WY'],
+        ['United States', 'US'],
+    ];
+    //var input ="WI";
+    //input = input.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+        for(i = 0; i < states.length; i++){
+            if(states[i][1] == input){
+              console.log(states[i][0])
+              $scope.stateName = states[i][0];
+            }
+        }    
+        console.log(input)
+  }
+
 
   $scope.setUS = function() {
     document.getElementById("stateField").innerHTML = "US";
@@ -21,7 +91,7 @@ function ($scope, $rootScope, TrendsFactory, $window, $timeout) {
     /* Makes a request to the backend by passing in a state code, and the received
     * response is a JSON object containing the 5 top trends for that state. */
     var code = angular.element(document.querySelector('.stateCode')).text();
-
+    $scope.setState(code)
     return code;
   }
 
@@ -125,6 +195,8 @@ function ($scope, $rootScope, TrendsFactory, $window, $timeout) {
       }
     );
   }
+ 
+
   }
   $scope.onloadFun = function() {
     $scope.clicked();

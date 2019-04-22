@@ -59,6 +59,12 @@ h3{
   text-align: center;
 }
 
+#leftTopScroll{
+  float: left;
+  margin-top: 20px;
+  color: white;
+  text-decoration: underline;
+}
 /* Header CSS End */
 
 /* BarGraph CSS Start */
@@ -136,7 +142,7 @@ h3{
   #fullmap {
     margin: auto;
     width: 1000px;
-    height: 630px;
+    height: 520px;
   }
 
   /* Map CSS End */
@@ -618,3 +624,14 @@ h3{
   }
 
   /* Login/Animation/KeyFrame CSS End */
+
+
+
+  #USbutton{
+    display: inline;
+  }
+
+  #dataHead{
+    font-size: 28px;
+    text-align: center;
+  }

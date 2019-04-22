@@ -45,6 +45,7 @@
         <div class="col-md-12">
           <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container-fluid" style="position: relative; margin-top: -10px; margin-bottom: 3px;">
+              <a href="#top" id="leftTopScroll">Scroll to Top</a>
               <h3>Twitter Nation Dashboard
                 <div class="btn-group pull-right">
                   <button type="button" class="btn btn-regular dropdown-toggle" data-toggle="dropdown"
@@ -82,25 +83,26 @@
     <br />
     <br />
     <!-- Tweet search -->
+    <div id="top" nghide="true"></div>
     <div class="container" ng-controller="TweetsController">
+       <button   type="button" id="USbutton" class="btn btn-primary" onClick="window.location.reload();" ng-Click="setUS()"> United
+            States <i class="fas fa-sync"></i></button>
       <form ng-submit="searchTweets()">
-        <a href="#top">Scroll to Top</a>
         <input type="text" ng-model="searchQuery" placeholder="Enter a topic to search...">
         <button class="btn btn-primary" type="submit"><i class="fa fa-search"></i></button>
       </form>
     </div>
 
     <!-- US Map -->
-    <div class="container" ng-controller="TrendsController" style="margin-top: 30px;">
+    <div class="container" ng-controller="TrendsController">
       <div class="row">
         <div class="col-md-4">
           <br />
-          <button type="button" class="btn btn-primary" onClick="window.location.reload();" ng-Click="setUS()"> United
-            States <i class="fas fa-sync"></i></button>
+         
           <div ng-controller="TweetsController">
-            <div id="fullmap" ng-Click="clicked();showTweets()">
+            <div id="fullmap"  ng-Click="clicked();showTweets()">
               <div id="tooltip"></div><!-- div to hold tooltip. -->
-              <svg width="800" style="margin-left: 125px;" height="600" viewBox="0 0 960 600" id="statesvg"></svg>
+              <svg width="800" style="margin-left: 125px;" height="500" viewBox="0 0 960 600" id="statesvg"></svg>
               <!-- <svg width="800" style="display: block; margin: 0 auto;" height="600" viewBox="0 0 960 600" id="statesvg"></svg> -->
               <!-- <svg width="960" height="600" style="margin-left:100px;" id="statesvg"></svg> -->
               <script>
@@ -175,9 +177,9 @@
           </div>
         </div>
       </div>
-      <span data-ng-init="onloadFun()" id="stateField" class="stateCode" ng-bind="sCode">US</span>
+      <span data-ng-init="onloadFun()" ng-hide= "true" id="stateField" class="stateCode" ng-bind="sCode">US</span>
     </div>
-
+    <span  ng-controller="TrendsController" id="dataHead">{{stateName}}</span>
     <div class="container" id="datasection" ng-controller="TweetsController">
       <span data-ng-init="onloadFun()"></span>
       <div class="row">
