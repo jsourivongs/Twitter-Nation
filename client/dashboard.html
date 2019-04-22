@@ -179,23 +179,11 @@
       </div>
       <span data-ng-init="onloadFun()" ng-hide= "true" id="stateField" class="stateCode" ng-bind="sCode">US</span>
     </div>
-    <span  ng-controller="TrendsController" id="dataHead">{{stateName}}</span>
-    <div class="container" id="datasection" ng-controller="TweetsController">
-      <span data-ng-init="onloadFun()"></span>
-      <div class="row">
-        <div class="col-md-6">
-          <div class="embedTweets" style=" width: 100%; margin: 0 auto; overflow: auto; height: 360px; ">
-            <div id="tweets">
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6" style="width: 500px; height: 350px;" ng-controller="TweetsController">
-          <canvas id="searchGraph" width="500" height="350"></canvas>
-        </div>
-      </div>
-    </div>
+    <span  ng-controller="TrendsController" id="takeInStateName" id="dataHead"></span>
+    
+    
 
-    <div class="container">
+    <div class="container" id="datasection">
       <!-- Polar chart for trend data -->
       <div class="col-md-6" id="polar-chart-cont">
         <canvas id="polar-chart" width="500" height="350"></canvas>
@@ -213,11 +201,35 @@
         <canvas id="pie-chart" width="500" height="350"></canvas>
       </div>
 
-      <div class="col-md-6">
+<div class="container" id="mainTweetCon" ng-controller="TweetsController">
+      <span data-ng-init="onloadFun()"></span>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="embedTweets" style=" width: 100%; margin: 0 auto; overflow: auto; height: 360px; ">
+            <div id="tweets">
+            </div>
+          </div>
+        </div>
+</div>
+</div>
+<span ng-controller="TweetsController" id="searchTitle"></span>
+
+      
+
+     <div class="">
         <br />
-        <div id="abcd" style="height: 350; width: 500;"></div>
+        <div id="abcd" style="height: 350; width: 475; display: inline;"></div>
       </div>
+    
+
+  <div class="col-md-6" style="width: 475px; height: 350px; display: inline;" ng-controller="TweetsController">
+          <canvas id="searchGraph" width="500" height="350"></canvas>
     </div>
+     
+    </div>
+
+
+
 
     <script id="twitter-wjs" type="text/javascript" async defer src="//platform.twitter.com/widgets.js"></script>
   </body>
