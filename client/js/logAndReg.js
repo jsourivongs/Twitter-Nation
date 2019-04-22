@@ -32,7 +32,9 @@ window.addEventListener('load', function() {
 			username: f_username,
 			password: f_password,
 		};
+        alert('Registration successful!');
 		send_to('POST', '/api/accounts', data, on_ok, on_err);
+        document.getElementById('login-transition').click();
 	};
 	//authenticates login credentials, checks to see both fields are inputted before calling backend
 	var validate_login = function(on_ok, on_err) {
