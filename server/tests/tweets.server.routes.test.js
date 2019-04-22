@@ -32,8 +32,12 @@ describe('Testing tweets routes', function() {
     });
     it('should return an error when wrong route given', function(done) {
         agent.post('/api/tweets/test')
-            .expect(404);
-        done();
+            .expect(404)
+            .end(function(err, res) {
+                should.not.exist(err);
+                should.exist(res);
+                done();
+            });
     });
 
 });

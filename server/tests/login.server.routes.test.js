@@ -23,4 +23,13 @@ describe('Testing login routes', function() {
                 done();
             });
     });
+    it('should return an error code when bad request given', function(done) {
+        agent.get('/api/login')
+            .expect(404)
+            .end(function(err, res) {
+                should.not.exist(err);
+                should.exist(res);
+                done();
+            });
+    });
 });
