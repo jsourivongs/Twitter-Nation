@@ -31,7 +31,6 @@ module.exports.init = function() {
     saveUninitialized: true,
   }));
 
-  
   /* Serve static files */
   app.use(express.static('client'))
 
@@ -41,14 +40,9 @@ module.exports.init = function() {
   app.use('/api/trends', trendsRouter);
   app.use('/api/login', loginRouter);
 
-
   app.all('/login', function(req, res) {
     res.redirect('/dashboard.html');
   });
-
-  // app.all('/*', function(req, res) {
-  //   res.sendFile('/index.html');
-  // });
 
   return app;
 };
