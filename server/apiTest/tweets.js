@@ -68,7 +68,7 @@ module.exports = {
                 retweetCount = searchResponse.data.statuses[k].retweeted_status.retweet_count;
                 max = count;
             }
-          }catch(e) { console.log("error"); }
+          }catch(e) { }
         }
 
     var quote = await T.get('statuses/oembed', { url: "https://twitter.com/CEN3031/status/" + id});
