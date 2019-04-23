@@ -98,7 +98,7 @@
       <div class="row">
         <div class="col-md-4">
           <br />
-         
+
           <div ng-controller="TweetsController">
             <div id="fullmap"  ng-Click="clicked();showTweets()">
               <div id="tooltip"></div><!-- div to hold tooltip. -->
@@ -175,8 +175,8 @@
     </div>
 
     <span  ng-controller="TrendsController" id="takeInStateName"></span>
-    
-    
+
+
 
     <div class="container" id="firstRowOfCharts" >
       <!-- Polar chart for trend data -->
@@ -213,18 +213,18 @@
 <div id="searchHead">
 <span id="searchPre"> Search: <span ng-controller="TweetsController" id="searchTitle"></span> </span>
 </div>
-      
+
 <div class="row">
      <div class="col-md-6">
-        
+
         <div id="abcd" style="height: 350; width: 475; "></div>
       </div>
-    
 
-  <div class="col-md-6" style="width: 475px; height: 350px; margin-top: 70px;" ng-controller="TweetsController">
+
+  <div class="col-md-6" id = "searchGraph-cont" style="width: 475px; height: 350px; margin-top: 70px;" ng-controller="TweetsController">
           <canvas id="searchGraph" width="500" height="350"></canvas>
     </div>
-     
+
     </div>
 
 <div style="height: 80px;"></div>

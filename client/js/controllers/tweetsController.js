@@ -45,6 +45,9 @@ app.controller('TweetsController', ['$scope', '$rootScope', 'TweetsFactory', "$t
           function (response) {
             $scope.searchResult = response.data;
 
+
+            $('#searchGraph').remove();
+            $('#searchGraph-cont').html('<canvas id="searchGraph" width="500" height="350"></canvas>');
             var ctx = document.getElementById('searchGraph').getContext('2d');
             var myChart = new Chart(ctx, {
               type: 'bar',
