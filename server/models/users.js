@@ -5,8 +5,6 @@ var crypto = require('crypto');
 var mongoose = require('mongoose'), 
     Schema = mongoose.Schema;
 
-
-
 //user schema model with name, username, and hash and salt for password
 var userSchema = new Schema({
   name: {
@@ -29,14 +27,13 @@ var userSchema = new Schema({
    this.hash = crypto.pbkdf2Sync(password, this.salt, 1000, 64, 'sha512').toString('hex');
  };
 
-// //Tests to see if the password is correct by encrypting
-// // the salt and password and seeing if output matches the stored hash
+//Tests to see if the password is correct by encrypting
+// the salt and password and seeing if output matches the stored hash
  userSchema.methods.validPassword = function(password) {
    var hash = crypto.pbkdf2Sync(password, this.salt, 1000, 64, 'sha512').toString('hex');
    return this.hash === hash;
  };
 
 var User = mongoose.model('User', userSchema);
-
 
 module.exports = User;

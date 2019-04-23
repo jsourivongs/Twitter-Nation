@@ -30,5 +30,14 @@ describe('Testing trends routes', function() {
                 done();
             });
     });
+    it('should return an error code when incorrect request made to route', function(done) {
+        agent.post('/api/trends/US')
+            .expect(404)
+            .end(function(err, res) {
+                should.not.exist(err);
+                should.exist(res);
+                done();
+            });
+    });
 
 });

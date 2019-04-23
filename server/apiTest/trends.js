@@ -23,9 +23,6 @@ function getCitiesByStateCode(stateCode) {
   });
   return cities;
 }
-/* Change the state code in the following line to get cities from a different state */
-// getCitiesByStateCode('CA');
-
 
 /**
  * Makes a GET request to Twitter's API to retrieve all of the trends for a location
@@ -43,7 +40,6 @@ async function getTrendsByWOEID(woeid) {
   return allTrends;
 }
 
-
 /**
  * Creates a timed delay.
  * @param {number} ms Desired time delay (in milliseconds).
@@ -51,6 +47,7 @@ async function getTrendsByWOEID(woeid) {
 function delay(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
+
 /**
  * Performs several procedures (adding, sorting, removing, etc.) to return
  * a state's top five trends (may need to divide the work into several

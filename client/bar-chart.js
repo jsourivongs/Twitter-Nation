@@ -2,8 +2,6 @@ app.directive('barChart', function($window) {
     return {
       restrict: 'E',
       replace: true,
-    //   transclude: true,
-    //   encapsulation: ViewEncapsulation.None,
       scope: {
         item: '&',
         data: '=',
@@ -28,20 +26,11 @@ app.directive('barChart', function($window) {
           .attr("width", 400)
           .attr("height", 300);
   
-        // watching for any changes in the data
-        // if new data is detected, the chart repaint code is run
-
-        // scope.$watch('data', function(newVal, oldVal) {
-        //     scope.data = newVal;
-        //     if( typeof data !== 'undefined' ) console.log(data);
-        //   }, true);
-
         var xscale = d3.scaleLinear()
           .domain([0, 100])
           .range([0, 240]);
 
         var yscale = d3.scaleLinear()
-        // .domain([0, data.length])
         .domain([0, 5])
         .range([0, 120]);
   

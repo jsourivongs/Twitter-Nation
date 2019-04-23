@@ -20,31 +20,23 @@ exports.create = function(req) {
 };
 
 exports.authenticate =  function (req, res) {
-    // console.log(username);
     var result = false;
-    // console.log(req.body.password)
     User.findOne({username: req.body.username}, function(err, user) {
-
         if (err)
         {
-          //console.log(err);
+          console.log(err);
           result = false;
         }
         else if(user){   
            if(user.validPassword(req.body.password)){
                 req.session.username = req.body.username;
-
-                //console.log("Sucessful Login!\n");
-                console.log(user);
                 result = true;
              }
             else{
-                // console.log("Incorrect Password.\n")
                 result = false;
             }
         }
          else {
-                // console.log("Incorrect Username\n");
                 result = false;
         }
       }).then(function() {
@@ -52,33 +44,3 @@ exports.authenticate =  function (req, res) {
           return result;
       });
     };
-
-// exports.authenticate =  function (req) {
-//     username = req.body.username;
-//     var result = false;
-//     //console.log(req.body.password)
-//     User.findOne({username: username}, function(err, user) {
-
-//         if (err)
-//         {
-//             console.log(err);
-//             return false;
-//         }
-//         else if(user){   
-//             if(user.validPassword(req.body.password)){
-//                 console.log("Sucessful Login!\n");
-//                 console.log(user);
-//                 result = true;
-//                 }
-//             else{
-//                 console.log("Incorrect Password.\n")
-//                 result = false;
-//             }
-//         }
-//             else {
-//                 console.log("Incorrect Username\n");
-//                 result = false;
-//         }
-//         });
-//         return result;
-//     };

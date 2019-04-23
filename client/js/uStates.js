@@ -114,9 +114,9 @@
 				 	return "orange";
 				 });
 
-				var hash = "#datasection";
+			var hash = "#takeInStateName";
      		$('html, body').animate({
-       				 scrollTop: $(hash).offset().top
+       				 scrollTop: $(hash).offset().top -80
       				 }, 800, function(){
 
 	        window.location.hash = hash;
