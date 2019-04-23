@@ -43,9 +43,6 @@ describe('Testing login routes', function() {
         }
         var res;
         var ret = login.authenticate(req,res);
-        //console.log(ret);
-        //console.log(req.body.password);
-
         done();
     });
 });

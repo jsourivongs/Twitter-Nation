@@ -2,10 +2,6 @@
 var express = require('express'), 
     router = express.Router();
 
-// router.route('/')
-//   .get(trends.list)
-//   .post(trends.create);
-
 router.route('/').delete(function(req, res) {
 	if (req.session.username) {
 		console.log("deleting session")
@@ -21,10 +17,5 @@ router.route('/').delete(function(req, res) {
 		res.status(400).end();
 	}
 });
-
-
-
-
-
 
 module.exports = router;
