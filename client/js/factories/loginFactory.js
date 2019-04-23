@@ -5,11 +5,11 @@ app.factory('LoginFactory' , function($http) {
           username: username,
           password: password
         }
-        var ret = $http.post('https://pacific-chamber-75209.herokuapp.com/api/login', credentials);
+        var ret = $http.post('http://localhost:8080/api/login', credentials);
         return ret;
       },
       logout: function() {
-        var ret = $http.delete('https://pacific-chamber-75209.herokuapp.com/api/logout');
+        var ret = $http.delete('http://localhost:8080/api/logout');
       }
     };
     return methods;
