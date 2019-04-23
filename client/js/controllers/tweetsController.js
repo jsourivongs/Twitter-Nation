@@ -9,7 +9,6 @@ app.controller('TweetsController', ['$scope', '$rootScope', 'TweetsFactory', "$t
       $timeout( function(){
       TweetsFactory.create($rootScope.trendQuery).then(
         function (response) {
-         // console.log(response);
           var tweets = [];
           for (var i = 0; i < 5; i++) {
             tweets.push(response.data[i]);
@@ -45,9 +44,6 @@ app.controller('TweetsController', ['$scope', '$rootScope', 'TweetsFactory', "$t
         TweetsFactory.getTweetsByQuery(encodedQuery).then(
           function (response) {
             $scope.searchResult = response.data;
-
-
- 
 
             var ctx = document.getElementById('searchGraph').getContext('2d');
             var myChart = new Chart(ctx, {
@@ -93,7 +89,6 @@ app.controller('TweetsController', ['$scope', '$rootScope', 'TweetsFactory', "$t
         s = $scope.searchResult.block_quote;
         search.html(s);
     }
-
 
     $scope.onloadFun = function() {
       $scope.showTweets();

@@ -74,16 +74,13 @@ function ($scope, $rootScope, TrendsFactory, $window, $timeout) {
         }    
   }
 
-
   $scope.setUS = function() {
     document.getElementById("stateField").innerHTML = "US";
     $scope.clicked();
-    //console.log("setUS")
   }
   //redunandcy test measure
    $scope.setOldCode = function (code) {
     $scope.oldCode = code;
-    //console.log("old code:", code)
   }
   /* Shows the top 5 trends for a given state code. */
   $scope.stateCode = function () {
@@ -100,9 +97,7 @@ function ($scope, $rootScope, TrendsFactory, $window, $timeout) {
   }
 
   $scope.clicked = function(){
-    if($scope.stateCode()==$scope.oldCode){
-        //console.log("same call")
-    }
+    if($scope.stateCode()==$scope.oldCode){}
     else{
     TrendsFactory.create($scope.stateCode()).then(
       function (response) {
@@ -199,13 +194,10 @@ function ($scope, $rootScope, TrendsFactory, $window, $timeout) {
       }
     );
   }
- 
 
   }
   $scope.onloadFun = function() {
     $scope.clicked();
-    // console.log("onload")
   }
-
 }
 ]);
