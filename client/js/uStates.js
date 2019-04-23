@@ -114,7 +114,7 @@
 				 	return "orange";
 				 });
 
-			var hash = "#takeme";
+			var hash = "#takeInStateName";
      		$('html, body').animate({
        				 scrollTop: $(hash).offset().top -80
       				 }, 800, function(){
